@@ -5,14 +5,46 @@
 
 > [Ver instrucciones antes de iniciar](./instructions/instructions.md)
 
-This README would normally document whatever steps are necessary to get the application up and running.
-
 Things you may want to cover:
 
-- Title or Project Name
-- Table of contents
-- Description. A brief description of what the project is about
+# Twitter clone
+
+## Project description. 
+
+It is a social network for sharing ideas in just a few words and multimedia content.
+
+### Scope
+
+#### User posts
+The user sould be capable to post messages on the platform.
+
+#### Feed view 
+The user sould visualize a bunch of posts of other users in the platform.
+
+The posts can be taged in order to create groups dinamically.
+
+#### Search option
+The user sould be capable to search posts or more users.
+
+#### Profile view
+The user sould visualize profiles of users, and customize its own profile.
+
+#### Interactions
+Other users sould interact with posts with a reply in order to generate threads as a public conversation.
+
+Interactions should generate notifications based on their type.
+
+#### Follow
+Users should be capable to follow other users and be followed.
+
+### Users
+There is two types of users, unverified user and verified user, in order to recognize it as a real user/person.
+
+
+<!----
+  Table of contents
 - How to Install and Run the Project.
 - How to Use the Project.
 - Credits
 - Badges
+--->
