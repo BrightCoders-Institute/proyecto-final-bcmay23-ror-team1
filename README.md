@@ -94,6 +94,13 @@ Things you may want to cover:
 - [ ] The app must have fast response times.
 - [ ] The app must be optimized to reduce data consumption.
 
+## GUI Design
+
+[Figma url](https://www.figma.com/file/x8IZqeQn9H2Bs7kIdUmpMZ/Untitled?type=design&node-id=0-1&mode=design&t=uMOWsahmRtfFz2OR-0)
+
+## Database modeling
+
+[Lucidchart url](https://lucid.app/lucidchart/1f90fcfa-31b5-46e4-8e2d-22c8f2a75d66/edit?viewport_loc=-548%2C440%2C1556%2C1152%2C0_0&invitationId=inv_1bd2d1d3-45e0-42cc-a173-73baa06a3a8b)
 
 <!----
   Table of contents
