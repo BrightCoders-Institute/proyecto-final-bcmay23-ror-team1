@@ -1,4 +1,7 @@
 <div>
-  <h1>Bienvenido, <%= current_usuario.email %>!</h1>
+  <h1>Bienvenido, <%= current_user.username %>!</h1>
   <p>Esta es tu página de inicio después de iniciar sesión.</p>
+
+  <%= link_to "Cerrar sesión", destroy_user_session_path, data: { turbo_method: :delete } %>
+
 </div>

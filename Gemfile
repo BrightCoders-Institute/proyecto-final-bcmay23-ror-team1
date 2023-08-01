@@ -15,6 +15,9 @@ gem "pg", "~> 1.1"
 # Use Devise for users and authentication
 gem "devise"
 
+# Use Active Storage for profile pictures
+gem "image_processing", ">= 1.2"
+
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
 
