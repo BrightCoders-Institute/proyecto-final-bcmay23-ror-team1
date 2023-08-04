@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_one_attached :avatar
   has_one_attached :banner
 
+  # Likes relationship
+  has_many :likes
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
