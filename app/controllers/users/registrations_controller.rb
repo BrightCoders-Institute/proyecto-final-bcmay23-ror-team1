@@ -14,6 +14,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super
   end
 
+  def avatar
+    @user = User.new
+  end
+
+  def signup_set_avatar
+    if params[:user].present? && params[:user][:avatar].present?
+      current_user.update(avatar: params[:user][:avatar])
+    end
+    redirect_to root_path
+  end
+
   # GET /resource/edit
   # def edit
   #   super
@@ -51,9 +62,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   # The path used after sign up.
-  # def after_sign_up_path_for(resource)
-  #   super(resource)
-  # end
+  def after_sign_up_path_for(resource)
+    signup_set_avatar_path
+  end
 
   # The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)
