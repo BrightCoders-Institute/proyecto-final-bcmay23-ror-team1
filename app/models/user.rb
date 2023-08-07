@@ -7,8 +7,10 @@ class User < ApplicationRecord
   # Configured 'avatar' and 'banner' as Active Storage attachments
   has_one_attached :avatar
   has_one_attached :banner
-
+  
   has_many :comments
+  # Likes relationship
+  has_many :likes
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable

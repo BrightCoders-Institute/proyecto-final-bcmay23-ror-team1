@@ -1,7 +1,7 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  context: MyText
+  content: MyText
 
 two:
-  context: MyText
+  content: MyText
