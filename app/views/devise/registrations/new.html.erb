@@ -1,39 +1,74 @@
-<h2>Sign up</h2>
+<div class="signup-view-container">
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+  <div class="form">
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true %>
+    <%= link_to "X", root_path, class: "form-close-button" %>
+
+    <h2>Sign up</h2>
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        
+      <div class="field">
+        <%= f.label :name %>
+        <% if resource.errors[:name].present? %>
+          <%= f.text_field :name, autofocus: true , class: "input-form input-error" %>
+          <em class="error-message"><%= resource.errors[:name].first %></em>
+        <% else %>
+          <%= f.text_field :name, autofocus: true , class: "input-form input-neutral" %>
+        <% end %>
+      </div>
+
+      <div class="field">
+        <%= f.label :username %>
+        <% if resource.errors[:username].present? %>
+          <%= f.text_field :username , class: "input-form input-error" %>
+          <em class="error-message"><%= resource.errors[:username].first %></em>
+        <% else %>
+          <%= f.text_field :username , class: "input-form input-neutral" %>
+        <% end %>
+      </div>
+
+      <div class="field">
+        <%= f.label :email %>
+        <% if resource.errors[:email].present? %>
+          <%= f.email_field :email, autocomplete: "email" , class: "input-form input-error" %>
+          <em class="error-message"><%= resource.errors[:email].first %></em>
+        <% else %>
+          <%= f.email_field :email, autocomplete: "email" , class: "input-form input-neutral" %>
+        <% end %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password %>
+
+        <% if resource.errors[:password].present? %>
+          <%= f.password_field :password, autocomplete: "new-password" , class: "input-form input-error" %>
+          <em class="error-message"><%= resource.errors[:password].first %></em>
+        <% else %>
+
+          <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %>
+          <%= f.password_field :password, autocomplete: "new-password" , class: "input-form input-neutral" %>
+
+        <% end %>
+
+      </div>
+
+      <div class="field">
+        <%= f.label :password_confirmation %>
+        <% if resource.errors[:password_confirmation].present? %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password" , class: "input-form input-error" %>
+          <em class="error-message"><%= resource.errors[:password_confirmation].first %></em>
+        <% else %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password" , class: "input-form input-neutral" %>
+        <% end %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Next" , class: "submit-button" %>
+      </div>
+    <% end %>
+  
   </div>
-
-  <div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username %>
-  </div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

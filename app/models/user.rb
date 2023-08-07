@@ -12,6 +12,9 @@ class User < ApplicationRecord
   has_many :following_users, foreign_key: :following_id, class_name: 'Follow'
   has_many :followings, through: :followed_users, source: :following
   has_many :followers, through: :following_users, source: :follower
+  
+  # Likes relationship
+  has_many :likes
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
