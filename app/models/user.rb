@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# User model
 class User < ApplicationRecord
   # Add fields to User model
   validates :name, presence: true
