@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 20_230_803_025_832) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_01_225059) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -52,13 +52,23 @@ ActiveRecord::Schema[7.0].define(version: 20_230_803_025_832) do
     t.datetime 'updated_at', null: false
   end
 
-  create_table 'likes', force: :cascade do |t|
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.bigint 'post_id', null: false
-    t.bigint 'user_id', null: false
-    t.index ['post_id'], name: 'index_likes_on_post_id'
-    t.index ['user_id'], name: 'index_likes_on_user_id'
+  create_table "comments", force: :cascade do |t|
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.bigint "post_id", null: false
+    t.index ["post_id"], name: "index_comments_on_post_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "post_id", null: false
+    t.bigint "user_id", null: false
+    t.index ["post_id"], name: "index_likes_on_post_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
   create_table 'posts', force: :cascade do |t|
@@ -89,11 +99,13 @@ ActiveRecord::Schema[7.0].define(version: 20_230_803_025_832) do
     t.index ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true
   end
 
-  add_foreign_key 'active_storage_attachments', 'active_storage_blobs', column: 'blob_id'
-  add_foreign_key 'active_storage_variant_records', 'active_storage_blobs', column: 'blob_id'
-  add_foreign_key 'likes', 'posts'
-  add_foreign_key 'likes', 'users'
-  add_foreign_key 'posts', 'users'
-  add_foreign_key 'users', 'active_storage_attachments', column: 'avatar_id'
-  add_foreign_key 'users', 'active_storage_attachments', column: 'banner_id'
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "comments", "posts"
+  add_foreign_key "comments", "users"
+  add_foreign_key "likes", "posts"
+  add_foreign_key "likes", "users"
+  add_foreign_key "posts", "users"
+  add_foreign_key "users", "active_storage_attachments", column: "avatar_id"
+  add_foreign_key "users", "active_storage_attachments", column: "banner_id"
 end
