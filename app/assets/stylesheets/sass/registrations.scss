@@ -1,0 +1,79 @@
+.signup-view-container {
+  background-color: $colorBlueGray;
+  display: flex;
+  height: 100vh;
+}
+
+.form {
+  background-color: $colorBlack;
+  border-radius: 8px;
+  color: $colorWhite;
+  font-size: 18px;
+  height: 100vh;
+  margin: auto;
+  padding: 4rem;
+  width: 100%;
+}
+
+.form-close-button {
+  color: $colorWhite;
+  margin: -3rem;
+  position: absolute;
+  text-decoration: none;
+}
+
+.field {
+  color: $colorGray;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-block: 8px;
+}
+
+.input-form {
+  background: $colorBlack;
+  border: 1px solid $colorGray;
+  border-radius: 4px;
+  color: $colorWhite;
+  font-size: 18px;
+  height: 40px;
+  padding-left: 12px;
+  width: calc(100% - 12px - 4px);
+}
+
+.input-neutral:focus {
+  border: 1px solid $colorBlue;
+  outline: 1px solid $colorBlue;
+}
+
+.input-error {
+  border: 1px solid $colorRed;
+}
+
+.input-error:focus {
+  border: 1px solid $colorRed;
+  outline: 1px solid $colorRed;
+}
+
+.submit-button {
+  background-color: $colorWhite;
+  border: none;
+  border-radius: 2rem;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  height: 42px;
+  margin-top: 2rem;
+  width: 100%;
+}
+
+.error-message {
+  color: $colorRed;
+}
+
+@media only screen and (min-width: 702px) {
+  .form {
+    height: fit-content;
+    width: 25%;
+  }
+}
