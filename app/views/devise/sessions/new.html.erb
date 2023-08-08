@@ -1,26 +1,37 @@
 <div class="signup-view-container">
+
   <div class="form">
-    <h2>Log in</h2>
+    
+    <%= link_to "X", new_registration_path(resource_name), class: "form-close-button" %>
+
+    <h2 class="form-title">Log in</h2>
+    
+    
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="field">
-        <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input-form input-neutral" %>
+        <%= f.label :email %>
+        <%= 
+          f.email_field :email, 
+          autofocus: true, 
+          autocomplete: "email",
+          class: "input-form input-neutral"
+        %>
       </div>
+    
       <div class="field">
-        <%= f.label :password %><br />
-        <%= f.password_field :password, autocomplete: "current-password", class: "input-form input-neutral" %>
+        <%= f.label :password %>
+        <%= 
+          f.password_field :password, 
+          autocomplete: "current-password",
+          class: "input-form input-neutral"
+        %>
       </div>
-      <!-- <% if devise_mapping.rememberable? %>
-        <div class="field">
-          <%= f.check_box :remember_me %>
-          <%= f.label :remember_me %>
-        </div>
-      <% end %> -->
-
+      
       <div class="actions">
-        <%= f.submit "Siguiente", class: "submit-button" %>
+        <%= f.submit "Next", class: "submit-button" %>
       </div>
     <% end %>
+    
   </div>
-</div>
 
+</div>
