@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["image", "submit"]
+  static targets = ["image", "icon", "submit"]
 
   update(event) {
     // Update the avatar image
@@ -13,6 +13,10 @@ export default class extends Controller {
       }
       reader.readAsDataURL(file)
     }
+
+    // Show the image and hide the icon
+    this.imageTarget.classList.remove("hidden");
+    this.iconTarget.classList.add("hidden");
 
     //Update the text of the submit button
     this.submitTarget.value = 'Next'

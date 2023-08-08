@@ -11,7 +11,9 @@
       <div class="field avatar-container" >
 
         <%= form.label :avatar , class: "avatar-label" do %>
-          <img src="#" class="signup-avatar" data-signup-avatar-target="image">
+          <i class="fa-solid fa-camera signup-camera"></i>
+          <i class="fa-solid fa-user signup-avatar signup-avatar-icon" data-signup-avatar-target="icon"></i>
+          <img src="#" class="signup-avatar hidden" data-signup-avatar-target="image"></img>
         <% end %>
 
         <%= form.file_field :avatar , class: "hidden-field" , data: { action: "signup-avatar#update" } %>

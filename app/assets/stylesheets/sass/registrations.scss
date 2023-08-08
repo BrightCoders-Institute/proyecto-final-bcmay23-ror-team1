@@ -1,3 +1,5 @@
+@import "signup_avatar";
+
 .signup-view-container {
   background-color: $colorBlueGray;
   display: flex;
@@ -6,7 +8,7 @@
 
 .form {
   background-color: $colorBlack;
-  border-radius: 8px;
+  border-radius: 0;
   color: $colorWhite;
   font-size: 18px;
   height: 100vh;
@@ -71,36 +73,16 @@
   color: $colorRed;
 }
 
-.signup-avatar {
-  width: 100%;
-  height: 100%;
-  height: calc(#{width});
-  background-color: gray;
-  border-radius: 100%;
-  cursor: pointer;
-}
-
 .hidden-field {
   display: none;
 }
 
-.avatar-container {
-  align-items: center;
-}
-
-.avatar-label {
-  margin-top: 2rem;
-  width: 20rem;
-  height: 20rem;
-}
-
 @media only screen and (min-width: 702px) {
+  
   .form {
     height: fit-content;
     width: 25%;
+    border-radius: 8px;
   }
-  .avatar-label {
-    width: 12rem;
-    height: 12rem;
-  }
+
 }

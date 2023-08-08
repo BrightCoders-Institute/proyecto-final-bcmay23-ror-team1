@@ -1,8 +1,13 @@
 @import 
+  "font-awesome",
   "./sass/abstracts/colors",
   "./sass/registrations";
 
 * {
   margin: 0;
   font-family: arial, sans-serif;
+}
+
+.hidden {
+  display: none;
 }
