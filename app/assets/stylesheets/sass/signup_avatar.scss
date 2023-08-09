@@ -1,0 +1,63 @@
+.avatar-container {
+  align-items: center;
+}
+
+.avatar-label {
+  align-items: end;
+  display: flex;
+  height: 20rem;
+  justify-content: end;
+  margin-top: 2rem;
+  width: 20rem;
+}
+
+.signup-avatar {
+  background-color: $colorGray;
+  border-radius: 100%;
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+}
+
+.signup-avatar-icon {
+  align-items:center;
+  color: $colorWhite;
+  display: flex;
+  font-size: 9rem;
+  justify-content:center;
+}
+
+.signup-camera {
+  align-items: center;
+  background-color: $colorDarkMint;
+  border-radius: 100%;
+  color: $colorWhite;
+  cursor: pointer;
+  display: flex;
+  font-size: 2rem;
+  height: 4rem;
+  justify-content: center;
+  margin: 1rem;
+  position: absolute;
+  width: 4rem;
+  }
+
+@media only screen and (min-width: 702px) {
+
+  .avatar-label {
+    height: 12rem;
+    width: 12rem;
+  }
+
+  .signup-camera {
+    font-size: 1.6rem;
+    height: 3rem;
+    margin: 0;
+    width: 3rem;
+  }
+
+  .signup-avatar-icon {
+    font-size: 6rem;
+  }
+
+}
