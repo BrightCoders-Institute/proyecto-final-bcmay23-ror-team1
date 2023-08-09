@@ -1,0 +1,5 @@
+<h1>Bienvenido, <%= current_user.username %>!</h1>
+  <% if current_user.avatar.present? %>
+    <%= image_tag(current_user.avatar) %>
+  <% end %>
+  <p>Esta es tu página de inicio después de iniciar sesión.</p>
