@@ -1,7 +1,20 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["images"]
+  static targets = ["images", "textarea", "submit"]
+
+  connect() {
+    this.textareaTarget.style.height = this.textareaTarget.scrollHeight + 'px'
+  }
+
+  onInputTextarea() {
+    // Auto resizes the text area based on the content
+    this.textareaTarget.style.height = 'auto'
+    this.textareaTarget.style.height = this.textareaTarget.scrollHeight + 'px'
+
+    // Allows to post if not empty
+    this.submitTarget.disabled = this.textareaTarget.value.trim() == ""
+  }
 
   previewImages(event) {
     const files = event.target.files
