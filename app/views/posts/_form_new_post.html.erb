@@ -1,11 +1,17 @@
-<%= form_with model: @post, url: posts_path, method: 'post' do |form| %>
+<div data-controller="form-new-post">
+  <%= form_with model: @post, url: posts_path, method: 'post' do |form| %>
 
-  <%= form.text_area :content , placeholder: "Post a thougth!" %>
-  <% if @post.errors[:content].present? %>
-    <%= @post.errors[:content].first %>
-  <% end %>
+    <%= form.text_area :content , placeholder: "Post a thougth!" %>
+    <% if @post.errors[:content].present? %>
+      <%= @post.errors[:content].first %>
+    <% end %>
 
-  <%= form.file_field :images , multiple: true %>
-  <%= form.submit :post %>
+    <%= form.file_field :images , multiple: true , data: { action: "form-new-post#previewImages" } %>
+    <%= form.submit :post %>
 
-<% end %>
+    <div data-form-new-post-target="images">
+      <%= image_tag("", class: "image-preview-hidden") %>
+    </div>
+
+  <% end %>  
+</div>
