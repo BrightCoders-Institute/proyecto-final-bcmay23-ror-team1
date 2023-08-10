@@ -1,6 +1,9 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!
 
   def index
+    @posts = Post.all
+    
     # Indivitual post for creation form
     @post = Post.new
   end
