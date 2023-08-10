@@ -3,7 +3,7 @@
   <% if @posts.any? %>
     <% @posts.each do |post| %>
       <div class='post-container'>
-        <%= render partial: 'posts/components/post', locals: { post: post } %>
+        <%= render partial: 'posts/components/post', locals: { post: post, view: :index } %>
       </div>
     <% end %>
   <% else %>

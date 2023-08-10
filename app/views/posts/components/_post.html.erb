@@ -22,7 +22,11 @@
 
 
   <div class="post-actions post-meta">
-    <%= post.created_at.strftime("%-I:%M %p · %-d %b. %Y") %>
+    <% if view == :index %>
+      <%= format_time_ago(post.created_at) %>
+    <% else %>
+      <%= post.created_at.strftime("%-I:%M %p · %-d %b. %Y") %>
+    <% end %>
     <p>
       <% format_time_ago(post.created_at) %>
     </p>
