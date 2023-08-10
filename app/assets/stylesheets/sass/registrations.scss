@@ -23,10 +23,10 @@
 
 .form-close-button {
   color: $colorWhite;
+  cursor: pointer;
   margin: -3rem;
   position: absolute;
   text-decoration: none;
-  cursor: pointer;
 }
 
 .field {
@@ -85,9 +85,9 @@
 @media only screen and (min-width: 702px) {
   
   .form {
+    border-radius: 8px;
     height: fit-content;
     width: 25%;
-    border-radius: 8px;
   }
 
 }
