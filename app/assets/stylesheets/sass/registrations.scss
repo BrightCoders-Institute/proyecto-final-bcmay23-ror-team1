@@ -1,3 +1,5 @@
+@import "signup_avatar";
+
 .signup-view-container {
   background-color: $colorBlueGray;
   display: flex;
@@ -6,13 +8,17 @@
 
 .form {
   background-color: $colorBlack;
-  border-radius: 8px;
+  border-radius: 0;
   color: $colorWhite;
   font-size: 18px;
   height: 100vh;
   margin: auto;
   padding: 4rem;
   width: 100%;
+
+  .form-title {
+    margin-bottom: 1rem;
+  }
 }
 
 .form-close-button {
@@ -71,9 +77,16 @@
   color: $colorRed;
 }
 
+.hidden-field {
+  display: none;
+}
+
 @media only screen and (min-width: 702px) {
+  
   .form {
     height: fit-content;
     width: 25%;
+    border-radius: 8px;
   }
+
 }
