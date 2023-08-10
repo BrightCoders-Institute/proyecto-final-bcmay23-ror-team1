@@ -1,31 +1,58 @@
 /* Styles for posts like Twitter posts */
 .post {
-  background-color: #fff;
-  border-radius: 3px;
-  border: 1px solid #ddd;
+  border-radius: 10px;
+  border: 5px solid $colorBorder;
   margin-bottom: 20px;
   padding: 15px;
   position: relative;
 
+  .post-image {
+    border-radius: 10px;
+    height: 50%;
+    width: 50%;
+  }
+
   .post-header {
     align-items: center;
     display: flex;
+    gap: 20px;
 
     .post-avatar {
-      float: left;
-      margin-right: 10px;
+      border-radius: 50%;
+      height: 50px;
+      width: 50px;
     }
 
     .post-meta {
+      display: flex;
+      flex-direction: column;
       color: #999;
       font-size: 12px;
       margin-top: 5px;
+
+      strong {
+        color: $colorWhite;
+        font-size: 18px;
+      }
+    }
+
+    .post-delete {
+      position: absolute;
+      right: 15px;
+      top: 15px;
     }
   }
 
   .post-content {
     margin-bottom: 10px;
-    margin-top: 10px;
+    margin: 40px 0 40px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    p {
+      align-self: self-start;
+    }
   }
 
   .post-actions {
@@ -43,62 +70,11 @@
       }
     }
   }
-
-  .post-footer {
-    border-top: 1px solid #ddd;
-    margin-top: 10px;
-    padding-top: 10px;
-
-    .post-footer-comment-count {
-      color: #999;
-      font-size: 12px;
-
-      a {
-        color: #999;
-
-        &:hover {
-          color: #333;
-        }
-      }
-    }
-  }
 }
 
 
 .post-container {
   margin: 20px;
-}
-
-.container {
-  display: flex;
-  height: 100%;
-  justify-content: space-between;
-}
-
-/* Columna de Acciones del Usuario */
-.actions-column {
-  background-color: #f5f8fa;
-  border-right: 1px solid #e1e8ed;
-  height: 100vh;
-  max-height: calc(100vh - 40px);
-  overflow: hidden;
-  padding: 20px;
-  position: sticky;
-  top: 0;
-  width: 25%;
-}
-
-/* Columna de Tweets */
-.tweets-column {
-  width: 75%;
-  overflow-y: scroll;
-  height: 100vh;
-  padding: 10px;
-}
-
-.home-container {
-  height: 100%;
-  width: 100%;
 }
 
 @media (max-width: 768px) {
@@ -114,5 +90,21 @@
 
   .tweets-column {
     width: 100%;
+  }
+}
+
+.header {
+  align-items: center;
+  display: flex;
+
+  h1 {
+    font-size: 21px;
+    font-weight: bold;
+  }
+
+  .header-back {
+    color: #1da1f2;
+    font-size: 18px;
+    margin-right: 10px;
   }
 }

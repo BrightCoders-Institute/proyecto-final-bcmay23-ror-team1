@@ -1,21 +1,31 @@
 <div class="post">
   <div class="post-header">
     <div class="post-avatar">
-      <strong><%= post.user.name %></strong> 
-      <% if post.user.avatar %>
+      <% if post.user.avatar.attached? %>
+        <%= image_tag post.user.avatar, class: "post-avatar" %>
       <% end %>
     </div>
     <div class="post-meta">
+      <strong><%= post.user.name %></strong> 
       @<%= post.user.username %>
+    </div>
+    <div class='post-delete'>
+      <p>Delete</p>
     </div>
   </div>
   <div class="post-content">
     <p><%= post.content %></p>
+    <% if post.images.attached? %>
+      <%= image_tag post.images.first, class: "post-image" %>
+    <% end %>
   </div>
 
 
   <div class="post-actions post-meta">
     <%= post.created_at.strftime("%-I:%M %p · %-d %b. %Y") %>
+    <p>
+      <% format_time_ago(post.created_at) %>
+    </p>
   </div>
 
   <hr />
@@ -23,11 +33,6 @@
   <div class="post-actions">
     <a href="#">Like</a>
     <a href="#">Repost</a>
-    <a href="#">Comment</a>
-  </div>
-  <div class="post-footer">
-    <div class="post-footer-comment-count">
-      <a href="#">5 Comments</a>
-    </div>
+    <%= link_to "Comments", post_path(post) %>
   </div>
 </div>
