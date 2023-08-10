@@ -1,0 +1,8 @@
+<div class="new-post-bottom">
+  <%= form.label :images do %>
+    <%= icon("fa-regular", "images", class: "attach-image-icon") %>
+  <% end %>
+
+  <%= form.file_field(:images , multiple: true , data: { action: "form-new-post#previewImages" }, hidden: true) %>
+  <%= form.submit(:Post, class: "blue-button", data: { "form-new-post-target": "submit" }, disabled: true) %>
+</div>

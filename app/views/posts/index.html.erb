@@ -1,5 +1,8 @@
 <div class='home-container'>
+  
   <h1>Post</h1>
+  <%= render "posts/new/form" %>
+
   <% if @posts.any? %>
     <% @posts.each do |post| %>
       <div class='post-container'>
@@ -9,5 +12,7 @@
   <% else %>
     <p>No hay posts</p>
   <% end %>
+  
   <%= link_to "Cerrar sesión", destroy_user_session_path, data: { turbo_method: :delete } %>
+  
 </div>
