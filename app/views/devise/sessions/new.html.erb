@@ -1,4 +1,4 @@
-<div class="full-container">
+<div data-controller="modal" class="full-container">
   <div class="colums-container">
     <div class="image-container"></div>
     <div class="main-container">
@@ -17,14 +17,14 @@
       <div class="signin-container">
         <p class="mb-1">Already have an account?</p>
         <div class="button button-outline text-blue">
-          <a id="openModalButton" class="text-blue">Sign in</a>
+          <a data-action="click->modal#openModal" class="text-blue">Sign in</a>
         </div>
       </div>
     </div>
   </div>
-  <div id="myModal" class="modal">
+  <div data-modal-target="modal" class="modal">
     <div class="sigin-form">
-      <span class="close-button" id="closeModal">x</span>
+      <span data-action="click->modal#closeModal" class="close-button">x</span>
       <h2 class="form-title">Sign in to Towgt</h2>
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="field mb-1">
@@ -62,5 +62,3 @@
     </div>
   </div>
 </div>
-
-<%= javascript_include_tag 'login' %>
