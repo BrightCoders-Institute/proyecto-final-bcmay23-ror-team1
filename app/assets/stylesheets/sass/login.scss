@@ -1,0 +1,243 @@
+.full-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  justify-content: center;
+  overflow: scroll;
+}
+
+.sigin-form {
+  background-color: $colorBlack;
+  border-radius: 15px;
+  color: $colorWhite;
+  font-size: 18px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 3rem 3rem 3rem;
+  width: 40%;
+
+  .form-title {
+    margin-bottom: 1rem;
+  }
+
+  .field {
+    width: 260px;
+  }
+
+  .input-form {
+    background: $colorBlack;
+    border: 1px solid $colorGray;
+    border-radius: 4px;
+    color: $colorWhite;
+    font-size: 18px;
+    height: 40px;
+  }
+
+  .close-button {
+    color: $colorWhite;
+    align-self: flex-start;
+    margin-bottom: 2rem;
+    cursor: pointer;
+  }
+}
+
+.form-question {
+  color: $colorGray;
+  font-size: .9rem;
+  margin-top: 1rem;
+  a{
+    color: $colorBlue;
+    text-decoration: none;
+  }
+}
+
+.colums-container {
+  display: grid;
+  grid-template-columns: 3fr 4fr;
+  height: 100%;
+  width: 100%;
+}
+
+.image-container {
+  background-image: url("twitter_home_bg.png");
+  background-size: cover;
+}
+
+.main-container {
+  padding-left: 3rem;
+  background-color: $colorBlack;
+  color: $colorWhite;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.mb-1 {
+  margin-bottom: 1rem;
+}
+
+.mb-2 {
+  margin-bottom: 2rem;
+}
+
+.mb-3 {
+  margin-bottom: 3rem;
+}
+
+.mb-4 {
+  margin-bottom: 4rem;
+}
+
+.button {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 15rem;
+  cursor: pointer;
+  text-decoration: none;
+  color: $colorWhite;
+}
+
+.button-block {
+  align-items: center;
+  color: $colorWhite;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  cursor: pointer;
+}
+
+.signin-container {
+  p {
+    font-size: 1rem;
+    font-weight: 100;
+  }
+}
+
+.button-primary {
+  a {
+    align-items: center;
+    background-color: $colorBlue;
+    border-radius: 20px;
+    color: $colorWhite;
+    display: flex;
+    height: 40px;
+    justify-content: center;
+    text-decoration: none;
+    width: 100%;
+  }
+}
+
+.button-primary:hover {
+  a {
+    background-color: rgba(34, 136, 255, 0.9);
+  }
+}
+
+.button-outline {
+  a {
+    align-items: center;
+    background-color: transparent;
+    outline: solid 1px $colorWhite;
+    border-radius: 20px;
+    display: flex;
+    height: 40px;
+    justify-content: center;
+    text-decoration: none;
+    width: 100%;
+  }
+}
+
+.text-blue {
+  color: $colorBlue;
+  a{
+    color: $colorBlue;
+  }
+}
+
+.text-white {
+  color: $colorWhite;
+  a{
+    color: $colorWhite;
+  }
+}
+
+.button-outline:hover {
+  a {
+    background-color: rgba(34, 136, 255, 0.1);
+  }
+}
+
+.main-text {
+  font-weight: bold;
+  font-size: 4rem;
+}
+
+.secondary-text {
+  font-weight: 100;
+  font-size: 1.5rem;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(89, 89, 92, 0.5);
+}
+
+@media only screen and (max-width: 702px) {
+
+  .image-container {
+    display: none;
+  }
+
+  .sigin-form{
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
+    .close-button{
+      margin: 3rem;
+    }
+  }
+
+
+
+  .colums-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .main-container {
+    height: 100%;
+  }
+
+  .main-text {
+    font-size: 5rem;
+  }
+
+  .form-center {
+    padding: 0;
+    padding: 0 3rem 0 3rem;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  
+  .main-text{
+    font-size: 1.9rem;
+  }
+}
