@@ -1,37 +1,64 @@
-<div class="signup-view-container">
-
-  <div class="form">
-    
-    <%= link_to "X", new_registration_path(resource_name), class: "form-close-button" %>
-
-    <h2 class="form-title">Log in</h2>
-    
-    
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <div class="field">
-        <%= f.label :email %>
-        <%= 
-          f.email_field :email, 
-          autofocus: true, 
-          autocomplete: "email",
-          class: "input-form input-neutral"
-        %>
+<div data-controller="modal" class="full-container">
+  <div class="colums-container">
+    <div class="image-container"></div>
+    <div class="main-container">
+      <div class="main-text-container mb-4">
+        <h1 class="main-text">What's happening now</h1>
+        <!-- <h1 class="main-text">pasando ahora</h1> -->
       </div>
-    
-      <div class="field">
-        <%= f.label :password %>
-        <%= 
-          f.password_field :password, 
-          autocomplete: "current-password",
-          class: "input-form input-neutral"
-        %>
+      <div class="secondary-text-container mb-1">
+        <h2 class="secondary-text">Joint Towgt today</h2>
       </div>
-      
-      <div class="actions">
-        <%= f.submit "Next", class: "submit-button" %>
+      <div class="signup-container mb-2">
+        <div class="button button-primary">
+          <%= link_to "Create Account", new_registration_path(resource_name) %>
+        </div>
       </div>
-    <% end %>
-    
+      <div class="signin-container">
+        <p class="mb-1">Already have an account?</p>
+        <div class="button button-outline text-blue">
+          <a data-action="click->modal#openModal" class="text-blue">Sign in</a>
+        </div>
+      </div>
+    </div>
   </div>
+  <div data-modal-target="modal" class="modal">
+    <div class="sigin-form">
+      <span data-action="click->modal#closeModal" class="close-button">x</span>
+      <h2 class="form-title">Sign in to Towgt</h2>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="field mb-1">
+          <%= f.label :email %>
+          <%= 
+            f.email_field :email, 
+            autofocus: true, 
+            autocomplete: "email",
+            class: "input-form input-neutral"
+          %>
+        </div>
+      
+        <div class="field">
+          <%= f.label :password %>
+          <%= 
+            f.password_field :password, 
+            autocomplete: "current-password",
+            class: "input-form input-neutral"
+          %>
+        </div>
+        
+        <div class="actions mb-2">
+          <%= f.submit "Next", class: "submit-button" %>
+        </div>
 
+        <div class="button-block button-outline text-white mb-3">
+          <%= link_to "Forgot your password?", new_password_path(resource_name) %>
+        </div>
+
+        <div class="form-question">
+          <p>Dont't have an account? <%= link_to "Sign Up", new_registration_path(resource_name) %></p>
+          
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
