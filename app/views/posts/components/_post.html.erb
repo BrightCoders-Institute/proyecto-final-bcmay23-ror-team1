@@ -27,9 +27,6 @@
     <% else %>
       <%= post.created_at.strftime("%-I:%M %p · %-d %b. %Y") %>
     <% end %>
-    <p>
-      <% format_time_ago(post.created_at) %>
-    </p>
   </div>
 
   <hr />
