@@ -1,0 +1,110 @@
+/* Styles for posts like Twitter posts */
+.post {
+  border-radius: 10px;
+  border: 5px solid $colorBorder;
+  margin-bottom: 20px;
+  padding: 15px;
+  position: relative;
+
+  .post-image {
+    border-radius: 10px;
+    height: 50%;
+    width: 50%;
+  }
+
+  .post-header {
+    align-items: center;
+    display: flex;
+    gap: 20px;
+
+    .post-avatar {
+      border-radius: 50%;
+      height: 50px;
+      width: 50px;
+    }
+
+    .post-meta {
+      color: #999;
+      display: flex;
+      flex-direction: column;
+      font-size: 12px;
+      margin-top: 5px;
+
+      strong {
+        color: $colorWhite;
+        font-size: 18px;
+      }
+    }
+
+    .post-delete {
+      position: absolute;
+      right: 15px;
+      top: 15px;
+    }
+  }
+
+  .post-content {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    margin: 40px 0 40px 0;
+
+    p {
+      align-self: self-start;
+    }
+  }
+
+  .post-actions {
+    color: #999;
+    font-size: 12px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+
+    a {
+      color: #999;
+      margin-right: 10px;
+
+      &:hover {
+        color: #333;
+      }
+    }
+  }
+}
+
+
+.post-container {
+  margin: 20px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .actions-column {
+    border-right: none;
+    padding: 0;
+    width: 100%;
+  }
+
+  .tweets-column {
+    width: 100%;
+  }
+}
+
+.header {
+  align-items: center;
+  display: flex;
+
+  h1 {
+    font-size: 21px;
+    font-weight: bold;
+  }
+
+  .header-back {
+    color: #1da1f2;
+    font-size: 18px;
+    margin-right: 10px;
+  }
+}

@@ -1,0 +1,19 @@
+<%= form.text_area(
+  :content,
+  placeholder: "Post a thougth!",
+  class: "new-post-textarea",
+  data: { 
+    "form-new-post-target": "textarea",
+    action: "input->form-new-post#onInputTextarea"
+  }
+) %>
+
+<% if @post.errors[:content].present? %>
+  <div class="error-message">
+    <%= @post.errors[:content].first %>
+  </div>
+<% end %>
+
+<div data-form-new-post-target="images" class="images-preview-container">
+  <%= image_tag("", class: "image-preview-hidden") %>
+</div>

@@ -1,0 +1,23 @@
+<%= form_with model: @post, url: posts_path, method: 'post' do |form| %>
+
+  <div class="form-new-post" data-controller="form-new-post">
+
+    <div class="new-post-left">
+      <% if current_user.avatar.attached? %>
+        <%= image_tag(current_user.avatar, class: "user-avatar") %>
+      <% else %>
+        <%= image_tag("", class: "user-avatar") %>
+      <% end%>
+    </div>
+
+    <div class="new-post-right">
+
+      <%= render partial: "posts/new/form_content" , locals: { form: form } %>
+
+      <%= render partial: "posts/new/form_bottom_actions" , locals: { form: form } %>
+
+    </div>
+    
+  </div>
+
+<% end %>  
