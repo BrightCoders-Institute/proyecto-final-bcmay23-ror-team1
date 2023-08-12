@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @posts = Post.all
+    @posts = Post.all.with_attached_images.order(created_at: :asc).load_async
     
     # Indivitual post for creation form
     @post = Post.new
@@ -21,10 +21,17 @@ class PostsController < ApplicationController
 
   end
 
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    redirect_to posts_path, status: :see_other
+  end
+  
   private 
 
   def post_params
     params.require(:post).permit(:content, :user_id, images: [])
   end
+
 
 end
