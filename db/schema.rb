@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_08_032214) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_10_235147) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -97,10 +97,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_08_032214) do
     t.string "username"
     t.boolean "is_verified", default: false
     t.text "biography"
-    t.bigint "avatar_id"
-    t.bigint "banner_id"
-    t.index ["avatar_id"], name: "index_users_on_avatar_id"
-    t.index ["banner_id"], name: "index_users_on_banner_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -114,6 +110,4 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_08_032214) do
   add_foreign_key "posts", "users"
   add_foreign_key "shared_posts", "posts"
   add_foreign_key "shared_posts", "users"
-  add_foreign_key "users", "active_storage_attachments", column: "avatar_id"
-  add_foreign_key "users", "active_storage_attachments", column: "banner_id"
 end
