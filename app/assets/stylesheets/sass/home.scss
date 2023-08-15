@@ -9,6 +9,7 @@
 /* Columna de Acciones del Usuario */
 .actions-column {
   border-right: 5px solid $colorBorder;
+  color: $colorWhite;
   height: 100vh;
   max-height: calc(100vh - 40px);
   overflow: hidden;
@@ -30,4 +31,20 @@
 .home-container {
   height: 100%;
   width: 100%;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .actions-column {
+    border-right: none;
+    padding: 0;
+    width: 100%;
+  }
+
+  .tweets-column {
+    width: 100%;
+  }
 }
