@@ -12,7 +12,6 @@ class User < ApplicationRecord
   has_one_attached :banner
   
   has_many :posts
-  has_many :comments
   has_many :followed_users, foreign_key: :follower_id, class_name: 'Follow'
   has_many :following_users, foreign_key: :following_id, class_name: 'Follow'
   has_many :followings, through: :followed_users, source: :following
