@@ -1,6 +1,5 @@
 <div class='home-container'>
-  <%= link_to "User", user_path(current_user) %>
-  <h1>Post</h1>
+  
   <%= render "posts/new/form" %>
 
   <% if @posts.any? %>
