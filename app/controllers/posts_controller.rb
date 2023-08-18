@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @posts = Post.all.with_attached_images.order(created_at: :asc).load_async
+    @posts = Post.all.with_attached_images.order(created_at: :desc).load_async
     
     # Indivitual post for creation form
     @post = Post.new
