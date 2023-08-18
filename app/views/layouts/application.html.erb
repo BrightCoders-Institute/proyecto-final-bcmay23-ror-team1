@@ -43,9 +43,8 @@
         </div>
       </div>
       <div class="container border-left">
-        <div class="header-container">
+        <div class="header-container ">
           <div class="header border-right border-bottom ">
-            <!-- <h1>Home</h1> -->
             <%= render "components/header-title" %>
           </div>
           <div class="search">
@@ -66,7 +65,27 @@
             
           </div>
         </div>
+        <div class="border mobile-side-bar">
+          <%= link_to root_path, class: "icon-link" do %>
+            <div class="mobile-side-bar-button">
+              <i class="fa-solid fa-house"></i>
+            </div>
+          <% end %>
+
+          <%= link_to user_path(current_user), class: "icon-link" do %>
+            <div class="mobile-side-bar-button">
+              <i class="fa-solid fa-user"></i>        
+            </div>  
+          <% end %>
+
+          <%= link_to destroy_user_session_path, data: { turbo_method: :delete },class: "icon-link" do %>
+            <div class="mobile-side-bar-button">
+              <i class="fas fa-arrow-right-from-bracket"></i>
+            </div>
+          <% end %>
+        </div>
       </div>
+
     </div>
   </body>
 </html>

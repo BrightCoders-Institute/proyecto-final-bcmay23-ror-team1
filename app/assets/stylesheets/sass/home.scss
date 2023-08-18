@@ -9,6 +9,10 @@
   width: 100vw;
 }
 
+.mobile-side-bar{
+  display: none;
+}
+
 .container{
   height: 100%;
   overflow-y: scroll;
@@ -20,13 +24,33 @@
   grid-template-columns: 3fr 2fr;
 }
 
+.user-header{
+  align-items: center;
+
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+
+  .user-header-name{
+    font-size: 1rem;
+    margin-bottom: .3rem;
+  }
+  
+  .user-header-post-number{
+    color: $colorGray;
+    font-size: 0.8rem;
+  }
+  
+}
+
+
 .side-bar {
-  padding-right: 2rem;
+  align-items: end;
   color: $colorWhite;
   display: flex;
-  align-items: end;
   flex-direction: column;
   padding-bottom: 1rem;
+  padding-right: 2rem;
 
   ul{
     display: flex;
@@ -63,18 +87,18 @@
   }
 
   .content{
+    align-items: center;
     display: flex;
     flex-direction: column;
     height: 100%;
     justify-content: space-between;
-    align-items: center;
   }
 
   .menu{
+    align-items: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
     padding: 1rem 0;
 
     
@@ -134,7 +158,6 @@
   }
 }
 
-/* Columna de Tweets */
 .main-column {
   color: $colorWhite;
   height: 100%;
@@ -142,18 +165,65 @@
   width: 100%;
 }
 
-// @media (max-width: 768px) {
-//   .container {
-//     flex-direction: column;
-//   }
+@media screen and (max-width: 988px) {
 
-//   .actions-column {
-//     border-right: none;
-//     // padding: 0;
-//     width: 100%;
-//   }
+  .secondary-column {
+    display: none;
+  }
 
-//   .tweets-column {
-//     width: 100%;
-//   }
-// }
+  .container{
+    overflow-x: hidden;
+  }
+
+  .side-bar {
+    padding-left: .3rem;
+    padding-right: .7rem;
+  }
+
+  .content-column {
+    border: none;
+    grid-template-columns: 4fr auto;
+  }
+  
+  .main-column{
+    border: none;
+    max-width: calc(687px - 72px);
+  }
+  
+  
+  .header-container{
+    grid-template-columns: 4fr auto;
+    .header{
+      max-width: calc(687px - 72px);
+    }
+    .search{
+      display: none;
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .side-bar{
+    display: none;
+  }
+
+  .container-full{
+    display: block;
+  }
+
+  .content-column{
+    margin-bottom: 3rem;
+  }
+
+  .mobile-side-bar{
+    align-items: center;
+    background-color: $colorBlack;
+    bottom: 0;
+    display: flex;
+    height: 3rem;
+    justify-content: space-around;
+    position: fixed;
+    width: 100%;
+  }
+
+}
