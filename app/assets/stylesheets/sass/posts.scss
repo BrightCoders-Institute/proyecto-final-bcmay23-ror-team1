@@ -14,8 +14,8 @@
   }
 
   .post-header {
-    align-items: center;
     display: flex;
+    align-items: start;
     gap: 20px;
 
     .post-avatar {
@@ -91,5 +91,45 @@
     color: #1da1f2;
     font-size: 18px;
     margin-right: 10px;
+  }
+}
+
+.menu {
+  background-color: black;
+  border: 2px solid #999;
+  border-radius: 5px;
+  padding: 10px;
+  z-index: 10;
+  
+
+  &__option {
+    align-items: center;
+    color: white;
+    display: flex;
+    padding: 5px;
+  }
+}
+
+.delete-icon, .follow-icon {
+  color: white;
+  height: 20px;
+  width: 20px;
+}
+
+.hidden {
+  display: none;
+}
+
+.post-options {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.option-button {
+  background-color: black;
+  color: white;
+  :hover {
+    cursor: pointer;
   }
 }

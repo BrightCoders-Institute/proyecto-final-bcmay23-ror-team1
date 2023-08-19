@@ -1,18 +1,24 @@
 <div class="post">
+
   <div class="post-header">
     <div class="post-avatar">
       <% if post.user.avatar.attached? %>
         <%= image_tag post.user.avatar, class: "post-avatar" %>
       <% end %>
     </div>
+
     <div class="post-meta">
       <strong><%= post.user.name %></strong> 
       <%= post.user.username %>
     </div>
-    <div class='post-delete'>
-      <%= link_to "x", post_path(post), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
-    </div>
+
+      <div class='post-options' data-controller="menu-options">
+        <button class="option-button" data-action="click->menu-options#show">V</button>
+
+        <%= render partial: 'options', locals: {post: post} %>
+      </div>
   </div>
+
   <div class="post-content">
     <p><%= post.content %></p>
     <% if post.images.attached? %>
@@ -36,4 +42,5 @@
     <a href="#">Repost</a>
     <%= link_to "Comments", post_path(post) %>
   </div>
+
 </div>
