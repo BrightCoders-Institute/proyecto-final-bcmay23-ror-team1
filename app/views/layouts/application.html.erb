@@ -18,27 +18,16 @@
             <div class="logo mb-1">
               <h1>Towgt</h1>
             </div>
-            <ul>
-              <%= link_to root_path, class: "icon-link" do %>
-                <li>
-                  <i class="fa-solid fa-house"></i>
-                </li>
-              <% end %>
-              <%= link_to user_path(current_user), class: "icon-link" do %>
-                <li>
-                  <i class="fa-solid fa-user"></i>
-                </li>
-              <% end %>
-            </ul>
+            <div class="side-bar-buttons">
+              <%= render "posts/components/side-bar-buttons" %>
+            </div>
           </div>
-          <div class="bottom-content">
-            <ul class="">
-              <%= link_to destroy_user_session_path, data: { turbo_method: :delete },class: "icon-link" do %>
-                <li>
-                  <i class="fas fa-arrow-right-from-bracket"></i>
-                </li>
-              <% end %>
-            </ul>
+          <div class="side-bar-buttons">
+            <%= link_to destroy_user_session_path, data: { turbo_method: :delete },class: "icon-link" do %>
+              <div>
+                <i class="fas fa-arrow-right-from-bracket"></i>
+              </div>
+            <% end %>
           </div>
         </div>
       </div>
@@ -65,24 +54,16 @@
             
           </div>
         </div>
-        <div class="border mobile-side-bar">
-          <%= link_to root_path, class: "icon-link" do %>
-            <div class="mobile-side-bar-button">
-              <i class="fa-solid fa-house"></i>
-            </div>
-          <% end %>
-
-          <%= link_to user_path(current_user), class: "icon-link" do %>
-            <div class="mobile-side-bar-button">
-              <i class="fa-solid fa-user"></i>        
-            </div>  
-          <% end %>
-
-          <%= link_to destroy_user_session_path, data: { turbo_method: :delete },class: "icon-link" do %>
-            <div class="mobile-side-bar-button">
-              <i class="fas fa-arrow-right-from-bracket"></i>
-            </div>
-          <% end %>
+        <div class="mobile-side-bar">
+          <div class="side-bar-buttons">
+            <%= render "posts/components/side-bar-buttons" %>
+           
+            <%= link_to destroy_user_session_path, data: { turbo_method: :delete },class: "icon-link" do %>
+              <div>
+                <i class="fas fa-arrow-right-from-bracket"></i>
+              </div>
+            <% end %>
+          </div>
         </div>
       </div>
 
