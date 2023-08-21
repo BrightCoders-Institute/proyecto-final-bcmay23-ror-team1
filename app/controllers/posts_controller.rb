@@ -12,6 +12,15 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
+  def new
+    @post = Post.new
+    if params[:parent_id].present?
+      @parent = Post.find(params[:parent_id])
+      @post.parent_id = @parent.id
+      render :new_comment
+    end
+  end
+
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
@@ -34,7 +43,7 @@ class PostsController < ApplicationController
   private 
 
   def post_params
-    params.require(:post).permit(:content, :user_id, images: [])
+    params.require(:post).permit(:content, :user_id, :parent_id, images: [])
   end
 
 

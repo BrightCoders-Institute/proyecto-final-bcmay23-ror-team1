@@ -1,13 +1,13 @@
 <div class="post">
   <div class="post-header">
-    <div class="post-avatar">
+    <div class="post-user-avatar">
       <% if post.user.avatar.attached? %>
-        <%= image_tag post.user.avatar, class: "post-avatar" %>
+        <%= image_tag post.user.avatar, class: "post-user-avatar" %>
       <% end %>
     </div>
     <div class="post-meta">
-      <strong><%= post.user.name %></strong> 
-      <%= post.user.username %>
+      <p class="post-user-name"><%= post.user.name %></p>
+      <p class="post-user-username"><%= post.user.username %></p>
     </div>
     <div class='post-delete'>
       <%= link_to "x", post_path(post), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
@@ -34,6 +34,6 @@
   <div class="post-actions">
     <a href="#">Like</a>
     <a href="#">Repost</a>
-    <%= link_to "Comments", post_path(post) %>
+    <%= link_to "Comments", new_post_path(parent_id: post.id), data: { turbo_frame: "comment" } %>
   </div>
 </div>

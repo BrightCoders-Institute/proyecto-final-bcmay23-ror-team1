@@ -1,0 +1,9 @@
+<%= turbo_frame_tag "comment" do %>
+  <div class="modal-new-post">
+    <div class="modal-new-post-content">
+      <%= link_to "X", class: "close-button" %>
+      <%= render partial: "posts/parent", locals: { post: @parent } %>
+      <%= render partial: "posts/new/form", locals: { post: @post } %>
+    </div>
+  </div>
+<% end %>

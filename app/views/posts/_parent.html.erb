@@ -1,0 +1,38 @@
+<div class="parent-post-container">
+
+  <div class="parent-post-left">
+    <div class="post-avatar-container">
+      <% if post.user.avatar.attached? %>
+        <%= image_tag post.user.avatar, class: "post-user-avatar" %>
+      <% end %>
+    </div>  
+    <span class="thread-line"></span>
+  </div>
+
+  <div class="parent-post-right">
+    <div class="post-simple-meta">
+      <p class="post-user-name"><%= post.user.name %></p> 
+      <p class="post-user-username">@<%= post.user.username %></p>
+      <p class="post-time">
+        <%= post.created_at.strftime("%-I:%M %p · %-d %b. %Y") %>
+      </p>
+    </div>
+
+    <div class="post-content">
+      <p><%= post.content %></p>
+      <% if post.images.attached? %>
+        <%= image_tag post.images.first, class: "post-image" %>
+      <% end %>
+    </div>
+
+    <div>
+      Replying to
+      <%= link_to("") do %>
+        @<%= post.user.username %>
+      <% end %>
+    </div>
+
+  </div>
+
+</div>
+
