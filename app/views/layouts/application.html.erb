@@ -11,16 +11,62 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <div class="container">
-      <div class="actions-column">
-        <li>Perfil</li>
-        <li>Seguidores</li>
-        <li>Ajustes</li>
+    <div class="container-full">
+      <div class="side-bar">
+        <div class="content">
+          <div class="menu">
+            <div class="logo mb-1">
+              <h1>Towgt</h1>
+            </div>
+            <div class="side-bar-buttons">
+              <%= render "posts/components/side-bar-buttons" %>
+            </div>
+          </div>
+          <div class="side-bar-buttons">
+            <%= link_to destroy_user_session_path, data: { turbo_method: :delete },class: "icon-link" do %>
+              <div>
+                <i class="fas fa-arrow-right-from-bracket"></i>
+              </div>
+            <% end %>
+          </div>
+        </div>
       </div>
-      <div class="tweets-column">
-        <%= yield %>
+      <div class="container border-left">
+        <div class="header-container ">
+          <div class="header border-right border-bottom ">
+            <%= render "components/header-title" %>
+          </div>
+          <div class="search">
+            <div class="search-bar">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input 
+                type="search"
+                placeholder="Search"
+              >
+            </div>
+          </div>
+        </div>
+        <div class="content-column">
+          <div class="main-column border-right">
+            <%= yield %>
+          </div>
+          <div class="secondary-column">
+            
+          </div>
+        </div>
+        <div class="mobile-side-bar">
+          <div class="side-bar-buttons">
+            <%= render "posts/components/side-bar-buttons" %>
+           
+            <%= link_to destroy_user_session_path, data: { turbo_method: :delete },class: "icon-link" do %>
+              <div>
+                <i class="fas fa-arrow-right-from-bracket"></i>
+              </div>
+            <% end %>
+          </div>
+        </div>
       </div>
+
     </div>
   </body>
 </html>

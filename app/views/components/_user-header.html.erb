@@ -1,0 +1,13 @@
+<div class="user-header">
+  <%= link_to root_path, class: "icon-link" do %>
+    <i class="fa-solid fa-arrow-left"></i>
+  <% end %>
+  <div>
+    <div class="user-header-name">
+      <%= current_user.name %>
+    </div>
+    <div class="user-header-post-number">
+      <%= current_user.posts_number %> post
+    </div>
+  </div>
+</div>
