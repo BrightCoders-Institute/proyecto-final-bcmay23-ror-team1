@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @posts = Post.all.with_attached_images.order(created_at: :asc).load_async
+    @posts = Post.all.with_attached_images.order(created_at: :desc).load_async
     
     # Indivitual post for creation form
     @post = Post.new
@@ -10,6 +10,15 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+  end
+
+  def new
+    @post = Post.new
+    if params[:parent_id].present?
+      @parent = Post.find(params[:parent_id])
+      @post.parent_id = @parent.id
+      render :new_comment
+    end
   end
 
   def create
@@ -34,7 +43,7 @@ class PostsController < ApplicationController
   private 
 
   def post_params
-    params.require(:post).permit(:content, :user_id, images: [])
+    params.require(:post).permit(:content, :user_id, :parent_id, images: [])
   end
 
 

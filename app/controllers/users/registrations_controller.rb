@@ -2,6 +2,7 @@
 
 # Registrations controller
 class Users::RegistrationsController < Devise::RegistrationsController
+  layout 'layouts/application', only: [:show]
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
 
@@ -21,6 +22,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
       current_user.update(avatar: params[:user][:avatar])
     end
     redirect_to root_path
+  end
+
+  def show
+    @user = User.find(params[:id])
   end
 
   protected

@@ -1,7 +1,6 @@
 <div class='home-container'>
   
-  <h1>Post</h1>
-  <%= render "posts/new/form" %>
+  <%= render partial: "posts/new/form", locals: { post: @post } %>
 
   <% if @posts.any? %>
     <div class='post-container'>
