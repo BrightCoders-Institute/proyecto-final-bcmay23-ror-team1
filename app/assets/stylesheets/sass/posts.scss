@@ -18,12 +18,6 @@
     display: flex;
     gap: 20px;
 
-    .post-avatar {
-      border-radius: 50%;
-      height: 50px;
-      width: 50px;
-    }
-
     .post-meta {
       color: #999;
       display: flex;
@@ -31,7 +25,7 @@
       font-size: 12px;
       margin-top: 5px;
 
-      strong {
+      .post-user-name {
         color: $colorWhite;
         font-size: 18px;
       }
@@ -91,5 +85,61 @@
     color: #1da1f2;
     font-size: 18px;
     margin-right: 10px;
+  }
+}
+
+.parent-post-container {
+  color: $colorWhite;
+  display: flex;
+  justify-content: center;
+  padding-inline: 2rem;
+  padding-top: 2rem;
+}
+
+.parent-post-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 10%;
+
+  .thread-line {
+    border-left: 2px solid $colorGray;
+    height: 100%;
+    margin: 0 50%;
+    width: 100%;
+  }
+
+}
+
+.post-avatar-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.post-user-avatar {
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+}
+
+.parent-post-right {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-inline: 1rem;
+  width: 80%;
+}
+
+.post-simple-meta {
+  display: flex;
+  gap: 8px;
+
+  .post-user-name {
+    font-weight: bold;
+  }
+
+  .post-user-username, .post-time{
+    color: $colorGray;
   }
 }

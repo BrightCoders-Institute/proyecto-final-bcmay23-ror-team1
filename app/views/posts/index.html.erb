@@ -1,6 +1,6 @@
 <div class='home-container'>
   
-  <%= render "posts/new/form" %>
+  <%= render partial: "posts/new/form", locals: { post: @post } %>
 
   <% if @posts.any? %>
     <div class='post-container'>
@@ -9,5 +9,7 @@
   <% else %>
     <p>No hay posts</p>
   <% end %>
+  
+  <%= link_to "Cerrar sesión", destroy_user_session_path, data: { turbo_method: :delete } %>
   
 </div>

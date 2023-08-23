@@ -1,6 +1,6 @@
 <div class="new-post-bottom">
   <%= form.label :images do %>
-    <%= icon("fa-regular", "images", class: "attach-image-icon") %>
+    <%= icon("fa-regular", "image", class: "attach-image-icon") %>
   <% end %>
 
   <%= form.file_field(:images , multiple: true , data: { action: "form-new-post#previewImages" }, hidden: true) %>
