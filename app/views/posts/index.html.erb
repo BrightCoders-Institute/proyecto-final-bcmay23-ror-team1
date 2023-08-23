@@ -5,7 +5,7 @@
 
   <% if @posts.any? %>
     <div class='post-container'>
-      <%= render partial: 'post', collection: @posts, locals: {view: :index} %>
+      <%= render partial: 'post', collection: @posts, as: :post, locals: {view: :index} %>
     </div>
   <% else %>
     <p>No hay posts</p>

@@ -1,0 +1,13 @@
+<%= turbo_frame_tag post do %>
+
+  <% if post.liked_by?(current_user) %>
+    <%= link_to icon('fa-solid', 'heart'), like_path(id: post.id), class: 'post-liked', remote: true, data: { turbo_method: :delete } %>
+  <% else %>
+    <%= link_to icon('fa-regular', 'heart'), likes_path(id: post.id), class: 'post-like', remote: true, data: { turbo_method: :post } %>
+  <% end %>
+  
+  <strong>
+    <%= post.likes.count %>
+  </strong>
+
+<% end %>

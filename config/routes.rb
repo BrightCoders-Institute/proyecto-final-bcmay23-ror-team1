@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     put '/users/sign_up/avatar', to: 'users/registrations#signup_set_avatar', as: 'signup_set_avatar'
   end
 
-  resources :likes
+  resources :likes, only: [:create, :destroy]
   resources :posts
 
 end

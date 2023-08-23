@@ -5,14 +5,25 @@
         <%= image_tag post.user.avatar, class: "post-avatar" %>
       <% end %>
     </div>
+
     <div class="post-meta">
       <strong><%= post.user.name %></strong> 
-      <%= post.user.username %>
+      <p>
+        @<%= post.user.username %>
+      </p>
+      <div class="post-date">
+        <% if view == :index %>
+          - <%= format_time_ago(post.created_at) %>
+        <% end %>
+      </div>
     </div>
+
+
     <div class='post-delete'>
       <%= link_to "x", post_path(post), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
     </div>
   </div>
+
   <div class="post-content">
     <p><%= post.content %></p>
     <% if post.images.attached? %>
@@ -20,11 +31,8 @@
     <% end %>
   </div>
 
-
-  <div class="post-actions post-meta">
-    <% if view == :index %>
-      <%= format_time_ago(post.created_at) %>
-    <% else %>
+  <div class="post-date">
+    <% if view == :show %>
       <%= post.created_at.strftime("%-I:%M %p · %-d %b. %Y") %>
     <% end %>
   </div>
@@ -32,8 +40,8 @@
   <hr />
 
   <div class="post-actions">
-    <a href="#">Like</a>
-    <a href="#">Repost</a>
     <%= link_to "Comments", post_path(post) %>
+    <a href="#">Repost</a>
+    <%= render partial: 'likes/like', locals: { post: post } %>
   </div>
 </div>
