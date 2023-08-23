@@ -1,50 +1,237 @@
-.container {
+.container-full {
   background-color: $colorBlack;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  height: 100vh;
+  max-height: 100vh;
+  max-width: 100vw;
+  position: fixed;
+  width: 100vw;
+}
+
+.mobile-side-bar {
+  display: none;
+}
+
+.container {
   height: 100%;
-  justify-content: space-between;
-
-}
-
-/* Columna de Acciones del Usuario */
-.actions-column {
-  border-right: 5px solid $colorBorder;
-  color: $colorWhite;
-  height: 100vh;
-  max-height: calc(100vh - 40px);
-  overflow: hidden;
-  padding: 20px;
-  position: sticky;
-  top: 0;
-  width: 25%;
-}
-
-/* Columna de Tweets */
-.tweets-column {
-  color: $colorWhite;
-  height: 100vh;
   overflow-y: scroll;
-  padding: 10px;
-  width: 75%;
-}
-
-.home-container {
-  height: 100%;
   width: 100%;
 }
 
-@media (max-width: 768px) {
-  .container {
+.content-column {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+}
+
+.user-header {
+  align-items: center;
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+
+  .user-header-name {
+    font-size: 1rem;
+    margin-bottom: .3rem;
+  }
+
+  .user-header-post-number {
+    color: $colorGray;
+    font-size: 0.8rem;
+  }
+
+}
+
+.side-bar-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+  width: 100%;
+  
+
+  a {
+    text-decoration: none;
+  }
+
+  div {
+    align-items: center;
+    display: flex;
+    font-size: 1.3rem;
+    height: 3rem;
+    justify-content: center;
+    margin: 0 1rem;
+
+    &:hover {
+      background-color: #181818;
+      border-radius: 100px;
+    }
+  }
+}
+
+.active {
+  background-color: #181818;
+  border-radius: 100px;
+}
+
+.side-bar {
+  align-items: end;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 1rem;
+  padding-right: 2rem;
+
+  .content {
+    align-items: center;
+    display: flex;
     flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
   }
 
-  .actions-column {
-    border-right: none;
+  .menu {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem 0;
+
+
+  }
+}
+
+.header-container {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  height: 3rem;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 5;
+
+  .header {
+    backdrop-filter: blur(10px);
+    background: rgba(0, 0, 0, 0.266);
+    height: 100%;
+    width: 100%;
+
+    h1 {
+      margin-left: 1rem;
+    }
+  }
+
+  .search {
+    align-items: center;
+    background: $colorBlack;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    width: 100%;
+
+    .search-bar {
+      align-items: center;
+      background-color: #202327;
+      border-radius: 20px;
+      display: flex;
+      height: 80%;
+      width: 90%;
+
+      i {
+        color: #757575;
+        margin-left: 1rem;
+        margin-right: .5rem;
+      }
+
+      input {
+        background-color: transparent;
+        border: none;
+        margin-right: 1rem;
+        width: 100%;
+      }
+
+      input:focus {
+        outline: none;
+      }
+    }
+  }
+}
+
+.main-column {
+  color: $colorWhite;
+  height: 100%;
+  overflow-y: scroll;
+  width: 100%;
+}
+
+@media screen and (max-width: 988px) {
+
+  .secondary-column {
+    display: none;
+  }
+
+  .container {
+    overflow-x: hidden;
+  }
+
+  .side-bar {
+    padding-left: .3rem;
+    padding-right: .7rem;
+  }
+
+  .content-column {
+    border: none;
+    grid-template-columns: 4fr auto;
+    margin-bottom: 3rem;
+  }
+
+  .main-column {
+    border: none;
+    max-width: calc(687px - 72px);
+  }
+
+
+  .header-container {
+    grid-template-columns: 4fr auto;
+
+    .header {
+      max-width: calc(687px - 72px);
+    }
+
+    .search {
+      display: none;
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .side-bar {
+    display: none;
+  }
+
+  .side-bar-buttons{
+    align-items: center;
+    background-color: $colorBlack;
+    border-top: 1px solid $colorBorder;
+    flex-direction: row;
+    height: 3rem;
+    justify-content: space-around;
+
+    div{
+      height: 2.7rem;
+      width: 4rem;
+    }
+  }
+  
+  .container-full {
+    display: block;
+  }
+  
+  .mobile-side-bar {
+    background-color: $colorBlack;
+    bottom:0;
+    display: flex;
     padding: 0;
+    position: fixed;
     width: 100%;
   }
 
-  .tweets-column {
-    width: 100%;
-  }
 }
