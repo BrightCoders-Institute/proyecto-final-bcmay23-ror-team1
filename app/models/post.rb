@@ -11,7 +11,15 @@ class Post < ApplicationRecord
   has_many :sharers, through: :shared_posts_relation, source: :user
   
  
-  has_many :likes
+  has_many :likes, dependent: :destroy
+
+  def liked_by?(user)
+    likes.exists?(user: user)
+  end
+
+  def unliked_by(user)
+    likes.find_by(user_id: user.id).destroy
+  end
 
   # Associate a post as to a parent post
   # this allows to treat it as a comment when needed

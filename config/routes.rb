@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     get '/users/:id', to: 'users/registrations#show', as: 'user'
   end
 
-  resources :likes
+  resources :likes, only: [:create, :destroy]
   resources :posts
 
 end
