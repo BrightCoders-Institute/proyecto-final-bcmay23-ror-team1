@@ -1,0 +1,11 @@
+<div class="menu hidden" data-menu-options-target="options">
+  <div class="menu__option">
+    <%= icon("fa-solid", "trash-can", class: "delete-icon")%>
+      <%= link_to "Delete post", post_path(post), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+  </div>
+
+  <div class="menu__option">
+    <%= icon("fa-solid", "user", class: "follow-icon")%>
+    <p>Follow creator</p>
+  </div>
+</div>

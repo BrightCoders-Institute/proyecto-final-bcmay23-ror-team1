@@ -1,4 +1,5 @@
 <div class="post">
+
   <div class="post-header">
     <div class="post-user-avatar">
       <% if post.user.avatar.attached? %>
@@ -18,10 +19,11 @@
       </div>
     </div>
 
+      <div class='post-options' data-controller="menu-options">
+        <button class="option-button" data-action="click->menu-options#show">V</button>
 
-    <div class='post-delete'>
-      <%= link_to "x", post_path(post), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
-    </div>
+        <%= render partial: 'options', locals: {post: post} %>
+      </div>
   </div>
 
   <div class="post-content">
