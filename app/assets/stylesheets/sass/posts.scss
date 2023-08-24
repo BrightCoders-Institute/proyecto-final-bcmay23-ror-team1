@@ -1,7 +1,7 @@
 /* Styles for posts like Twitter posts */
 .post {
-  border: 5px solid $colorBorder;
   border-radius: 10px;
+  border: 5px solid $colorBorder;
   margin-bottom: 20px;
   overflow: hidden;
   padding: 15px;
@@ -12,26 +12,27 @@
     height: 50%;
     width: 50%;
   }
+  
+  .post-avatar {
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+  }
 
   .post-header {
     display: flex;
     align-items: start;
     gap: 20px;
 
-    .post-avatar {
-      border-radius: 50%;
-      height: 50px;
-      width: 50px;
-    }
-
     .post-meta {
+      align-items: center;
       color: #999;
       display: flex;
-      flex-direction: column;
       font-size: 12px;
+      gap: 5px;
       margin-top: 5px;
 
-      strong {
+      .post-user-name {
         color: $colorWhite;
         font-size: 18px;
       }
@@ -48,6 +49,7 @@
     align-items: center;
     display: flex;
     flex-direction: column;
+    font-size: 18px;
     margin-bottom: 10px;
     margin: 10px 0;
 
@@ -56,11 +58,32 @@
     }
   }
 
-  .post-actions {
+  .post-date {
     color: #999;
     font-size: 12px;
     margin-bottom: 10px;
     margin-top: 10px;
+  }
+
+  .post-actions {
+    color: #999;
+    display: flex;
+    font-size: 17px;
+    justify-content: space-around;
+    margin-bottom: 10px;
+    margin-top: 10px;
+
+    .post-like {
+      margin-right: 10px;
+
+      &:hover {
+        color: $colorLike;
+      }
+    }
+
+    .post-liked {
+      color: $colorLike;
+    }
 
     a {
       color: #999;
@@ -131,5 +154,59 @@
   color: white;
   :hover {
     cursor: pointer;
+  }
+.parent-post-container {
+  color: $colorWhite;
+  display: flex;
+  justify-content: center;
+  padding-inline: 2rem;
+  padding-top: 2rem;
+}
+
+.parent-post-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 10%;
+
+  .thread-line {
+    border-left: 2px solid $colorGray;
+    height: 100%;
+    margin: 0 50%;
+    width: 100%;
+  }
+
+}
+
+.post-avatar-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.post-user-avatar {
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+}
+
+.parent-post-right {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-inline: 1rem;
+  width: 80%;
+}
+
+.post-simple-meta {
+  display: flex;
+  gap: 8px;
+
+  .post-user-name {
+    font-weight: bold;
+  }
+
+  .post-user-username, .post-time{
+    color: $colorGray;
   }
 }

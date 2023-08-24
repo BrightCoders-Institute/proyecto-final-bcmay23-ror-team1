@@ -11,7 +11,13 @@ class User < ApplicationRecord
   has_one_attached :avatar
   has_one_attached :banner
   
+  # Post relationship
   has_many :posts
+  def posts_number
+    posts.count
+  end
+
+  has_many :comments
   has_many :followed_users, foreign_key: :follower_id, class_name: 'Follow'
   has_many :following_users, foreign_key: :following_id, class_name: 'Follow'
   has_many :followings, through: :followed_users, source: :following

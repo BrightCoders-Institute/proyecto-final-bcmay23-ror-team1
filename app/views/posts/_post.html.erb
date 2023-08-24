@@ -1,15 +1,22 @@
 <div class="post">
 
   <div class="post-header">
-    <div class="post-avatar">
+    <div class="post-user-avatar">
       <% if post.user.avatar.attached? %>
-        <%= image_tag post.user.avatar, class: "post-avatar" %>
+        <%= image_tag post.user.avatar, class: "post-user-avatar" %>
       <% end %>
     </div>
 
     <div class="post-meta">
       <strong><%= post.user.name %></strong> 
-      <%= post.user.username %>
+      <p>
+        @<%= post.user.username %>
+      </p>
+      <div class="post-date">
+        <% if view == :index %>
+          - <%= format_time_ago(post.created_at) %>
+        <% end %>
+      </div>
     </div>
 
       <div class='post-options' data-controller="menu-options">
@@ -26,11 +33,8 @@
     <% end %>
   </div>
 
-
-  <div class="post-actions post-meta">
-    <% if view == :index %>
-      <%= format_time_ago(post.created_at) %>
-    <% else %>
+  <div class="post-date">
+    <% if view == :show %>
       <%= post.created_at.strftime("%-I:%M %p · %-d %b. %Y") %>
     <% end %>
   </div>
@@ -38,9 +42,8 @@
   <hr />
 
   <div class="post-actions">
-    <a href="#">Like</a>
-    <a href="#">Repost</a>
     <%= link_to "Comments", post_path(post) %>
+    <a href="#">Repost</a>
+    <%= render partial: 'likes/like', locals: { post: post } %>
   </div>
-
 </div>

@@ -1,0 +1,9 @@
+
+  <% @side_bar_buttons.each do |button_data| %>
+    <%= link_to button_data["route"], class: "icon-link" do %>
+      <div class="<%= 'active' if current_page?(button_data["route"]) %>">
+        <i class="<%= button_data["icon_class"] %>"></i>
+      </div>
+    <% end %>
+  <% end %>
+  
