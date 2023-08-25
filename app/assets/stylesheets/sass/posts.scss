@@ -20,8 +20,8 @@
   }
 
   .post-header {
-    display: flex;
     align-items: start;
+    display: flex;
     gap: 20px;
 
     .post-meta {
@@ -155,6 +155,8 @@
   :hover {
     cursor: pointer;
   }
+}
+
 .parent-post-container {
   color: $colorWhite;
   display: flex;
