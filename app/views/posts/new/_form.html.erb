@@ -1,6 +1,6 @@
 <%= form_with model: post, url: posts_path, method: 'post' do |form| %>
 
-  <% if !post.parent_id.blank? %> 
+  <% if !post.parent.blank? %> 
     <%= form.hidden_field :parent_id, value: post.parent_id %>
   <% end %>
 

@@ -37,6 +37,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def show
     @user = User.find(params[:id])
+
+    user_created_month_number = @user.created_at.strftime("%m").to_i 
+    user_created_month_name = Date::MONTHNAMES[user_created_month_number]
+
+    user_created_year = @user.created_at.strftime("%Y")
+    
+    @user_created_date = "Joined in #{user_created_month_name} #{user_created_year}"
   end
 
   def destroy

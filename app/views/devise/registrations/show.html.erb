@@ -1,1 +1,55 @@
-<h1>Hello from profile view</h1>
+<div class="profile-view">
+  <div class="user-images-container mb-4">
+    <% if @user.banner.attached? %>
+      <%= image_tag(@user.banner, class: 'user-banner') %>
+    <% end %>
+    <div class="user-avatar-container">
+      <% if @user.avatar.attached? %>
+        <%= image_tag(@user.avatar, class: 'user-avatar') %>
+      <% end %>
+    </div>
+  </div>
+  <div class="user-info-container border">
+    <div class="names-container">
+      <h1 class="name-label">
+        <%= @user.name %>
+      </h1>
+      <h2 class="username-label">
+        @<%= @user.username %>
+      </h2>
+    </div>
+
+    <div>
+      <p class="user-bio-label">
+        <%= @user.biography %>
+      </p>
+    </div>
+
+    <p class="created-date-label"> 
+      <i class="fas fa-calendar-alt"></i>
+      <%= @user_created_date %>
+    </p>
+
+    <div class="follow-info">
+      <p>
+        <span class="follow-info-number">
+          <%= @user.followings_number %>
+        </span>
+        <span class="follow-info-label">
+          Following
+        </span>
+      </p>
+      <p>
+        <span class="follow-info-number">
+          <%= @user.followers_number %>
+        </span>
+        <span class="follow-info-label">
+          Followers
+        </span>
+      </p>
+    </div>
+  </div>
+  <div class="user-content-container border">
+    s
+  </div>
+</div>

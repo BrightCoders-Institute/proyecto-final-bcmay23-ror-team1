@@ -1,0 +1,81 @@
+.profile-view {
+  
+  .user-images-container {
+    background-color: $colorEmptyBg;
+    height: 30vw;
+    max-height: 13rem;
+    min-height: 8rem;
+    position: relative;
+  }
+
+  .user-banner {
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  .user-avatar {
+    border-radius: 50%;
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  .user-avatar-container {
+    background-color: $colorEmptyBg;
+    border: 3px solid $colorBlack;
+    border-radius: 50%;
+    bottom: -3rem;
+    height: 10vw;
+    left: 1rem;
+    max-height: 9rem;
+    max-width: 9rem;
+    min-height: 7rem;
+    min-width: 7rem;
+    position: absolute;
+    width: 10vw;
+  }
+
+
+  .user-info-container{
+    padding-left: .8rem;
+    display: flex;
+    flex-direction: column;
+
+    gap: .9rem;
+    .names-container{
+      .name-label{
+        font-size: 1.3rem;
+        font-weight: 900;
+      }
+      .username-label{
+        font-size: 1rem;
+        color: $colorGray;
+        font-weight: 100;
+      }
+    }
+
+    .follow-info{
+      display: flex;
+      gap: .5rem;
+      margin-top: .5rem;
+      font-size: .8rem;
+      display: flex;
+      .follow-info-label{
+        color: $colorGray;
+        font-weight: 100;
+      }
+      .follow-info-number{
+        font-weight: 900;
+      }
+    }
+    .created-date-label{
+      color: $colorGray;
+      font-size: .8;
+      i{
+        color: $colorGray;
+        margin-right: .3rem;
+      }
+    }
+  }
+}

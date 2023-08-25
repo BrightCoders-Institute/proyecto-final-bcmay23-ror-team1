@@ -30,8 +30,17 @@ class User < ApplicationRecord
     return following_records.exists?(following: user)
   end
   
+  def followings_number
+    followings.count
+  end
+  def followers_number
+    followers.count
+  end
+
+  # Shared post relationship
   has_many :shared_posts_relation, class_name: 'SharedPost', foreign_key: :user_id
   has_many :shared_posts, through: :shared_posts_relation, source: :post
+
   # Likes relationship
   has_many :likes
 

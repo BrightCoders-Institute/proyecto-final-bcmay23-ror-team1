@@ -22,6 +22,8 @@
 .content-column {
   display: grid;
   grid-template-columns: 3fr 2fr;
+  height: 100%;
+  max-height: calc(100vh - 3rem);
 }
 
 .user-header {
@@ -29,17 +31,14 @@
   display: flex;
   gap: 2rem;
   justify-content: center;
-
   .user-header-name {
     font-size: 1rem;
     margin-bottom: .3rem;
   }
-
   .user-header-post-number {
     color: $colorGray;
     font-size: 0.8rem;
   }
-
 }
 
 .side-bar-buttons {
