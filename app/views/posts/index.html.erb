@@ -1,10 +1,12 @@
 <div class='home-container'>
   
-  <%= render partial: "posts/new/form", locals: { post: @post } %>
+  <div class="form-new-post-container">
+    <%= render partial: "posts/new/form", locals: { post: @post } %>
+  </div>
 
   <% if @posts.any? %>
     <div class='post-container'>
-      <%= render partial: 'post', collection: @posts, as: :post, locals: {view: :index} %>
+      <%= render partial: 'posts/post-simple', collection: @posts, as: :post, locals: {view: :index} %>
     </div>
   <% else %>
     <p>No hay posts</p>

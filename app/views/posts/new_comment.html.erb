@@ -2,7 +2,7 @@
   <div class="modal-new-post">
     <div class="modal-new-post-content">
       <%= link_to "X", class: "close-button" %>
-      <%= render partial: "posts/parent", locals: { post: @parent } %>
+      <%= render partial: "posts/parent", locals: { post: @parent, is_parent_of_comment: true } %>
       <%= render partial: "posts/new/form", locals: { post: @post } %>
     </div>
   </div>

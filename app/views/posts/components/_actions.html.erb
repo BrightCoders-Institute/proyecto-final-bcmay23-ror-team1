@@ -1,0 +1,5 @@
+<div class="post-actions">
+  <%= render partial: 'likes/like', locals: { post: post } %>
+  <a href="#">Repost</a>
+  <%= link_to "Comment", new_post_path(parent_id: post.id), data: { turbo_frame: "comment" } %>
+</div>
