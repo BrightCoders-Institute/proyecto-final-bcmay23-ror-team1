@@ -3,5 +3,13 @@
   <h1>Post</h1>
 </div>
 <div class='post-container'>
-  <%= render partial: 'posts/post', locals: { post: @post, view: :show } %>
+
+  <% locals_parent = { view: :show, is_parent_of_comment: false } %>
+  <%= render partial: 'posts/parent', collection: @ancestors, as: :post, locals: locals_parent %>
+
+  <span data-controller="auto-scroll" data-action="load@window->auto-scroll#scrollToThis">
+  <%= render partial: 'posts/post', locals: { post: @post, view: :show, is_current_post: true } %>
+  </span>
+
+  <%= render partial: 'posts/post-simple', collection: @comments, as: :post, locals: { view: :show } %>
 </div>

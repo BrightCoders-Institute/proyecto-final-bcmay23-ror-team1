@@ -10,6 +10,8 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @comments = Post.comments(@post)
+    @ancestors = Post.ancestors(@post, [])
   end
 
   def new
