@@ -36,7 +36,24 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def show
+    @tab = params[:tab]
+    @tab = "posts" if @tab.blank?
+    
     @user = User.find(params[:id])
+
+    @navigation_tabs = [
+      {
+        "route" => user_path(@user, tab: "posts"),
+        "text" => "Posts",
+        "active" => @tab == "posts" || @tab.blank?,
+      },
+      {
+        "route" => user_path(@user, tab: "likes"),
+        "text" => "Likes",
+        "active" => @tab == "likes",
+      },
+    ]
+
 
     user_created_month_number = @user.created_at.strftime("%m").to_i 
     user_created_month_name = Date::MONTHNAMES[user_created_month_number]
@@ -44,6 +61,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     user_created_year = @user.created_at.strftime("%Y")
     
     @user_created_date = "Joined in #{user_created_month_name} #{user_created_year}"
+
   end
 
   def destroy

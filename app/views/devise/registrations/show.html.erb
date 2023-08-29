@@ -1,15 +1,19 @@
 <div class="profile-view">
-  <div class="user-images-container mb-4">
+  <div class="images-container mb-4">
     <% if @user.banner.attached? %>
-      <%= image_tag(@user.banner, class: 'user-banner') %>
+      <%= image_tag(@user.banner, class: 'banner') %>
     <% end %>
-    <div class="user-avatar-container">
+    <div class="avatar-container">
       <% if @user.avatar.attached? %>
-        <%= image_tag(@user.avatar, class: 'user-avatar') %>
+        <%= image_tag(@user.avatar, class: 'avatar') %>
       <% end %>
     </div>
   </div>
-  <div class="user-info-container border">
+  <div class="info-container">
+    <div class="edit-profile-button">
+      <%= link_to "Edit Profile", edit_user_registration_path%>
+    </div>
+
     <div class="names-container">
       <h1 class="name-label">
         <%= @user.name %>
@@ -30,7 +34,7 @@
       <%= @user_created_date %>
     </p>
 
-    <div class="follow-info">
+    <div class="follow-info mb-1">
       <p>
         <span class="follow-info-number">
           <%= @user.followings_number %>
@@ -49,7 +53,25 @@
       </p>
     </div>
   </div>
-  <div class="user-content-container border">
-    s
+  <div class="content-container">
+    <div class="content-navigation">
+      <% @navigation_tabs.each do |tab_data| %>
+        <%= link_to tab_data["route"], class: ["tab-container", tab_data["active"] ? "active-tab" : "" ] do %>
+            <div class="tab">
+              <p><%= tab_data["text"] %></p>
+              <% if tab_data["active"] %>
+                <div class="indicator"></div>
+              <% end %> 
+            </div>
+        <% end %>  
+      <% end %>
+    </div>
+    <div class="content-column border">
+      <% if @user.posts.any? %>
+          <%= render partial: "posts/post", collection: @user.posts, locals: {view: nil} %>
+      <% else %>
+        <p>No hay posts</p>
+      <% end %>
+    </div>
   </div>
 </div>

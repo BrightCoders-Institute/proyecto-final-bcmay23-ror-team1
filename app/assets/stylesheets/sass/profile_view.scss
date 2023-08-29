@@ -1,48 +1,59 @@
 .profile-view {
   
-  .user-images-container {
+  .images-container {
     background-color: $colorEmptyBg;
     height: 30vw;
     max-height: 13rem;
     min-height: 8rem;
     position: relative;
+    .banner {
+      height: 100%;
+      object-fit: cover;
+      width: 100%;
+    }
+  
+    .avatar {
+      border-radius: 50%;
+      height: 100%;
+      object-fit: cover;
+      width: 100%;
+    }
+  
+    .avatar-container {
+      background-color: $colorEmptyBg;
+      border: 3px solid $colorBlack;
+      border-radius: 50%;
+      bottom: -3rem;
+      height: 10vw;
+      left: 1rem;
+      max-height: 9rem;
+      max-width: 9rem;
+      min-height: 7rem;
+      min-width: 7rem;
+      position: absolute;
+      width: 10vw;
+    }
   }
 
-  .user-banner {
-    height: 100%;
-    object-fit: cover;
-    width: 100%;
-  }
-
-  .user-avatar {
-    border-radius: 50%;
-    height: 100%;
-    object-fit: cover;
-    width: 100%;
-  }
-
-  .user-avatar-container {
-    background-color: $colorEmptyBg;
-    border: 3px solid $colorBlack;
-    border-radius: 50%;
-    bottom: -3rem;
-    height: 10vw;
-    left: 1rem;
-    max-height: 9rem;
-    max-width: 9rem;
-    min-height: 7rem;
-    min-width: 7rem;
-    position: absolute;
-    width: 10vw;
-  }
-
-
-  .user-info-container{
+  .info-container{
+    position: relative;
     padding-left: .8rem;
     display: flex;
     flex-direction: column;
-
     gap: .9rem;
+
+    .edit-profile-button{
+      position: absolute;
+      right: 1rem;
+      top: -3rem;
+      border: 1.3px solid $colorBorder;
+      border-radius: 100px;
+      padding: .5rem 1rem;
+      a{
+        font-weight: bold;
+        text-decoration: none;
+      }
+    }
     .names-container{
       .name-label{
         font-size: 1.3rem;
@@ -76,6 +87,65 @@
         color: $colorGray;
         margin-right: .3rem;
       }
+    }
+  }
+
+  .content-container{
+
+    .content-navigation{
+      display: flex;
+      height: 3rem;
+      border-bottom: 1px solid $colorBorder;
+      
+      .tab-container{
+        text-decoration: none;
+        flex-grow: 1;
+        flex-basis: 0;
+        display: flex;
+        justify-content: center;
+        cursor: pointer;
+        .tab{
+          color: $colorGray;
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          .indicator{
+            position: absolute;
+            bottom: 0;
+            height: .2rem;
+            border-radius: 10px;
+            width: 100%;
+            background-color: $colorBlue;
+          }
+
+          p{
+            color: $colorGray;
+          }
+        }
+        &:hover{
+          background-color: #3336395a;
+          p{
+            color: $colorWhite;
+          }
+        }
+        
+      }
+
+      .active-tab{
+        .tab{
+          p{
+            font-weight: bold;
+            color: $colorWhite;
+          }
+        }
+      }
+    }
+
+    .content-column{
+      display: flex;
+      flex-direction: column;
     }
   }
 }
