@@ -41,18 +41,18 @@ Things you may want to cover:
 ## Functional requirements
 
 #### Registered user
-- [ ] User can sign up using nickname, email & password.
-- [ ] User can sign in using email & password.
+- [x] User can sign up using nickname, email & password.
+- [x] User can sign in using email & password.
 - [ ] User will be able to verify its account using email verification.
 - [ ] User will be able to recover its password using email recovery.
-- [ ] User will be able to sign out.
+- [x] User will be able to sign out.
 
 ### User posts
-- [ ] User will be able to write a post. (text, image, video, etc.)
-- [ ] User will be able to "like" a post.
-- [ ] User will be able to reply to a post.
+- [x] User will be able to write a post. (text, image, video, etc.)
+- [x] User will be able to "like" a post.
+- [x] User will be able to reply to a post.
 - [ ] User will be able to share a post.
-- [ ] User will be able to delete its own posts.
+- [x] User will be able to delete its own posts.
 - [ ] User will be able to see a list of posts from the users it follows.
 
 ### Search option
@@ -61,7 +61,7 @@ Things you may want to cover:
 ### Profile view
 - [ ] User will be able to follow other users.
 - [ ] User will be able to customize its profile. (name, nickname, bio, avatar, etc.)
-- [ ] User will be able to see the number of followers and following users.
+- [x] User will be able to see the number of followers and following users.
 - [ ] User will be able to see a list of liked posts.
 - [ ] User will be able to verify his identity using a email.
 - [ ] User will be able to see a list of its own, shared and replied posts.
@@ -73,7 +73,7 @@ Things you may want to cover:
 ## Non-Functional requirements
 
 ### Segurity
-- [ ] Encrypt user password.
+- [x] Encrypt user password.
 - [ ] To send emails use a background job.
 - [ ] To send a notification use a background job.
 
