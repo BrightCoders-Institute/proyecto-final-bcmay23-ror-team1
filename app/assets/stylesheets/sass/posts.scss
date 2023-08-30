@@ -158,11 +158,19 @@
 }
 
 .option-button {
-  background-color: black;
+  background-color: inherit;
+  border-radius: 50%;
+  border: none;
   color: white;
-  :hover {
+  font-size: 1rem;
+  height: 2rem;
+  width: 2rem;
+  
+  &:hover {
+    background-color: rgba($colorGray, 0.1);
     cursor: pointer;
   }
+  
 }
 
 .parent-post-container {
