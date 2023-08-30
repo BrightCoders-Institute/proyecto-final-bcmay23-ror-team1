@@ -1,13 +1,14 @@
 <div class="menu hidden" data-menu-options-target="options">
-    <% if current_user.id == post.user_id %>
-      <div class="menu__option">
-        <%= icon("fa-solid", "trash-can", class: "delete-icon")%>
-        <%= link_to "Delete post", post_path(post), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
-      </div>
-    <% end %>
-
-  <div class="menu__option">
-    <%= icon("fa-solid", "user", class: "follow-icon")%>
-    <p>Follow creator</p>
-  </div>
+  <% if current_user.id == post.user_id %>
+    <div class="menu__option">
+      <%= icon("fa-solid", "trash-can", class: "delete-icon")%>
+      <%= link_to "Delete post", post_path(post), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+    </div>
+  <% end %>
+  
+  <% if current_user.id != post.user_id %>
+    <div class="menu__option">
+      <%= render partial: "follows/follow", locals: { following_user: post.user } %>
+    </div>
+  <% end %>
 </div>
