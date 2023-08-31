@@ -10,9 +10,7 @@
     </div>
   </div>
   <div class="info-container">
-    <div class="edit-profile-button">
-      <%= link_to "Edit Profile", edit_user_registration_path%>
-    </div>
+      <%= link_to "Edit Profile", edit_user_registration_path, class: "edit-profile-button"%>
 
     <div class="names-container">
       <h1 class="name-label">
@@ -66,11 +64,20 @@
         <% end %>  
       <% end %>
     </div>
-    <div class="content-column border">
-      <% if @user.posts.any? %>
-          <%= render partial: "posts/post", collection: @user.posts, locals: {view: nil} %>
-      <% else %>
-        <p>No hay posts</p>
+    <div class="content-column">
+      <% if @tab == "posts" %>
+        <% if @user.posts.any? %>
+            <%= render partial: "posts/post-simple", collection: @user.posts, as: :post ,locals: {view: nil, is_current_post: false} %>
+        <% else %>
+          <p class="no-content-label">No posts</p>
+        <% end %>
+      <% end %>
+      <% if @tab == "likes" %>
+        <% if @user.liked_posts.any? %>
+            <%= render partial: "posts/post-simple", collection: @user.liked_posts, as: :post, locals: {view: nil, is_current_post: false} %>
+        <% else %>
+          <p class="no-content-label">No liked posts</p>
+        <% end %>
       <% end %>
     </div>
   </div>
