@@ -1,0 +1,8 @@
+<div class="parent-post-left">
+  <%= render partial: "posts/components/avatar" , locals: { avatar: post.user.avatar }%>
+  <% if from_parent %>
+    <span class="thread-line"></span>
+  <% else %>
+    <span style="height:100%;"></span>
+  <% end %>
+</div>

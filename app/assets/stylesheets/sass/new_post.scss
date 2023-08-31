@@ -1,21 +1,23 @@
+.form-new-post-container {
+  margin-inline: 20px;
+}
+
 .form-new-post {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  padding: 2rem;
+  padding: 1rem;
 }
 
 .new-post-left {
   display: flex;
-  justify-content: center;
-  width: 10%;
+  width: 50px;
 }
 
 .new-post-right {
   display: flex;
   flex-direction: column;
   padding-inline: 1rem;
-  width: 80%;
+  width: 100%;
 }
 
 .new-post-bottom {
@@ -91,6 +93,7 @@
   border-radius: 8px;
   height: fit-content;
   margin-top: 10%;
+  padding: 1rem;
   width: 50%;
 }
 

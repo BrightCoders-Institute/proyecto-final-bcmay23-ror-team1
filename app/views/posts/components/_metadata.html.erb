@@ -1,0 +1,22 @@
+<div class="<%= is_current_post ? "post-meta" : "post-simple-meta" %>">
+  <p class="post-user-name"><%= post.user.name %></p> 
+  <p class="post-user-username">@<%= post.user.username %></p>
+
+  <% if !is_current_post %>
+  <p class="post-time">
+    <% if view == :index %>
+      <%= format_time_ago(post.created_at) %>
+    <% else %>
+      <%= post.created_at.strftime("%-I:%M %p · %-d %b. %Y") %>
+    <% end %>
+  </p>
+  <% end %>
+
+  <% if !is_parent_of_comment %>
+    <div class='post-options' data-controller="menu-options">
+      <button class="option-button" data-action="click->menu-options#show">V</button>
+      <%= render partial: 'options', locals: {post: post} %>
+    </div>
+  <% end %>
+
+</div>

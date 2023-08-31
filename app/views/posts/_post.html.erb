@@ -1,49 +1,25 @@
-<div class="post">
+<div class="post current-post">
 
   <div class="post-header">
-    <div class="post-user-avatar">
-      <% if post.user.avatar.attached? %>
-        <%= image_tag post.user.avatar, class: "post-user-avatar" %>
-      <% end %>
-    </div>
 
-    <div class="post-meta">
-      <strong><%= post.user.name %></strong> 
-      <p>
-        @<%= post.user.username %>
-      </p>
-      <div class="post-date">
-        <% if view == :index %>
-          - <%= format_time_ago(post.created_at) %>
-        <% end %>
-      </div>
-    </div>
+    <%= render partial: "posts/components/avatar" , locals: { avatar: post.user.avatar }%>
 
-      <div class='post-options' data-controller="menu-options">
-        <button class="option-button" data-action="click->menu-options#show">V</button>
-
-        <%= render partial: 'options', locals: {post: post} %>
-      </div>
+    <% locals_metadata = { post: post, is_current_post: is_current_post, is_parent_of_comment: false, view: view } %>
+    <%= render partial: "posts/components/metadata" , locals: locals_metadata %>
+    
   </div>
 
-  <div class="post-content">
-    <p><%= post.content %></p>
-    <% if post.images.attached? %>
-      <%= image_tag post.images.first, class: "post-image" %>
-    <% end %>
-  </div>
+  <%= render partial: "posts/components/content" , locals: { post: post }%>
 
-  <div class="post-date">
-    <% if view == :show %>
+  <div class="post-time-bottom post-meta">
+    <% if view == :index %>
+      <%= format_time_ago(post.created_at) %>
+    <% else %>
       <%= post.created_at.strftime("%-I:%M %p · %-d %b. %Y") %>
     <% end %>
   </div>
 
   <hr />
+  <%= render partial: "posts/components/actions" , locals: { post: post }%>
 
-  <div class="post-actions">
-    <%= link_to "Comments", post_path(post) %>
-    <a href="#">Repost</a>
-    <%= render partial: 'likes/like', locals: { post: post } %>
-  </div>
 </div>

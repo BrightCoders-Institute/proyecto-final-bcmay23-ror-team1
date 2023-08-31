@@ -1,10 +1,9 @@
 /* Styles for posts like Twitter posts */
 .post {
-  border-radius: 10px;
-  border: 5px solid $colorBorder;
+  border-radius: 2px;
   margin-bottom: 20px;
   overflow: hidden;
-  padding: 15px;
+  padding: 1rem;
   position: relative;
 
   .post-image {
@@ -20,29 +19,26 @@
   }
 
   .post-header {
-    align-items: start;
     display: flex;
-    gap: 20px;
 
     .post-meta {
       align-items: center;
       color: #999;
       display: flex;
-      font-size: 12px;
-      gap: 5px;
-      margin-top: 5px;
+      margin-left: 1rem;
+      gap: 8px;
 
       .post-user-name {
         color: $colorWhite;
-        font-size: 18px;
       }
+
     }
 
-    .post-delete {
-      position: absolute;
-      right: 15px;
-      top: 15px;
-    }
+  }
+
+  .post-time-bottom {
+    color: $colorGray;
+    padding-block: 10px;
   }
 
   .post-content {
@@ -96,6 +92,19 @@
   }
 }
 
+.current-post {
+  background-color: #060e12;
+}
+
+.border-post {
+  border: 1px solid $colorBorder;
+}
+
+.post-delete {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+}
 
 .post-container {
   margin: 20px;
@@ -119,7 +128,6 @@
 
 .menu {
   background-color: black;
-  border: 2px solid #999;
   border-radius: 5px;
   padding: 10px;
   z-index: 10;
@@ -145,8 +153,8 @@
 
 .post-options {
   position: absolute;
-  right: 0;
-  top: 0;
+  right: 15px;
+  top: 15px;
 }
 
 .option-button {
@@ -160,16 +168,14 @@
 .parent-post-container {
   color: $colorWhite;
   display: flex;
-  justify-content: center;
-  padding-inline: 2rem;
-  padding-top: 2rem;
+  padding: 1rem;
 }
 
 .parent-post-left {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 10%;
+  width: fit-content;
 
   .thread-line {
     border-left: 2px solid $colorGray;
@@ -178,12 +184,6 @@
     width: 100%;
   }
 
-}
-
-.post-avatar-container {
-  display: flex;
-  justify-content: center;
-  width: 100%;
 }
 
 .post-user-avatar {
@@ -208,7 +208,8 @@
     font-weight: bold;
   }
 
-  .post-user-username, .post-time{
-    color: $colorGray;
-  }
+}
+
+.post-user-username, .post-time {
+  color: $colorGray;
 }
