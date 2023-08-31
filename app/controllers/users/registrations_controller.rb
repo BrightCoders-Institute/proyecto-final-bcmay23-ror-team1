@@ -35,12 +35,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
     redirect_to root_path
   end
 
+  
   def show
     @tab = params[:tab]
     @tab = "posts" if @tab.blank?
     
     @user = User.find(params[:id])
-
+    
     @navigation_tabs = [
       {
         "route" => user_path(@user, tab: "posts"),
@@ -53,15 +54,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
         "active" => @tab == "likes",
       },
     ]
-
-
+    
+    
     user_created_month_number = @user.created_at.strftime("%m").to_i 
     user_created_month_name = Date::MONTHNAMES[user_created_month_number]
-
+    
     user_created_year = @user.created_at.strftime("%Y")
     
     @user_created_date = "Joined in #{user_created_month_name} #{user_created_year}"
-
+    
   end
 
   def destroy
@@ -76,6 +77,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
     redirect_to root_path
   end
 
+  def edit
+    render 'edit'
+  end
+  
   protected
 
   # If you have extra params to permit, append them to the sanitizer.
