@@ -1,4 +1,17 @@
+.embedded{
+  background-color: rgba(89, 89, 92, 0.5);
+  // display: none;
+  height: 100%;
+  left: 0;
+  overflow: auto;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
 .profile-view {
+
 
   .images-container {
     background-color: $colorEmptyBg;
