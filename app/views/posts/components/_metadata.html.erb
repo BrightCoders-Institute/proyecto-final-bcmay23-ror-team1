@@ -14,7 +14,9 @@
 
   <% if !is_parent_of_comment %>
     <div class='post-options' data-controller="menu-options">
-      <button class="option-button" data-action="click->menu-options#show">V</button>
+      <button class="option-button" data-action="click->menu-options#show">
+	<%= icon("fa-solid", "ellipsis-vertical") %>
+      </button>
       <%= render partial: 'options', locals: {post: post} %>
     </div>
   <% end %>
