@@ -45,15 +45,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
       
       current_user.follower_records.destroy_all
       current_user.swap_posts_to_deleted_user
-
-      puts "=" * 30
-      puts current_user.posts.first.inspect
-
       current_user.destroy
     end
 
-    # if 
-    # end
+    redirect_to root_path
   end
 
   protected
