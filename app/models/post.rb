@@ -4,7 +4,8 @@
 class Post < ApplicationRecord
   validates :content, presence: true
 
-  belongs_to :user
+  belongs_to :user, optional: true
+  belongs_to :deleted_user, optional: true
 
   has_many_attached :images
   has_many :shared_posts_relation, class_name: 'SharedPost', foreign_key: :post_id
@@ -37,5 +38,11 @@ class Post < ApplicationRecord
     end
     ancestors(post.parent, ancestors_list)
   }
+
+  def swap_to_deleted_user(deleted_id)
+    self.user_id = nil
+    self.deleted_user_id = deleted_id
+    save
+  end
 
 end
