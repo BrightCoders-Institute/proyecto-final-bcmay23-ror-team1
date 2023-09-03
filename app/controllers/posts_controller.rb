@@ -33,8 +33,22 @@ class PostsController < ApplicationController
       @errors = @post.errors.full_messages
       render 'posts/index', status: :unprocessable_entity
     end
-
   end
+
+  def search
+    @query = params[:query]
+
+    if @query.present?
+      @users = User.where('username LIKE ?', "%#{@query}%").to_a
+      @validate = true
+    else
+      @validate = false
+    end
+
+    render turbo_stream:
+      turbo_stream.replace("search_results", partial: 'posts/search', locals: { query: @query, users: @users, validate: @validate })
+  end
+
 
   def destroy
     @post = Post.find(params[:id])

@@ -15,6 +15,11 @@ Rails.application.routes.draw do
 
   resources :likes, only: [:create, :destroy]
   resources :follows
-  resources :posts
+
+  resources :posts do 
+    collection do
+      get 'search'
+    end
+  end
 
 end
