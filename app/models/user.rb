@@ -12,7 +12,7 @@ class User < ApplicationRecord
   has_one_attached :banner
   
   # Post relationship
-  has_many :posts
+  has_many :posts #, dependant: :nullify??
   def posts_number
     posts.count
   end
@@ -37,4 +37,11 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  def swap_posts_to_deleted_user
+    posts.each do |post|
+      post.swap_to_deleted_user(id)
+    end
+  end
+  
 end

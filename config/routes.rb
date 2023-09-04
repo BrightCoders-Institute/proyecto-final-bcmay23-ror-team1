@@ -17,4 +17,6 @@ Rails.application.routes.draw do
   resources :follows
   resources :posts
 
+  get '/settings', to: 'users/settings#index', as: 'settings'
+
 end

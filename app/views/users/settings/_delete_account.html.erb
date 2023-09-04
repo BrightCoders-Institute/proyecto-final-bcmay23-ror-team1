@@ -1,0 +1,7 @@
+<%= button_to(user_registration_path,
+              method: :delete,
+              data: { turbo_confirm: "Are yout sure you want to delete this account?" },
+              class: 'delete-button') do %>
+
+  Delete Account
+<% end %>

@@ -39,6 +39,18 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @user = User.find(params[:id])
   end
 
+  def destroy
+    User.transaction do
+      DeletedUser.create(id: current_user.id, username: current_user.username)
+      
+      current_user.follower_records.destroy_all
+      current_user.swap_posts_to_deleted_user
+      current_user.destroy
+    end
+
+    redirect_to root_path
+  end
+
   protected
 
   # If you have extra params to permit, append them to the sanitizer.
