@@ -53,3 +53,48 @@
 
   }
 }
+
+.banner-label {
+  .banner {
+    filter: brightness(0.6);
+  }
+  &:hover {
+    cursor: pointer;
+    .banner {
+      filter: brightness(0.4);
+    }
+  }
+}
+
+.profile-avatar-label {
+  .avatar {
+    filter: brightness(0.6);
+  }
+  &:hover {
+    cursor: pointer;
+    .avatar {
+      filter: brightness(0.4);
+    }
+  }
+}
+
+
+.upload-icon {
+  z-index: 1;
+  position: absolute;
+  transform: translate(-50% -50%);
+  margin: 0px;
+  background: rgba(white, 0.2);
+  padding: 1rem;
+  border-radius: 50%;
+}
+
+.banner-upload-icon {
+  left: 46%;
+  top: 40%;
+}
+
+.avatar-upload-icon {
+  left: 32%;
+  top: 32%;
+}

@@ -9,10 +9,12 @@
                 <span data-action="click->embedded#close">X</span>
                 <h2>Edit profile</h2>
               </div>
-                <%= f.submit "Update" , class: "modal-submit-button" , data: { turbo_frame: "embedded" } %>
+              <%= f.submit "Update" , class: "modal-submit-button" , data: { turbo_frame: "embedded" } %>
             </div>
 
             <%= render "devise/shared/error_messages" , resource: resource %>
+
+						<%= render partial: "devise/registrations/edit-images" , locals: { form: f } %>
 
             <div class="field">
               <%= f.label :name %>
@@ -32,14 +34,14 @@
               %>
             </div>
 
-            <div class="field">
-              <%= f.label :current_password %>
-                <%= 
+            <!-- <div class="field"> -->
+              <%# f.label :current_password %>
+                <%# 
                   f.password_field :current_password, 
                   autocomplete: "current-password",
                   class: "input-form input-neutral" 
                 %>
-            </div>
+            <!-- </div> -->
           <% end %>
         </div>
       </div>

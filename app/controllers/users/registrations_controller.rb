@@ -4,7 +4,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   layout 'layouts/application', only: [:show]
   before_action :configure_sign_up_params, only: [:create]
-  before_action :configure_account_update_params, only: [:update]
+  # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
   # def new
@@ -77,8 +77,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
     redirect_to root_path
   end
 
-  def edit
-    render 'edit'
+  def update
+    if current_user.update(update_params)
+      flash[:notice] = "Profile updated!"
+      redirect_to root_path
+    else
+      render :edit
+    end
   end
   
   protected
@@ -89,13 +94,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   # If you have extra params to permit, append them to the sanitizer.
-  def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :biography])
-  end
+  # def configure_account_update_params
+  #   devise_parameter_sanitizer.permit(:account_update, keys: [:name, :biography, :avatar, :banner])
+  # end
 
   # The path used after sign up.
   def after_sign_up_path_for(resource)
     signup_set_avatar_path
+  end
+
+  def update_params
+    params.require(:user).permit(:name, :biography, :avatar, :banner)
   end
 
   # The path used after sign up for inactive accounts.
