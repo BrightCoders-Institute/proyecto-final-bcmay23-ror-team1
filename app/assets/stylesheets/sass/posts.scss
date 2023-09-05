@@ -180,7 +180,6 @@
 .parent-post-container {
   color: $colorWhite;
   display: flex;
-  padding: 1rem;
 }
 
 .parent-post-left {
@@ -222,6 +221,14 @@
 
 }
 
-.post-user-username, .post-time {
+.post-user-link {
+  color: $colorBlue;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.post-user-username, .post-time, .post-replying-sign {
   color: $colorGray;
 }
