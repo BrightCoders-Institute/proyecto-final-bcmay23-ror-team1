@@ -75,11 +75,19 @@
     margin-bottom: 10px;
     margin-top: 10px;
 
-    .post-like {
-      margin-right: 10px;
+    .action-button {
+      color: $colorWhite;
+      text-decoration: none;
+      font-weight: bold;
+      word-spacing: 8px;
+    }
 
+    .post-like {
       &:hover {
         color: $colorLike;
+        i {
+          color: $colorLike;
+        }
       }
     }
 
@@ -87,14 +95,15 @@
       color: $colorLike;
     }
 
-    a {
-      color: #999;
-      margin-right: 10px;
-
+    .comment-button {
       &:hover {
-        color: #333;
+        color: $colorBlue;
+        i {
+          color: $colorBlue;
+        }
       }
     }
+
   }
 }
 

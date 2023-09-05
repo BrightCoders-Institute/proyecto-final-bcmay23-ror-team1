@@ -1,5 +1,5 @@
 <div class="post-actions">
   <%= render partial: 'likes/like', locals: { post: post } %>
-  <a href="#">Repost</a>
-  <%= link_to "Comment", new_post_path(parent_id: post.id), data: { turbo_frame: "comment" } %>
+  <a><%= icon("fa-regular", "share-from-square") %> <%= post.sharers.count %></a>
+  <%= render partial: 'posts/components/comment-button', locals: { post: post } %>
 </div>
