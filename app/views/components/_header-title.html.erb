@@ -1,5 +1,12 @@
 <h1>
-  <%= 'Home' if current_page?(root_path) %>
-  <%= 'Home' if current_page?(posts_path) %>
-  <%= render "components/user-header" if  current_page?(user_path(current_user))%>
+  <% if current_page?(root_path) || current_page?(posts_path)%>
+    <%= 'Home' %>
+  <% end %>
+
+  <% if @user %>
+    <% path = user_path(@user) %>
+    <% if current_page?(path) || current_page?("#{path}/likes") || current_page?("#{path}/posts") %>
+      <%= render partial: "components/user-header", locals: { user: @user } %>
+    <% end %>
+  <% end %>
 </h1>
