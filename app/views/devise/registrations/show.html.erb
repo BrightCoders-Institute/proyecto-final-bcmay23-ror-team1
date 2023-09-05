@@ -9,79 +9,44 @@
       <% end %>
     </div>
   </div>
-  <div class="info-container">
-      <%= link_to "Edit Profile", edit_user_registration_path, class: "edit-profile-button"%>
-
-    <div class="names-container">
-      <h1 class="name-label">
-        <%= @user.name %>
-      </h1>
-      <h2 class="username-label">
-        @<%= @user.username %>
-      </h2>
-    </div>
-
-    <div>
-      <p class="user-bio-label">
-        <%= @user.biography %>
-      </p>
-    </div>
-
-    <p class="created-date-label"> 
-      <i class="fas fa-calendar-alt"></i>
-      <%= @user_created_date %>
-    </p>
-
-    <div class="follow-info mb-1">
-      <p>
-        <span class="follow-info-number">
-          <%= @user.followings_number %>
-        </span>
-        <span class="follow-info-label">
-          Following
-        </span>
-      </p>
-      <p>
-        <span class="follow-info-number">
-          <%= @user.followers_number %>
-        </span>
-        <span class="follow-info-label">
-          Followers
-        </span>
-      </p>
-    </div>
-  </div>
+  
+  <%= render partial: 'devise/registrations/user-info', locals: {user: @user} %>
   <div class="content-container">
     <div class="content-navigation">
       <% @navigation_tabs.each do |tab_data| %>
-        <%= link_to tab_data["route"], class: ["tab-container", tab_data["active"] ? "active-tab" : "" ] do %>
-            <div class="tab">
-              <p><%= tab_data["text"] %></p>
-              <% if tab_data["active"] %>
-                <div class="indicator"></div>
-              <% end %> 
-            </div>
-        <% end %>  
+      <%= link_to tab_data["route"], class: ["tab-container", tab_data["active"] ? "active-tab" : "" ] do %>
+      <div class="tab">
+        <p><%= tab_data["text"] %></p>
+        <% if tab_data["active"] %>
+        <div class="indicator"></div>
+        <% end %> 
+      </div>
+      <% end %>  
       <% end %>
     </div>
     <div class="content-column">
+
       <% if @tab == "posts" %>
+
         <% if @user.posts.any? %>
-            <%= render partial: "posts/post-simple", collection: @user.posts, as: :post ,locals: {view: nil, is_current_post: false} %>
+          <%= render partial: "posts/post-simple", collection: @user.posts, as: :post ,locals: {view: nil, is_current_post: false} %>
         <% else %>
           <p class="no-content-label">No posts</p>
         <% end %>
+        
       <% end %>
+
       <% if @tab == "likes" %>
+
         <% if @user.liked_posts.any? %>
-            <%= render partial: "posts/post-simple", collection: @user.liked_posts, as: :post, locals: {view: nil, is_current_post: false} %>
+          <%= render partial: "posts/post-simple", collection: @user.liked_posts, as: :post, locals: {view: nil, is_current_post: false} %>
         <% else %>
           <p class="no-content-label">No liked posts</p>
         <% end %>
+
       <% end %>
+
     </div>
   </div>
-</div>
-<div class="embedded">
-  <%= turbo_frame_tag 'edit-frame', src: edit_user_registration_path %>
+  <%= turbo_frame_tag "embedded"  %>
 </div>

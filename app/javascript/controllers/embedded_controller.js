@@ -1,23 +1,16 @@
-import { Controller } from "stimulus"
+import { Controller } from "@hotwired/stimulus"
 
-export default class extends Controller {
-  static targets = ["frameContainer"]
-
-  connect() {
-    this.frameLoaded = false;
+export default class extends Controller { 
+  connect() { 
+    this.element.addEventListener('turbo:submit-end', (event) => {
+      if (event.detail.success) {
+        location.reload();
+      }
+    });
   }
 
-  showEmbedded() {
-    if (!this.frameLoaded) {
-      const embeddedFrame = this.frameContainerTarget.querySelector('turbo-frame');
-      embeddedFrame.addEventListener('turbo:load', () => {
-        this.frameContainerTarget.style.display = 'block';
-        this.frameLoaded = true;
-      });
-
-      embeddedFrame.dispatchEvent(new Event('turbo:load'));
-    } else {
-      this.frameContainerTarget.style.display = 'block';
-    }
+  close() {
+    this.element.parentElement.removeAttribute('src');
+    this.element.remove();
   }
 }

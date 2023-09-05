@@ -1,0 +1,55 @@
+.display-blur {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(89, 89, 92, 0.5);
+  left: 0;
+  top: 0;
+  z-index: 2;
+}
+
+.modal-container {
+  min-height: 400px;
+  max-width: 80vw;
+  max-height: 90vh;
+  height: 650px;
+  min-width: 600px;
+  background-color: $colorBlack;
+  border-radius: 15px;
+  overflow-y: scroll;
+
+  .modal-form {
+    margin: .8rem 2rem;
+    form{
+      display: flex;
+      gap: .3rem;
+      flex-direction: column;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+
+      .modal-header-text {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 2rem;
+        font-size: .9rem;
+      }
+
+      .modal-submit-button {
+        border: none;
+        border-radius: 9999px;
+        color: $colorBlack;
+        font-weight: bold;
+        min-height: 32px;
+        background-color: $colorWhite;
+      }
+    }
+
+  }
+}
