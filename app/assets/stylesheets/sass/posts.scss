@@ -5,12 +5,6 @@
   overflow: hidden;
   padding: 1rem;
   position: relative;
-
-  .post-image {
-    border-radius: 10px;
-    height: 50%;
-    width: 50%;
-  }
   
   .post-avatar {
     border-radius: 50%;
@@ -48,10 +42,22 @@
     font-size: 18px;
     margin: 10px 0;
     margin-bottom: 10px;
+    gap: 8px;
 
     p {
       align-self: self-start;
     }
+
+    .post-images-container {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);gap: 8px;
+      .post-image {
+          border-radius: 4px;
+          width: 100%;
+      }
+    }
+ 
   }
 
   .post-date {
