@@ -1,37 +1,28 @@
 <div class="profile-view">
 
     <div class="images-container mb-4" data-controller="edit-profile">
-
-		<%= form.label :banner, class: "banner banner-label" do %>
-			
-			<%= icon("fa-solid", "upload upload-icon banner-upload-icon") %>
-			<% if @user.banner.attached? %>
-				<%= image_tag(@user.banner, class: 'banner', data: { edit_profile_target: :banner })%>
-			<% else %>
-				<%= image_tag("", class: 'banner', data: { edit_profile_target: :banner }) %>
+			<%= form.label :banner, class: "banner banner-label" do %>
+				<%= icon("fa-solid", "upload upload-icon banner-upload-icon") %>
+				<% if @user.banner.attached? %>
+					<%= image_tag(@user.banner, class: 'banner', data: { edit_profile_target: :banner })%>
+				<% else %>
+					<%= image_tag("", class: 'banner', data: { edit_profile_target: :banner }) %>
+				<% end %>
 			<% end %>
-			
-		<% end %>
 
-		<%= form.file_field :banner , class: "hidden-field", data: { action: "edit-profile#refreshBanner" } %>
-	
-    
-	<div class="avatar-container">
+			<%= form.file_field :banner , class: "hidden-field", data: { action: "edit-profile#refreshBanner" } %>
 
-	    <%= form.label :avatar, class: "avatar profile-avatar-label" do %>		
-
-		<%= icon("fa-solid", "upload upload-icon avatar-upload-icon") %>
-		<% if @user.avatar.attached? %>
-		    <%= image_tag(@user.avatar, class: "avatar", data: { edit_profile_target: :avatar }) %>
-		<% else %>
-		    <%= image_tag("", class: 'avatar', data: { edit_profile_target: :avatar }) %>
-		<% end %>
-		    
-	    <% end %>
-	    <%= form.file_field :avatar , class: "hidden-field" , data: { action: "edit-profile#refreshAvatar" } %>
-	    
-	</div>
-
+			<div class="avatar-container">
+	    	<%= form.label :avatar, class: "avatar profile-avatar-label" do %>		
+					<%= icon("fa-solid", "upload upload-icon avatar-upload-icon") %>
+					<% if @user.avatar.attached? %>
+		    		<%= image_tag(@user.avatar, class: "avatar", data: { edit_profile_target: :avatar }) %>
+					<% else %>
+		    		<%= image_tag("", class: 'avatar', data: { edit_profile_target: :avatar }) %>
+					<% end %>
+	    	<% end %>
+	    	<%= form.file_field :avatar , class: "hidden-field" , data: { action: "edit-profile#refreshAvatar" } %>
+			</div>
     </div>
   
 </div>
