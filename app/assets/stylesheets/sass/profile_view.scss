@@ -50,24 +50,24 @@
   }
 
   .info-container {
-    position: relative;
-    padding-left: .8rem;
     display: flex;
     flex-direction: column;
     gap: .9rem;
+    padding-left: .8rem;
+    position: relative;
 
     .edit-profile-button {
-      text-decoration: none;
-      position: absolute;
-      right: 1rem;
-      top: -3rem;
       border: 1.3px solid $colorBorder;
       border-radius: 100px;
-      padding: .5rem 1rem;
       font-weight: bold;
+      padding: .5rem 1rem;
+      position: absolute;
+      right: 1rem;
+      text-decoration: none;
+      top: -3rem;
       &:hover {
-        transition: .2s;
         background-color: #3336395a;
+        transition: .2s;
       }
     }
 
@@ -78,18 +78,18 @@
       }
 
       .username-label {
-        font-size: 1rem;
         color: $colorGray;
+        font-size: 1rem;
         font-weight: 100;
       }
     }
 
     .follow-info {
       display: flex;
+      display: flex;
+      font-size: .8rem;
       gap: .5rem;
       margin-top: .5rem;
-      font-size: .8rem;
-      display: flex;
 
       .follow-info-label {
         color: $colorGray;
@@ -115,34 +115,34 @@
   .content-container {
 
     .content-navigation {
+      border-bottom: 1px solid $colorBorder;
       display: flex;
       height: 3rem;
-      border-bottom: 1px solid $colorBorder;
 
       .tab-container {
-        text-decoration: none;
-        flex-grow: 1;
-        flex-basis: 0;
-        display: flex;
-        justify-content: center;
         cursor: pointer;
+        display: flex;
+        flex-basis: 0;
+        flex-grow: 1;
+        justify-content: center;
+        text-decoration: none;
         transition: .2s;
 
         .tab {
+          align-items: center;
           color: $colorGray;
-          position: relative;
           display: flex;
           flex-direction: column;
-          align-items: center;
           justify-content: center;
+          position: relative;
 
           .indicator {
-            position: absolute;
+            background-color: $colorBlue;
+            border-radius: 10px;
             bottom: 0;
             height: .2rem;
-            border-radius: 10px;
+            position: absolute;
             width: 100%;
-            background-color: $colorBlue;
           }
 
           p {
@@ -163,8 +163,8 @@
       .active-tab {
         .tab {
           p {
-            font-weight: bold;
             color: $colorWhite;
+            font-weight: bold;
           }
         }
       }
