@@ -42,6 +42,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_10_235147) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "deleted_users", force: :cascade do |t|
+    t.string "username"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "follows", force: :cascade do |t|
     t.integer "follower_id"
     t.integer "following_id"
@@ -60,10 +66,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_10_235147) do
 
   create_table "posts", force: :cascade do |t|
     t.text "content"
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
+    t.bigint "deleted_user_id"
     t.bigint "parent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["deleted_user_id"], name: "index_posts_on_deleted_user_id"
     t.index ["parent_id"], name: "index_posts_on_parent_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
@@ -97,6 +105,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_10_235147) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "likes", "posts"
   add_foreign_key "likes", "users"
+  add_foreign_key "posts", "deleted_users"
   add_foreign_key "posts", "posts", column: "parent_id"
   add_foreign_key "posts", "users"
   add_foreign_key "shared_posts", "posts"

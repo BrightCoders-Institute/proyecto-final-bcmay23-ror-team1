@@ -1,8 +1,12 @@
 <div class="post-content">
-  <p><%= post.content %></p>
-  <% if post.images.attached? %>
-    <% post.images.each do |image| %>
-      <%= image_tag image, class: "post-image" %>
+    <p><%= post.content %></p>
+
+    <% if post.images.attached? %>
+	<div class="post-images-container">
+	    <% post.images.each do |image| %>
+
+		<%= image_tag image, class: "post-image" %>
+	    <% end %>
+	</div>
     <% end %>
-  <% end %>
 </div>

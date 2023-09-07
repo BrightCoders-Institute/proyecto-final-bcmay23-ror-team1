@@ -1,0 +1,7 @@
+<% if parent.present? && view == :index  %>
+    <div class="post-replying-sign">Replying to
+	<%= link_to user_path(parent.user), class: "post-user-link" do %>
+	    @<%= parent.user.username %>
+	<% end %>
+    </div>
+<% end %>

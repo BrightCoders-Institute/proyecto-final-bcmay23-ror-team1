@@ -1,0 +1,49 @@
+<div class="info-container">
+  <%= 
+    link_to "Edit Profile", 
+    edit_user_registration_path, 
+    class: "edit-profile-button #{"hidden" unless current_user == user}", 
+    data: { turbo_frame: "embedded" } 
+  %>
+
+    <div class="names-container">
+      <h1 class="name-label">
+        <%= user.name %>
+      </h1>
+      <h2 class="username-label">
+        @<%= user.username %>
+      </h2>
+    </div>
+
+    <div>
+      <p class="user-bio-label">
+        <%= user.biography %>
+      </p>
+    </div>
+
+    <p class="created-date-label">
+      <i class="fas fa-calendar-alt"></i>
+      <%= user.created_date %>
+    </p>
+
+    <div class="follow-info mb-1">
+      <p>
+        <span class="follow-info-number">
+          <%= user.followings_number %>
+        </span>
+        <span class="follow-info-label">
+          Following
+        </span>
+      </p>
+      <p>
+        <span class="follow-info-number">
+          <%= user.followers_number %>
+        </span>
+        <span class="follow-info-label">
+          Followers
+        </span>
+      </p>
+    </div>
+</div>
+
+

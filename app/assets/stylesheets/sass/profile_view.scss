@@ -1,0 +1,179 @@
+.embedded{
+  background-color: rgba(89, 89, 92, 0.5);
+  // display: none;
+  height: 100%;
+  left: 0;
+  overflow: auto;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.profile-view {
+
+
+  .images-container {
+    background-color: $colorEmptyBg;
+    height: 30vw;
+    max-height: 13rem;
+    min-height: 8rem;
+    position: relative;
+
+    .banner {
+      height: 100%;
+      object-fit: cover;
+      width: 100%;
+    }
+
+    .avatar {
+      border-radius: 50%;
+      height: 100%;
+      object-fit: cover;
+      width: 100%;
+    }
+
+    .avatar-container {
+      background-color: $colorEmptyBg;
+      border: 3px solid $colorBlack;
+      border-radius: 50%;
+      bottom: -3rem;
+      height: 10vw;
+      left: 1rem;
+      max-height: 9rem;
+      max-width: 9rem;
+      min-height: 7rem;
+      min-width: 7rem;
+      position: absolute;
+      width: 10vw;
+    }
+  }
+
+  .info-container {
+    display: flex;
+    flex-direction: column;
+    gap: .9rem;
+    padding-left: .8rem;
+    position: relative;
+
+    .edit-profile-button {
+      border: 1.3px solid $colorBorder;
+      border-radius: 100px;
+      font-weight: bold;
+      padding: .5rem 1rem;
+      position: absolute;
+      right: 1rem;
+      text-decoration: none;
+      top: -3rem;
+      &:hover {
+        background-color: #3336395a;
+        transition: .2s;
+      }
+    }
+
+    .names-container {
+      .name-label {
+        font-size: 1.3rem;
+        font-weight: 900;
+      }
+
+      .username-label {
+        color: $colorGray;
+        font-size: 1rem;
+        font-weight: 100;
+      }
+    }
+
+    .follow-info {
+      display: flex;
+      display: flex;
+      font-size: .8rem;
+      gap: .5rem;
+      margin-top: .5rem;
+
+      .follow-info-label {
+        color: $colorGray;
+        font-weight: 100;
+      }
+
+      .follow-info-number {
+        font-weight: 900;
+      }
+    }
+
+    .created-date-label {
+      color: $colorGray;
+      font-size: .8;
+
+      i {
+        color: $colorGray;
+        margin-right: .3rem;
+      }
+    }
+  }
+
+  .content-container {
+
+    .content-navigation {
+      border-bottom: 1px solid $colorBorder;
+      display: flex;
+      height: 3rem;
+
+      .tab-container {
+        cursor: pointer;
+        display: flex;
+        flex-basis: 0;
+        flex-grow: 1;
+        justify-content: center;
+        text-decoration: none;
+        transition: .2s;
+
+        .tab {
+          align-items: center;
+          color: $colorGray;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          position: relative;
+
+          .indicator {
+            background-color: $colorBlue;
+            border-radius: 10px;
+            bottom: 0;
+            height: .2rem;
+            position: absolute;
+            width: 100%;
+          }
+
+          p {
+            color: $colorGray;
+          }
+        }
+
+        &:hover {
+          background-color: #3336395a;
+
+          p {
+            color: $colorWhite;
+          }
+        }
+
+      }
+
+      .active-tab {
+        .tab {
+          p {
+            color: $colorWhite;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+
+    .content-column {
+      display: flex;
+      flex-direction: column;
+      padding: 1rem;
+    }
+  }
+}

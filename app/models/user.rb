@@ -12,7 +12,7 @@ class User < ApplicationRecord
   has_one_attached :banner
   
   # Post relationship
-  has_many :posts
+  has_many :posts #, dependant: :nullify??
   def posts_number
     posts.count
   end
@@ -30,11 +30,36 @@ class User < ApplicationRecord
     return following_records.exists?(following: user)
   end
   
+  def followings_number
+    followings.count
+  end
+  def followers_number
+    followers.count
+  end
+
+  # Shared post relationship
   has_many :shared_posts_relation, class_name: 'SharedPost', foreign_key: :user_id
   has_many :shared_posts, through: :shared_posts_relation, source: :post
+
   # Likes relationship
   has_many :likes
+  has_many :liked_posts, through: :likes, source: :post
+
+  # returns the date in the format "Joined in January 2021"
+  def created_date
+    user_created_month_name = created_at.strftime("%B") 
+    user_created_year = created_at.strftime("%Y")
+
+    "Joined in #{user_created_month_name} #{user_created_year}"
+  end
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  def swap_posts_to_deleted_user
+    posts.each do |post|
+      post.swap_to_deleted_user(id)
+    end
+  end
+  
 end

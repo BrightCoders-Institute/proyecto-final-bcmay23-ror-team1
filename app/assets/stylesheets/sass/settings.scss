@@ -1,0 +1,14 @@
+.delete-button {
+  background-color: $colorDarkRed;
+  border: none;
+  color: $colorRed;
+  cursor: pointer;
+  padding: 1rem;
+  width: 100%;
+
+  &:hover {
+    background-color: lighten($colorDarkRed, 5%);
+    color: lighten($colorRed, 5%);
+  }
+
+}

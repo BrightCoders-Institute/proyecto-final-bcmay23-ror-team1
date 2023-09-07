@@ -1,1 +1,52 @@
-<h1>Hello from profile view</h1>
+<div class="profile-view">
+  <div class="images-container mb-4">
+    <% if @user.banner.attached? %>
+      <%= image_tag(@user.banner, class: 'banner') %>
+    <% end %>
+    <div class="avatar-container">
+      <% if @user.avatar.attached? %>
+        <%= image_tag(@user.avatar, class: 'avatar') %>
+      <% end %>
+    </div>
+  </div>
+  
+  <%= render partial: 'devise/registrations/user-info', locals: {user: @user} %>
+  <div class="content-container">
+    <div class="content-navigation">
+      <% @navigation_tabs.each do |tab_data| %>
+      <%= link_to tab_data["route"], class: ["tab-container", tab_data["active"] ? "active-tab" : "" ] do %>
+      <div class="tab">
+        <p><%= tab_data["text"] %></p>
+        <% if tab_data["active"] %>
+        <div class="indicator"></div>
+        <% end %> 
+      </div>
+      <% end %>  
+      <% end %>
+    </div>
+    <div class="content-column">
+
+      <% if @tab == "posts" %>
+
+        <% if @user.posts.any? %>
+          <%= render partial: "posts/post-simple", collection: @user.posts, as: :post ,locals: {view: nil, is_current_post: false} %>
+        <% else %>
+          <p class="no-content-label">No posts</p>
+        <% end %>
+        
+      <% end %>
+
+      <% if @tab == "likes" %>
+
+        <% if @user.liked_posts.any? %>
+          <%= render partial: "posts/post-simple", collection: @user.liked_posts, as: :post, locals: {view: nil, is_current_post: false} %>
+        <% else %>
+          <p class="no-content-label">No liked posts</p>
+        <% end %>
+
+      <% end %>
+
+    </div>
+  </div>
+  <%= turbo_frame_tag "embedded"  %>
+</div>
