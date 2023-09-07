@@ -4,7 +4,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   layout 'layouts/application', only: [:show]
   before_action :configure_sign_up_params, only: [:create]
-  before_action :configure_account_update_params, only: [:update]
+  # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
   # def new
@@ -35,8 +35,34 @@ class Users::RegistrationsController < Devise::RegistrationsController
     redirect_to root_path
   end
 
+  
   def show
+    @tab = params[:tab]
+    @tab = "posts" if @tab.blank?
+    
     @user = User.find(params[:id])
+    
+    @navigation_tabs = [
+      {
+        "route" => user_path(@user, tab: "posts"),
+        "text" => "Posts",
+        "active" => @tab == "posts" || @tab.blank?,
+      },
+      {
+        "route" => user_path(@user, tab: "likes"),
+        "text" => "Likes",
+        "active" => @tab == "likes",
+      },
+    ]
+    
+    
+    user_created_month_number = @user.created_at.strftime("%m").to_i 
+    user_created_month_name = Date::MONTHNAMES[user_created_month_number]
+    
+    user_created_year = @user.created_at.strftime("%Y")
+    
+    @user_created_date = "Joined in #{user_created_month_name} #{user_created_year}"
+    
   end
 
   def destroy
@@ -51,6 +77,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
     redirect_to root_path
   end
 
+  def update
+    if current_user.update(update_params)
+      flash[:notice] = "Profile updated!"
+      redirect_to root_path
+    else
+      render :edit
+    end
+  end
+  
   protected
 
   # If you have extra params to permit, append them to the sanitizer.
@@ -59,13 +94,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   # If you have extra params to permit, append them to the sanitizer.
-  def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :username])
-  end
+  # def configure_account_update_params
+  #   devise_parameter_sanitizer.permit(:account_update, keys: [:name, :biography, :avatar, :banner])
+  # end
 
   # The path used after sign up.
   def after_sign_up_path_for(resource)
     signup_set_avatar_path
+  end
+
+  def update_params
+    params.require(:user).permit(:name, :biography, :avatar, :banner)
   end
 
   # The path used after sign up for inactive accounts.

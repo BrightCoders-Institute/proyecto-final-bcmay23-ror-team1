@@ -4,6 +4,7 @@
 class ApplicationController < ActionController::Base
   layout :layout_by_resource
   before_action :layout_variables
+  before_action :set_user
 
   private
     def layout_by_resource
@@ -26,5 +27,9 @@ class ApplicationController < ActionController::Base
         },
         # add one item to create a new side_bar_button
       ]
+    end
+
+    def set_user
+      @user = User.find(params[:id]) if params[:id]
     end
 end

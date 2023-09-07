@@ -1,21 +1,20 @@
 <div class="post current-post">
 
   <% if post.user %>
-  
+
     <div class="post-header">
       <%= render partial: "posts/components/avatar" , locals: { avatar: post.user.avatar }%>
-
-      <% locals_metadata = { post: post, is_current_post: is_current_post, is_parent_of_comment: false, view: view } %>
+      <% locals_metadata={ post: post, is_current_post: is_current_post, is_parent_of_comment: false, view: view } %>
       <%= render partial: "posts/components/metadata" , locals: locals_metadata %>
     </div>
 
     <%= render partial: "posts/components/content" , locals: { post: post }%>
 
     <div class="post-time-bottom post-meta">
-      <% if view == :index %>
-      <%= format_time_ago(post.created_at) %>
+      <% if view==:index %>
+        <%= format_time_ago(post.created_at) %>
       <% else %>
-      <%= post.created_at.strftime("%-I:%M %p · %-d %b. %Y") %>
+        <%= post.created_at.strftime("%-I:%M %p · %-d %b. %Y") %>
       <% end %>
     </div>
 
@@ -23,7 +22,6 @@
     <%= render partial: "posts/components/actions" , locals: { post: post }%>
 
   <% elsif post.deleted_user %>
-    This post is not available anymore 
+    This post is not available anymore
   <% end %>
-
 </div>

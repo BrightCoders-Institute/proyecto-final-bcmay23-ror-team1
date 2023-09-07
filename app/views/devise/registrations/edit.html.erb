@@ -1,0 +1,50 @@
+<%= turbo_frame_tag "embedded" do %>
+  <div data-controller="embedded">
+    <div class="display-blur">
+      <div class="modal-container">
+        <div class="modal-form">
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), remote: true) do |f| %>
+            <div class="modal-header">
+              <div class="modal-header-text">
+                <span data-action="click->embedded#close">X</span>
+                <h2>Edit profile</h2>
+              </div>
+              <%= f.submit "Update" , class: "modal-submit-button" , data: { turbo_frame: "embedded" } %>
+            </div>
+
+            <%= render "devise/shared/error_messages" , resource: resource %>
+
+						<%= render partial: "devise/registrations/edit-images" , locals: { form: f } %>
+
+            <div class="field">
+              <%= f.label :name %>
+              <%= 
+                f.text_field :name, 
+                autocomplete: "off",
+                class: "input-form input-neutral" 
+              %>
+            </div>
+
+            <div class="field">
+              <%= f.label :biography %>
+              <%= 
+                f.text_field :biography, 
+                autocomplete: "biography",
+                class: "input-form input-neutral"
+              %>
+            </div>
+
+            <!-- <div class="field"> -->
+              <%# f.label :current_password %>
+                <%# 
+                  f.password_field :current_password, 
+                  autocomplete: "current-password",
+                  class: "input-form input-neutral" 
+                %>
+            <!-- </div> -->
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
