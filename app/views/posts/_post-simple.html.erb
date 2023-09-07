@@ -1,12 +1,15 @@
 <div class="post border-post parent-post-container">
 
   <% if post.user %>
-  
+    
     <%= render partial: "posts/simple-post-left", locals: { post: post , from_parent: false } %>
 
     <div class="parent-post-right">
       <% locals_metadata = { post: post, is_current_post: false, is_parent_of_comment: false, view: view } %>
       <%= render partial: "posts/components/metadata", locals: locals_metadata %>
+
+      <%= render partial: "posts/components/replying-sign", locals: { parent: post.parent, view: view } %>
+	
       <%= render partial: "posts/components/content" , locals: { post: post }%>
       <%= render partial: "posts/components/actions" , locals: { post: post }%>
     </div>
