@@ -9,4 +9,6 @@ class Follow < ApplicationRecord
   belongs_to :following, foreign_key: :following_id, class_name: 'User'
 
   validates :follower_id, uniqueness: { scope: :following_id }
+
+  has_many :notifications, as: :notifiable
 end

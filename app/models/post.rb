@@ -45,4 +45,6 @@ class Post < ApplicationRecord
     save
   end
 
+  has_many :notifications, as: :notifiable
+
 end

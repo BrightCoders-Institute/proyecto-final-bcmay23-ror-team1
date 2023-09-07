@@ -61,5 +61,8 @@ class User < ApplicationRecord
       post.swap_to_deleted_user(id)
     end
   end
+
+  has_many :sent_notifications, foreign_key: :received_id, class_name: 'Notification'
+  has_many :received_notifications, foreign_key: :sender_id, class_name: 'Notification'
   
 end
