@@ -24,6 +24,10 @@ class ApplicationController < ActionController::Base
           "route" => current_user ? user_path(current_user) : nil,
           "icon_class" => 'fas fa-user',
         },
+        {
+          "route" => search_index_path,
+          "icon_class" => 'fas fa-search',
+        }
         # add one item to create a new side_bar_button
       ]
     end

@@ -38,17 +38,9 @@
             <%= render "components/header-title" %>
           </div>
 
-          <%= form_with(url: search_posts_path, method: :get) do |form| %>
-            <div class="search">
-              <div class="search-bar">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <%= form.text_field :query, data: { turbo_frame: "search-results" } %>
-              </div>
-              <%= form.submit "Buscar" %>
-            </div>
+          <% unless request.path == search_index_path %>
+            <%= render "search/components/search-form" %>
           <% end %>
-
-
         </div>
         <div class="content-column">
           <div class="main-column border-right">
@@ -56,7 +48,7 @@
           </div>
 
           <div class="secondary-column">
-            <%= render partial: 'posts/search', locals: { query: @query, users: @users.to_a, validate: false } %>            
+          
           </div>
         </div>
 

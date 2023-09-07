@@ -118,42 +118,6 @@
       margin-left: 1rem;
     }
   }
-
-  .search {
-    align-items: center;
-    background: $colorBlack;
-    display: flex;
-    height: 100%;
-    justify-content: center;
-    padding-top: 16px;
-    width: 100%;
-
-    .search-bar {
-      align-items: center;
-      background-color: #202327;
-      border-radius: 20px;
-      display: flex;
-      height: 80%;
-      width: 50%;
-
-      i {
-        color: #757575;
-        margin-left: 1rem;
-        margin-right: .5rem;
-      }
-
-      input {
-        background-color: transparent;
-        border: none;
-        margin-right: 1rem;
-        width: 100%;
-      }
-
-      input:focus {
-        outline: none;
-      }
-    }
-  }
 }
 
 .main-column {
