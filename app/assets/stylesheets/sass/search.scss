@@ -16,19 +16,19 @@
 
   .input-search {
     align-items: center;
-    padding: 10px;
     background-color: #202327;
     border-radius: 20px;
     border: 0px;
     display: flex;
     height: 80%;
+    padding: 10px;
     width: 50%;
   }
 }
 
 .form-search {
-  margin: 10px;
   height: 1.5em;
+  margin: 10px;
 
 }
 
@@ -46,8 +46,8 @@
     padding: 1em;
 
     .search-results-users {
-      border: 1px solid $colorBorder;
       border-radius: 5px;
+      border: 1px solid $colorBorder;
       display: flex;
       flex-direction: column;
       gap: 1em;
@@ -62,9 +62,9 @@
 
       li {
         display: flex;
-        padding: 2em;
-        margin: 0 3em;
         justify-content: space-between;
+        margin: 0 3em;
+        padding: 2em;
 
         .metadata {
           display: flex;
