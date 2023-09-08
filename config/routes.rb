@@ -21,5 +21,6 @@ Rails.application.routes.draw do
   resources :posts
 
   get '/settings', to: 'users/settings#index', as: 'settings'
-
+  get '/notifications', to: 'notifications#index', as: 'notifications'
+  
 end

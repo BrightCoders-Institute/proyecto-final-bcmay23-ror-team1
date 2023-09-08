@@ -18,7 +18,6 @@ class Follow < ApplicationRecord
   
   def create_notification
     Notification.create(
-      message: "is following you",
       sender_id: self.follower_id,
       receiver_id: self.following_id,
       notifiable_id: self.id,

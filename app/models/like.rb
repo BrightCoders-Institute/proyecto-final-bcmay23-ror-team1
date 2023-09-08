@@ -14,7 +14,6 @@ class Like < ApplicationRecord
   
   def create_notification
     Notification.create(
-      message: "liked your post",
       sender_id: self.user_id,
       receiver_id: self.post.user_id,
       notifiable_id: self.id,

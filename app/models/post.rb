@@ -54,9 +54,8 @@ class Post < ApplicationRecord
   def create_notification
     if self.parent.present?
       Notification.create(
-        message: "commented your post",
         sender_id: self.user_id,
-        receiver_id: self.post.user_id,
+        receiver_id: self.parent.user_id,
         notifiable_id: self.id,
         notifiable_type: "Post"
       )

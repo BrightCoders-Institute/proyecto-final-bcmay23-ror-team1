@@ -1,0 +1,17 @@
+<% @notifications.each do |notification| %>
+
+    <% if notification.notifiable_type == "Follow" %>
+	@<%= notification.sender.username %> is folowing you
+	
+    <% elsif notification.notifiable_type == "Like" %>
+	@<%= notification.sender.username %> liked your post
+	
+    <% elsif notification.notifiable_type == "Post" && notification.notifiable.parent.present? %>
+	@<%= notification.sender.username %> commented your post
+
+    <% elsif notification.notifiable_type == "SharedPost" %>%>
+	@<%= notification.sender.username %> shared your post
+	
+    <% end %>
+    
+<% end %>

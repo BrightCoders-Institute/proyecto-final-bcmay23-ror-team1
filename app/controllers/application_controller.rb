@@ -28,6 +28,10 @@ class ApplicationController < ActionController::Base
         {
           "route" => search_index_path,
           "icon_class" => 'fas fa-search',
+        },
+        {
+          "route" => notifications_path,
+          "icon_class" => 'fas fa-bell',
         }
         # add one item to create a new side_bar_button
       ]
