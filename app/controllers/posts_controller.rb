@@ -2,7 +2,12 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @posts = Post.all.with_attached_images.order(created_at: :desc).load_async
+    @posts = Post.all.includes(:shared_posts_relation).with_attached_images.order(created_at: :desc).load_async
+    @sharedPosts = SharedPost.all.order(created_at: :desc).load_async
+
+    @posts = (@posts + @sharedPosts).sort_by { |post| post.created_at }
+    @posts = @posts.reverse
+
     
     # Indivitual post for creation form
     @post = Post.new

@@ -5,6 +5,7 @@ class LikesController < ApplicationController
   
   def create
     @post = Post.find(params[:id])
+    pp @post.likes
     @post.likes.create(user: current_user) unless @post.liked_by?(current_user)
     render turbo_stream:
       turbo_stream.replace(@post, partial: 'likes/like', locals: { post: @post })
@@ -16,5 +17,4 @@ class LikesController < ApplicationController
     render turbo_stream:
       turbo_stream.replace(@post, partial: 'likes/like', locals: { post: @post })
   end
-
 end

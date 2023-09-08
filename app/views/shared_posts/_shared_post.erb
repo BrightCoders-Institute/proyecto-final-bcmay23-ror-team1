@@ -1,0 +1,8 @@
+<div class="post border-post">
+
+  <div class="repost-header">
+    <%= "#{repost.user.name} reposted"%>
+  </div>
+
+  <%= render partial: 'posts/post-simple', locals: {post: repost.post, view: :index } %>
+</div>
