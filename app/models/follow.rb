@@ -11,4 +11,19 @@ class Follow < ApplicationRecord
   validates :follower_id, uniqueness: { scope: :following_id }
 
   has_many :notifications, as: :notifiable
+
+  after_save :create_notification
+
+  private
+  
+  def create_notification
+    Notification.create(
+      message: "is following you",
+      sender_id: self.follower_id,
+      receiver_id: self.following_id,
+      notifiable_id: self.id,
+      notifiable_type: "Follow"
+    )
+  end
+
 end

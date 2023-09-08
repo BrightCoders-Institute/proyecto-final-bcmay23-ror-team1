@@ -46,5 +46,20 @@ class Post < ApplicationRecord
   end
 
   has_many :notifications, as: :notifiable
+  
+  after_save :create_notification
 
+  private
+  
+  def create_notification
+    if self.parent.present?
+      Notification.create(
+        message: "commented your post",
+        sender_id: self.user_id,
+        receiver_id: self.post.user_id,
+        notifiable_id: self.id,
+        notifiable_type: "Post"
+      )
+    end
+  end
 end
