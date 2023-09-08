@@ -1,17 +1,47 @@
-<% @notifications.each do |notification| %>
+<div class="notifications-list">
+    <% @notifications.each do |notification| %>
+	
+	<% if notification.notifiable_type == "Follow" %>
+	    <%= link_to notification.sender, class: "notification" do %>
+		<% if notification.sender.avatar.present? %>
+		    <%= image_tag notification.sender.avatar, class: "post-user-avatar" %>
+		<% end %>
+		<%= icon("fa-regular", "user") %>
+		@<%= notification.sender.username %> is folowing you
+	    <% end %>
+	    
+	    
+	<% elsif notification.notifiable_type == "Like" %>
+	    <%= link_to notification.notifiable.post, class: "notification" do %>
+		<% if notification.sender.avatar.present? %>
+		    <%= image_tag notification.sender.avatar, class: "post-user-avatar" %>
+		<% end %>
+		<%= icon("fa-regular", "heart") %>
+		@<%= notification.sender.username %> liked your post
+	    <% end %>
+	    
+	<% elsif notification.notifiable_type == "Post" && notification.notifiable.parent.present? %>
+	    <%= link_to notification.notifiable, class: "notification" do %>
+		<% if notification.sender.avatar.present? %>
+		    <%= image_tag notification.sender.avatar, class: "post-user-avatar" %>
+		<% end %>
+		<%= icon("fa-regular", "comment") %>
+		<div>@<%= notification.sender.username %> commented your post</div>
+		<div class="notification-reference-text"><%= notification.notifiable.content  %></div>
+	    <% end %>
 
-    <% if notification.notifiable_type == "Follow" %>
-	@<%= notification.sender.username %> is folowing you
-	
-    <% elsif notification.notifiable_type == "Like" %>
-	@<%= notification.sender.username %> liked your post
-	
-    <% elsif notification.notifiable_type == "Post" && notification.notifiable.parent.present? %>
-	@<%= notification.sender.username %> commented your post
+	    
+	<% elsif notification.notifiable_type == "SharedPost" %>
+	    <%= link_to notification.notifiable.post, class: "notification" do %>
+		<% if notification.sender.avatar.present? %>
+		    <%= image_tag notification.sender.avatar, class: "post-user-avatar" %>
+		<% end %>
+		<%= icon("fa-regular", "share-from-square") %>
+		@<%= notification.sender.username %> shared your post
+		<div class="notification-reference-text"><%= notification.notifiable.post.content  %></div>
+	    <% end %>
+	    
+	<% end %>
 
-    <% elsif notification.notifiable_type == "SharedPost" %>%>
-	@<%= notification.sender.username %> shared your post
-	
     <% end %>
-    
-<% end %>
+</div>

@@ -52,7 +52,7 @@ class Post < ApplicationRecord
   private
   
   def create_notification
-    if self.parent.present?
+    if self.parent.present? && self.user_id != self.parent.user_id
       Notification.create(
         sender_id: self.user_id,
         receiver_id: self.parent.user_id,

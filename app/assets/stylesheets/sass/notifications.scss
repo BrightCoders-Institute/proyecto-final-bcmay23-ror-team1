@@ -1,0 +1,38 @@
+.notifications-number {
+  background-color: $colorBlue;
+  width: 1rem !important;
+  height: 1rem !important;
+  font-size: 12px !important;
+  font-weight: bold;
+  border-radius: 50%;
+  position: absolute;
+  margin: -12px 10px !important;
+}
+
+.notifications-list {
+  width: cover;
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  gap: 1rem;
+}
+
+.notification {
+  display: flex;
+  padding: 1rem;
+  border: 1px solid $colorBorder;
+  width: cover;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+  &:hover {
+    background-color: $colorBlackLight;
+  }
+}
+
+.notification-reference-text {
+  color: $colorGray;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}

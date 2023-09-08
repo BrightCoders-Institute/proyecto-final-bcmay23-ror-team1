@@ -29,12 +29,12 @@ class ApplicationController < ActionController::Base
           "route" => search_index_path,
           "icon_class" => 'fas fa-search',
         },
-        {
-          "route" => notifications_path,
-          "icon_class" => 'fas fa-bell',
-        }
         # add one item to create a new side_bar_button
       ]
+
+      if current_user
+        @notifications_number = Notification.where("receiver_id = ? AND read = false", current_user.id).count
+      end
     end
 
     def set_user
