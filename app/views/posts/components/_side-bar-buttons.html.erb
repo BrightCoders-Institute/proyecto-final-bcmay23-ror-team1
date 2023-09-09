@@ -1,21 +1,25 @@
+<div class="side-bar-buttons">
 
   <% @side_bar_buttons.each do |button_data| %>
     <%= link_to button_data["route"], class: "icon-link" do %>
       <div class="<%= 'active' if current_page?(button_data["route"]) %>">
-          <i class="<%= button_data["icon_class"] %>"></i>
+        <i class="<%= button_data["icon_class"] %>"></i>
       </div>
     <% end %>
   <% end %>
 
-  <%= link_to notifications_path, class: "icon-l ink" do %>
-      <div class="<%= 'act ive' if current_page?(notifications_path) %>">
-	  <i class="fas fa-bell">
-	      <div class="notifications-number">
-		  <% if @notifications_number != 0 %>
-		      <%= @notifications_number %>
-		  <% end %>	      
-	      </div>	      
-	  </i>
-	  
-      </div>
+  <%= link_to notifications_path do %>
+    <div  class="<%= 'active' if current_page?(notifications_path) %>">
+      <i class="fas fa-bell sidebar-icon">
+        <span class="notifications-number">
+          <span>
+            <% if @notifications_number != 0 %>
+              <%= @notifications_number %>
+            <% end %>       
+          </span>
+        </span>
+      </i>
+    </div>
   <% end %>
+
+</div>
