@@ -12,6 +12,14 @@
     data: { action: "form-new-post#previewImages" },
     hidden: true) %>
 
-  <%= form.submit(:Post, class: "blue-button", data: { "form-new-post-target": "submit" }, disabled: true) %>
+  <%= form.submit(
+    :Post,
+    class: "blue-button",
+    data: { 
+      "form-new-post-target": "submit",
+      action: "modal#closeModal"
+    },
+    disabled: true)%>
+
 </div>
   

@@ -33,7 +33,15 @@ class PostsController < ApplicationController
     @post.user_id = current_user.id
 
     if @post.save
-      redirect_to posts_path
+
+      if @post.parent.present?
+        render turbo_stream:
+          turbo_stream.update("comment_#{@post.parent.id}", partial: "comments/comment-button", locals: { post: @post.parent })
+
+      else
+        redirect_to posts_path
+      end
+
     else
       @errors = @post.errors.full_messages
       render 'posts/index', status: :unprocessable_entity
