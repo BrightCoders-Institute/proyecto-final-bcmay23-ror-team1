@@ -3,24 +3,30 @@
     <div class="display-blur">
       <div class="modal-container">
         <div class="modal-form">
+          <!-- Form -->
           <%= form_for(resource, as: resource_name, url: registration_path(resource_name), remote: true) do |f| %>
             <div class="modal-header">
               <div class="modal-header-text">
                 <span data-action="click->embedded#close">X</span>
                 <h2>Edit profile</h2>
               </div>
+              <!-- Submit button -->
               <%= f.submit "Update" , class: "modal-submit-button" , data: { turbo_frame: "embedded" } %>
             </div>
 
+            <!-- Render errors -->
             <%= render "devise/shared/error_messages" , resource: resource %>
 
+            <!-- Avatar and banner input -->
 						<%= render partial: "devise/registrations/edit-images" , locals: { form: f } %>
 
+            <!-- Name and biography input -->
             <div class="field">
               <%= f.label :name %>
               <%= 
                 f.text_field :name, 
                 autocomplete: "off",
+                autofocus: true,
                 class: "input-form input-neutral" 
               %>
             </div>
@@ -33,15 +39,6 @@
                 class: "input-form input-neutral"
               %>
             </div>
-
-            <!-- <div class="field"> -->
-              <%# f.label :current_password %>
-                <%# 
-                  f.password_field :current_password, 
-                  autocomplete: "current-password",
-                  class: "input-form input-neutral" 
-                %>
-            <!-- </div> -->
           <% end %>
         </div>
       </div>

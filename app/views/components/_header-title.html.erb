@@ -5,7 +5,7 @@
 
   <% if @user %>
     <% path = user_path(@user) %>
-    <% if current_page?(path) || current_page?("#{path}/likes") || current_page?("#{path}/posts") %>
+    <% if current_page?(path) || current_page?("#{path}/likes") || current_page?("#{path}/posts") || current_page?("#{path}/comments") %>
       <%= render partial: "components/user-header", locals: { user: @user } %>
     <% end %>
   <% end %>
