@@ -1,0 +1,8 @@
+<%= link_to new_post_path(parent_id: post.id),
+    data: { turbo_frame: "comment_modal" },
+    class: "action-button" do %>
+    
+    <%= icon("fa-regular", "comment")%>
+    
+    <%= Post.comments(post).count %>
+<% end %>

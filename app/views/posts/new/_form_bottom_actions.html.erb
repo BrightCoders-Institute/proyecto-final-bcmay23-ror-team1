@@ -1,8 +1,17 @@
 <div class="new-post-bottom">
-  <%= form.label :images do %>
+
+  <% images_field_id = post.parent.present? ? :comment_images : :post_images %>
+  <%= form.label :images, for: images_field_id do %>
     <%= icon("fa-regular", "image", class: "attach-image-icon") %>
   <% end %>
 
-  <%= form.file_field(:images , multiple: true , data: { action: "form-new-post#previewImages" }, hidden: true) %>
+  <%= form.file_field(
+    :images,
+    id: images_field_id,
+    multiple: true,
+    data: { action: "form-new-post#previewImages" },
+    hidden: true) %>
+
   <%= form.submit(:Post, class: "blue-button", data: { "form-new-post-target": "submit" }, disabled: true) %>
 </div>
+  

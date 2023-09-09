@@ -100,25 +100,17 @@
       word-spacing: 8px;
     }
 
-    .post-like {
-      &:hover {
+    .post-liked {
+      color: $colorLike;
+      i {
         color: $colorLike;
-        i {
-          color: $colorLike;
-        }
       }
     }
 
-    .post-liked {
-      color: $colorLike;
-    }
-
-    .comment-button {
-      &:hover {
+    .shared-button {
+      color: $colorBlue;
+      i {
         color: $colorBlue;
-        i {
-          color: $colorBlue;
-        }
       }
     }
 

@@ -24,7 +24,7 @@ class PostsController < ApplicationController
     if params[:parent_id].present?
       @parent = Post.find(params[:parent_id])
       @post.parent_id = @parent.id
-      render :new_comment
+      render "comments/new_modal"
     end
   end
 
