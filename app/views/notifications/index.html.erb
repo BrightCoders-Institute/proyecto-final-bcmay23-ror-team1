@@ -1,4 +1,9 @@
 <div class="notifications-list">
+
+    <% if @notifications_number == 0 %>
+	<div class="notification opaque-text">Nothing here</div>
+    <% end %>
+	
     <% @notifications.each do |notification| %>
 	
 	<% if notification.notifiable_type == "Follow" %>

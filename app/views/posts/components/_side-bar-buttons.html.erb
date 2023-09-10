@@ -11,13 +11,11 @@
   <%= link_to notifications_path do %>
     <div  class="<%= 'active' if current_page?(notifications_path) %>">
       <i class="fas fa-bell sidebar-icon">
-        <span class="notifications-number">
-          <span>
-            <% if @notifications_number != 0 %>
-              <%= @notifications_number %>
-            <% end %>       
-          </span>
-        </span>
+      	<% if @notifications_number != 0 %>
+      	  <span class="notifications-number">
+      	    <span><%= @notifications_number %></span>
+      	  </span>
+      	<% end %>
       </i>
     </div>
   <% end %>

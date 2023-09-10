@@ -6,7 +6,7 @@ class Like < ApplicationRecord
   belongs_to :post
   validates :user_id, uniqueness: { scope: :post_id }
 
-  has_many :notifications, as: :notifiable
+  has_many :notifications, as: :notifiable, dependent: :destroy
 
   after_save :create_notification
 

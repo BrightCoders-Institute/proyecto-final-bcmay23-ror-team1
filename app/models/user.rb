@@ -62,7 +62,7 @@ class User < ApplicationRecord
     end
   end
 
-  has_many :sent_notifications, foreign_key: :received_id, class_name: 'Notification'
-  has_many :received_notifications, foreign_key: :sender_id, class_name: 'Notification'
+  has_many :sent_notifications, foreign_key: :receiver_id, class_name: 'Notification', dependent: :destroy
+  has_many :received_notifications, foreign_key: :sender_id, class_name: 'Notification', dependent: :destroy
   
 end

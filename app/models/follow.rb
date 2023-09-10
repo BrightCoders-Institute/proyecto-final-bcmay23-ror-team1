@@ -10,7 +10,7 @@ class Follow < ApplicationRecord
 
   validates :follower_id, uniqueness: { scope: :following_id }
 
-  has_many :notifications, as: :notifiable
+  has_many :notifications, as: :notifiable, dependent: :destroy
 
   after_save :create_notification
 
