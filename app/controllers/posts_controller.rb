@@ -34,12 +34,47 @@ class PostsController < ApplicationController
 
     if @post.save
 
-      if @post.parent.present?
-        render turbo_stream:
-          turbo_stream.update("comment_#{@post.parent.id}", partial: "comments/comment-button", locals: { post: @post.parent })
+      if @post.parent.present?  
+
+        flash[:posted] = "Your comment was posted!"
+
+        respond_to do |format|
+          format.turbo_stream do
+            render turbo_stream: [
+              turbo_stream.update(
+                "comment_#{@post.parent.id}",
+                partial: "comments/comment-button",
+                locals: { post: @post.parent }
+              ),
+              turbo_stream.update(
+                "flash_message",
+                partial: "shared/flash_message",
+                locals: { post: @post }
+              )
+            ]
+          end
+        end
 
       else
-        redirect_to posts_path
+      
+        flash[:posted] = "Posted successfully!"
+        respond_to do |format|
+          format.turbo_stream do
+            render turbo_stream: [
+              turbo_stream.update(
+                "flash_message",
+                partial: "shared/flash_message",
+                locals: { post: @post }
+              ),
+              turbo_stream.update(
+                "form_new_post",
+                partial: "posts/new/form",
+                locals: { post: Post.new }
+              )
+            ]
+          end
+        end
+
       end
 
     else

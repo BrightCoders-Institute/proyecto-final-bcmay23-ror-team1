@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   layout :layout_by_resource
   before_action :layout_variables
   before_action :authenticate_user!
-#  before_action :set_user
+  # before_action :set_user
 
   private
     def layout_by_resource

@@ -125,9 +125,33 @@ a {
   width: 100%;
 }
 
+
 .secondary-column {
   padding: 40px;
 }
+
+
+.flash-message-container {
+  bottom: 3rem;
+  display: flex;
+  justify-content:center;
+  position: absolute;
+  width:100%;
+
+  .flash-message {
+    background: $colorBlue;
+    border-radius: 4px;
+    padding: 1rem;
+    text-decoration: none;
+    width: fit-content;
+  }
+}
+
+.hide-animated {
+  opacity: 0;
+  transition: opacity 400ms linear;
+}
+
 
 @media screen and (max-width: 988px) {
 
