@@ -4,13 +4,31 @@
     <h1>Post</h1>
   </div>
   <div class='post-container'>
-  
-    <% locals_parent = { view: :show, is_parent_of_comment: false } %>
-    <%= render partial: 'posts/parent', collection: @ancestors, as: :post, locals: locals_parent %>
-  
-    <span data-controller="auto-scroll" data-action="load@window->auto-scroll#scrollToThis">
-    <%= render partial: 'posts/post', locals: { post: @post, view: :show, is_current_post: true } %>
-    </span>
-  
-    <%= render partial: 'posts/post-simple', collection: @comments, as: :post, locals: { view: :show } %>
+
+      <% @ancestors.each do |post| %>
+	  <% if post.deleted %>
+	      <%= render partial: 'posts/deleted' %>
+	  <% else %>
+	      <% locals_parent = { view: :index, is_parent_of_comment: false, post: post } %>
+	      <%= render partial: 'posts/parent', locals: locals_parent %>
+	  <% end %>
+      <% end %>
+
+      <span data-controller="auto-scroll" data-action="load@window->auto-scroll#scrollToThis">
+	  <% if @post.deleted %>
+	      <%= render partial: 'posts/deleted', locals: { is_current_post: true } %>
+	  <% else %>
+	      <%= render partial: 'posts/post', locals: { post: @post, view: :show, is_current_post: true } %>
+	  <% end %>
+      </span>
+
+      <% @comments.each do |comment| %>
+	  <% if comment.deleted %>
+	      <%= render partial: 'posts/deleted' %>
+	  <% else %>
+	      <%= render partial: 'posts/post-simple', locals: { view: :show, post: comment } %>
+	  <% end %>
+      <% end %>
+      
+
   </div>

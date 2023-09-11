@@ -37,7 +37,8 @@
     <div class="content-column">
       <% if @tab == "posts" %>
         <% if @user.posts.any? %>
-          <%= render partial: "posts/post-simple", collection: @user.posts, as: :post ,locals: {view: nil, is_current_post: false} %>
+            <%= render partial: "posts/post-simple",
+		       collection: @user.posts.where(deleted: false), as: :post ,locals: {view: nil, is_current_post: false} %>
         <% else %>
           <p class="no-content-label">No posts</p>
         <% end %>
@@ -45,7 +46,8 @@
 
       <% if @tab == "likes" %>
         <% if @user.liked_posts.any? %>
-          <%= render partial: "posts/post-simple", collection: @user.liked_posts, as: :post, locals: {view: nil, is_current_post: false} %>
+            <%= render partial: "posts/post-simple",
+		       collection: @user.liked_posts.where(deleted: false), as: :post, locals: {view: nil, is_current_post: false} %>
         <% else %>
           <p class="no-content-label">No liked posts</p>
         <% end %>
