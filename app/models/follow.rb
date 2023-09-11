@@ -9,4 +9,20 @@ class Follow < ApplicationRecord
   belongs_to :following, foreign_key: :following_id, class_name: 'User'
 
   validates :follower_id, uniqueness: { scope: :following_id }
+
+  has_many :notifications, as: :notifiable, dependent: :destroy
+
+  after_save :create_notification
+
+  private
+  
+  def create_notification
+    Notification.create(
+      sender_id: self.follower_id,
+      receiver_id: self.following_id,
+      notifiable_id: self.id,
+      notifiable_type: "Follow"
+    )
+  end
+
 end

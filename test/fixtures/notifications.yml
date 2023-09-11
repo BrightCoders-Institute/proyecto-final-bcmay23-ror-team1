@@ -1,0 +1,26 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+unread_like_notification:
+  sender: ivan
+  receiver: moises
+  notifiable: like_saludo (Like)
+
+read_like_notification:
+  sender: moises
+  receiver: ivan
+  notifiable: like_anuncio (Like)
+
+unread_post_notification:
+  sender: moises
+  receiver: ivan
+  notifiable: anuncio (Post)
+
+unread_follow_notification:
+  sender: ivan
+  receiver: moises
+  notifiable: follow_one (Follow)
+
+unread_shared_post_notification:
+  sender: ivan
+  receiver: moises
+  notifiable: shared_post_saludo (SharedPost)

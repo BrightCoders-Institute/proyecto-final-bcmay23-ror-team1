@@ -1,0 +1,13 @@
+<div class="notifications-list">
+
+    <% if @notifications.count == 0 %>
+		<div class="notification opaque-text">Nothing here</div>
+    <% end %>
+	
+    <% @notifications.each do |notification| %>
+
+		<%= render partial: "notifications/notification", 
+			locals: { notification: notification } %>
+
+    <% end %>
+</div>

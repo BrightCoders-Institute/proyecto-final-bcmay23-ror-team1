@@ -41,16 +41,15 @@
   }
 }
 
+a {
+  text-decoration: none;
+}
+
 .side-bar-buttons {
   display: flex;
   flex-direction: column;
   gap: .3rem;
   width: 100%;
-  
-
-  a {
-    text-decoration: none;
-  }
 
   div {
     align-items: center;

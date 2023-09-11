@@ -18,9 +18,9 @@
             <div class="logo mb-1">
               <h1>Towgt</h1>
             </div>
-            <div class="side-bar-buttons">
-              <%= render "posts/components/side-bar-buttons" %>
-            </div>
+
+            <%= render "posts/components/side-bar-buttons" %>
+            
           </div>
           <div class="side-bar-buttons">
             <%= link_to destroy_user_session_path, data: { turbo_method: :delete },class: "icon-link" do %>

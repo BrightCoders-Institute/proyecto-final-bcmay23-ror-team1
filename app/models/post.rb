@@ -45,4 +45,20 @@ class Post < ApplicationRecord
     save
   end
 
+  has_many :notifications, as: :notifiable, dependent: :destroy
+  
+  after_save :create_notification
+
+  private
+  
+  def create_notification
+    if self.parent.present? && self.user_id != self.parent.user_id
+      Notification.create(
+        sender_id: self.user_id,
+        receiver_id: self.parent.user_id,
+        notifiable_id: self.id,
+        notifiable_type: "Post"
+      )
+    end
+  end
 end

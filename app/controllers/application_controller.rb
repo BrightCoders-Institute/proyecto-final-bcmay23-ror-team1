@@ -4,7 +4,8 @@
 class ApplicationController < ActionController::Base
   layout :layout_by_resource
   before_action :layout_variables
-  before_action :set_user
+  before_action :authenticate_user!
+#  before_action :set_user
 
   private
     def layout_by_resource
@@ -28,9 +29,13 @@ class ApplicationController < ActionController::Base
         {
           "route" => search_index_path,
           "icon_class" => 'fas fa-search',
-        }
+        },
         # add one item to create a new side_bar_button
       ]
+
+      if current_user
+        @notifications_number = Notification.where("receiver_id = ?", current_user.id).count
+      end
     end
 
     def set_user

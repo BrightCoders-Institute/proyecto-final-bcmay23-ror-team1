@@ -1,0 +1,36 @@
+<%= link_to notification_path(notification),
+      remote: true, data: { turbo_method: :put } do %>
+
+  <div class="notification <%= notification.read ? 'read-notification' : 'unread-notification' %>">
+    
+    <% if notification.sender.avatar.present? %>
+          <%= image_tag notification.sender.avatar, class: "post-user-avatar" %>
+      <% end %>
+
+    <% if notification.notifiable_type == "Follow" %>        
+      <%= icon("fa-regular", "user") %>
+      @<%= notification.sender.username %> is folowing you
+            
+    <% elsif notification.notifiable_type == "Like" %>
+        <%= icon("fa-regular", "heart") %>
+        @<%= notification.sender.username %> liked your post
+          
+    <% elsif notification.notifiable_type == "Post" && notification.notifiable.parent.present? %>
+      <%= icon("fa-regular", "comment") %>
+      <div>@<%= notification.sender.username %> commented your post</div>
+      <div class="notification-reference-text">
+        <%= notification.notifiable.content  %>
+      </div>
+          
+    <% elsif notification.notifiable_type == "SharedPost" %>
+      <%= icon("fa-regular", "share-from-square") %>
+      @<%= notification.sender.username %> shared your post
+      <div class="notification-reference-text">
+        <%= notification.notifiable.post.content %>
+      </div>
+          
+    <% end %>
+
+  </div>
+
+<% end %>
