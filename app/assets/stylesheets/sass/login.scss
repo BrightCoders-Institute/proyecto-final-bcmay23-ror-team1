@@ -4,8 +4,12 @@
   flex-direction: column;
   height: 100vh;
   justify-content: center;
-  overflow: scroll;
   width: 100vw;
+  background-color: red;
+}
+
+.full-container::-webkit-scrollbar{
+  width: 0px;
 }
 
 .sigin-form {
