@@ -1,0 +1,13 @@
+<%= turbo_frame_tag "search_results" do %>
+  <% if validate %>
+    <ul>
+      <% users.each do |user| %>
+        <li>
+          <%= user.name %> - <%= user.email %> <!-- O muestra cualquier otro atributo que quieras -->
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>No se encontraron usuarios.</p>
+  <% end %>
+<% end %>

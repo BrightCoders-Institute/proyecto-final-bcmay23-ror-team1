@@ -33,7 +33,6 @@ class PostsController < ApplicationController
       @errors = @post.errors.full_messages
       render 'posts/index', status: :unprocessable_entity
     end
-
   end
 
   def destroy

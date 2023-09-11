@@ -1,0 +1,41 @@
+<div class="search-main">
+  <%= render "search/components/search-form"%>
+
+  <div class="search-results">
+    <% if @query.present? %>
+      <% if @users.any? %>
+        <div class="search-results-users">
+          <h2>Users for "<%= @query %>"</h2>
+          <ul>
+            <% @users.each do |user| %>
+              <li>
+                <div class="metadata">
+                  <% if user.avatar.attached? %>
+                    <%= image_tag user.avatar, class: "post-user-avatar" %>
+                  <% end %>
+
+                  <div>
+                    <%= link_to user.name, user, class: "post-user-name" %>
+                    <p class="post-user-username">@<%= user.username %></p>
+                  </div>
+                </div>
+                <%= render partial: "follows/follow", locals: { following_user: user } %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <% if @posts.any? %>
+        <div class="search-results-users">
+          <h2>Posts for "<%= @query %>"</h2>
+          <%= render partial: 'posts/post-simple', collection: @posts, as: :post, locals: {view: :index} %>
+        </div>
+
+      <% end %>
+
+    <% else %>
+      <p>Search for something</p>
+    <% end %>
+  </div>
+</div>
