@@ -5,6 +5,7 @@
   overflow: hidden;
   padding: 1rem;
   position: relative;
+  background-color: lighten($colorBlack, 5%);
   
   .post-avatar {
     border-radius: 50%;

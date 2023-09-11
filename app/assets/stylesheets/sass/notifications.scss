@@ -29,8 +29,20 @@
   padding: 1rem;
   text-decoration: none;
   width: cover;
+  border-radius: 6px;
+}
+
+.unread-notification {
+  background-color: $colorBlueGray;
   &:hover {
-    background-color: $colorBlackLight;
+    background-color: lighten($colorBlueGray, 4%);
+  }
+}
+
+.read-notification {
+  background-color: $colorBlackLight;
+  &:hover {
+    background-color: lighten($colorBlackLight, 4%);
   }
 }
 

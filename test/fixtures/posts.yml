@@ -1,7 +1,9 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  content: MyText
+saludo:
+  content: 'Hola, soy nuevo'
+  user: moises
 
-two:
-  content: MyText
+anuncio:
+  content: 'Anuncio que ya abri mi cuenta en Towgt!'
+  user: ivan 

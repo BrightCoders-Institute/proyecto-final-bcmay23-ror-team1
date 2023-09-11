@@ -4,6 +4,7 @@
 class ApplicationController < ActionController::Base
   layout :layout_by_resource
   before_action :layout_variables
+  before_action :authenticate_user!
 #  before_action :set_user
 
   private
@@ -33,7 +34,7 @@ class ApplicationController < ActionController::Base
       ]
 
       if current_user
-        @notifications_number = Notification.where("receiver_id = ? AND read = false", current_user.id).count
+        @notifications_number = Notification.where("receiver_id = ?", current_user.id).count
       end
     end
 

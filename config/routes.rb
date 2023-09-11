@@ -19,8 +19,8 @@ Rails.application.routes.draw do
   resources :search, only: [:index]
 
   resources :posts
+  resources :notifications
 
   get '/settings', to: 'users/settings#index', as: 'settings'
-  get '/notifications', to: 'notifications#index', as: 'notifications'
   
 end

@@ -1,52 +1,13 @@
 <div class="notifications-list">
 
-    <% if @notifications_number == 0 %>
-	<div class="notification opaque-text">Nothing here</div>
+    <% if @notifications.count == 0 %>
+		<div class="notification opaque-text">Nothing here</div>
     <% end %>
 	
     <% @notifications.each do |notification| %>
-	
-	<% if notification.notifiable_type == "Follow" %>
-	    <%= link_to notification.sender, class: "notification" do %>
-		<% if notification.sender.avatar.present? %>
-		    <%= image_tag notification.sender.avatar, class: "post-user-avatar" %>
-		<% end %>
-		<%= icon("fa-regular", "user") %>
-		@<%= notification.sender.username %> is folowing you
-	    <% end %>
-	    
-	    
-	<% elsif notification.notifiable_type == "Like" %>
-	    <%= link_to notification.notifiable.post, class: "notification" do %>
-		<% if notification.sender.avatar.present? %>
-		    <%= image_tag notification.sender.avatar, class: "post-user-avatar" %>
-		<% end %>
-		<%= icon("fa-regular", "heart") %>
-		@<%= notification.sender.username %> liked your post
-	    <% end %>
-	    
-	<% elsif notification.notifiable_type == "Post" && notification.notifiable.parent.present? %>
-	    <%= link_to notification.notifiable, class: "notification" do %>
-		<% if notification.sender.avatar.present? %>
-		    <%= image_tag notification.sender.avatar, class: "post-user-avatar" %>
-		<% end %>
-		<%= icon("fa-regular", "comment") %>
-		<div>@<%= notification.sender.username %> commented your post</div>
-		<div class="notification-reference-text"><%= notification.notifiable.content  %></div>
-	    <% end %>
 
-	    
-	<% elsif notification.notifiable_type == "SharedPost" %>
-	    <%= link_to notification.notifiable.post, class: "notification" do %>
-		<% if notification.sender.avatar.present? %>
-		    <%= image_tag notification.sender.avatar, class: "post-user-avatar" %>
-		<% end %>
-		<%= icon("fa-regular", "share-from-square") %>
-		@<%= notification.sender.username %> shared your post
-		<div class="notification-reference-text"><%= notification.notifiable.post.content  %></div>
-	    <% end %>
-	    
-	<% end %>
+		<%= render partial: "notifications/notification", 
+			locals: { notification: notification } %>
 
     <% end %>
 </div>

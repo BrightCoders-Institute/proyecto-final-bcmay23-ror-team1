@@ -13,12 +13,14 @@ class Like < ApplicationRecord
   private
   
   def create_notification
-    Notification.create(
-      sender_id: self.user_id,
-      receiver_id: self.post.user_id,
-      notifiable_id: self.id,
-      notifiable_type: "Like"
-    )
+    if self.user_id != self.post.user_id
+      Notification.create(
+        sender_id: self.user_id,
+        receiver_id: self.post.user_id,
+        notifiable_id: self.id,
+        notifiable_type: "Like"
+      )
+    end
   end
     
 end
