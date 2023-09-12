@@ -1,0 +1,29 @@
+<div class="follow-suggestions">
+  
+  <h2 class="title">Who to follow</h2>
+
+  <% @follow_suggestions.each do |user| %>
+
+    <%= link_to user do %>
+      <div class="follow-user-suggestion">
+
+        <% if user.avatar.present? %>
+          <%= image_tag user.avatar, class: "post-user-avatar" %>
+        <% else %>
+          <%= image_tag "", class: "post-user-avatar" %>
+        <% end %>
+
+        <div class="user-data">
+          <p class="user-name"><%= user.name %></p>
+          <p class="user-username">@<%= user.username %></p>
+        </div>
+
+        <!-- Pending button -->
+        <span><button style="background: black;">Follow</button></span>
+
+      </div>
+    <% end %>
+
+  <% end %>
+
+</div>
