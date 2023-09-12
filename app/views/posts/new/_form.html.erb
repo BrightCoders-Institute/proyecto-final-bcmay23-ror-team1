@@ -23,7 +23,11 @@
             form: form,
             is_parent_of_comment: defined?(is_parent_of_comment) && is_parent_of_comment } %>
 
-        <%= render partial: "posts/new/form_bottom_actions" , locals: { form: form, post: post } %>
+        <%= render partial: "posts/new/form_bottom_actions",
+          locals: {
+            form: form,
+            post: post,
+            is_current_post: defined?(is_current_post) && is_current_post } %>
 
       </div>
       

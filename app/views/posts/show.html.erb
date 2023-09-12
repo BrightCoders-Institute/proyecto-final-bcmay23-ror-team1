@@ -22,7 +22,8 @@
 	  <% else %>
       <% post_locals = {post: @post, view: :show, is_current_post: true, is_parent_of_comment: false } %>
       <%= render partial: 'posts/post', locals: post_locals %>
-      <%= render partial: 'posts/new/form', locals: { post: @comment, is_parent_of_comment: true }%>
+      <%= render partial: 'posts/new/form',
+      locals: { post: @comment, is_parent_of_comment: true, is_current_post: true }%>
 	  <% end %>
   </span>
 

@@ -1,6 +1,9 @@
 <div class="new-post-bottom">
 
   <% images_field_id = post.parent.present? ? :comment_images : :post_images %>
+
+  <% images_field_id = :post_comment_images if defined?(is_current_post) && is_current_post %>
+
   <%= form.label :images, for: images_field_id do %>
     <%= icon("fa-regular", "image", class: "attach-image-icon") %>
   <% end %>
