@@ -16,5 +16,4 @@ class LikesController < ApplicationController
     render turbo_stream:
       turbo_stream.replace(@post, partial: 'likes/like', locals: { post: @post })
   end
-
 end

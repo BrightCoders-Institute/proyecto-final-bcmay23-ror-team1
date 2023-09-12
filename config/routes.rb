@@ -15,10 +15,11 @@ Rails.application.routes.draw do
 
   resources :likes, only: [:create, :destroy]
   resources :follows
+  resources :shared_post, only: [:create, :destroy]
+  resources :posts
 
   resources :search, only: [:index]
 
-  resources :posts
   resources :notifications
 
   get '/settings', to: 'users/settings#index', as: 'settings'

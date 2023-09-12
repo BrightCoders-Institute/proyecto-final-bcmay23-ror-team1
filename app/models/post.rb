@@ -8,7 +8,7 @@ class Post < ApplicationRecord
   belongs_to :deleted_user, optional: true
 
   has_many_attached :images
-  has_many :shared_posts_relation, class_name: 'SharedPost', foreign_key: :post_id
+  has_many :shared_posts_relation, class_name: 'SharedPost', foreign_key: :post_id, dependent: :destroy
   has_many :sharers, through: :shared_posts_relation, source: :user
   
  
@@ -20,6 +20,14 @@ class Post < ApplicationRecord
 
   def unliked_by(user)
     likes.find_by(user_id: user.id).destroy
+  end
+
+  def shared_by?(user)
+    shared_posts_relation.exists?(user: user)
+  end
+
+  def unshared_by?(user)
+    shared_posts_relation.find_by(user_id: user.id).destroy
   end
 
   # Associate a post as to a parent post

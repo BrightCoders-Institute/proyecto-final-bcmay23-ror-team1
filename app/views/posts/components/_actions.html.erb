@@ -1,5 +1,5 @@
 <div class="post-actions">
   <%= render partial: 'likes/like', locals: { post: post } %>
-  <a><%= icon("fa-regular", "share-from-square") %> <%= post.sharers.count %></a>
+  <%= render partial: 'shared_posts/shared_post_button', locals: {post: post }%>
   <%= render partial: 'posts/components/comment-button', locals: { post: post } %>
 </div>
