@@ -40,7 +40,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @tab = params[:tab]
     @tab = "posts" if @tab.blank?
     
-    @user = User.find(params[:id])
+    @user = User.find(params[:user_id])
     
     @navigation_tabs = [
       {
@@ -52,6 +52,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
         "route" => user_path(@user, tab: "likes"),
         "text" => "Likes",
         "active" => @tab == "likes",
+      },
+      {
+        "route" => user_path(@user, tab: "comments"),
+        "text" => "Comments",
+        "active" => @tab == "comments",
       },
     ]
     

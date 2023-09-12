@@ -12,14 +12,21 @@ class User < ApplicationRecord
   has_one_attached :banner
   
   # Post relationship
-  has_many :posts #, dependant: :nullify??
-  def posts_number
-    posts.count
+  has_many :posts_and_comments, class_name: 'Post' # posts and comments
+
+  def posts
+    posts_and_comments.where(parent_id: nil) # only posts
   end
 
-  has_many :comments
+  def posts_number
+    posts.count # only posts
+  end
 
-  # Follows
+  def comments
+    posts_and_comments.where.not(parent_id: nil) # only comments
+  end
+
+  # Follow relationship
   has_many :follower_records, foreign_key: :following_id, class_name: 'Follow'
   has_many :followers, through: :follower_records, source: :follower
   

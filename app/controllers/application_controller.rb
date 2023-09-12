@@ -38,7 +38,8 @@ class ApplicationController < ActionController::Base
       end
     end
 
+    # needed to application layout becuse from there user info is displayed
     def set_user
-      @user = User.find(params[:id]) if params[:id]
+      @user = User.find(params[:user_id]) if params[:user_id]
     end
 end

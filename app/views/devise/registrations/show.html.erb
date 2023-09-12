@@ -1,8 +1,11 @@
 <div class="profile-view">
   <div class="images-container mb-4">
+    <!-- Show user banner -->
     <% if @user.banner.attached? %>
       <%= image_tag(@user.banner, class: 'banner') %>
     <% end %>
+
+    <!-- Show user avatar -->
     <div class="avatar-container">
       <% if @user.avatar.attached? %>
         <%= image_tag(@user.avatar, class: 'avatar') %>
@@ -10,43 +13,54 @@
     </div>
   </div>
   
+  <!-- Show user info: name, username, bio, join date, follows and follower -->
   <%= render partial: 'devise/registrations/user-info', locals: {user: @user} %>
+
   <div class="content-container">
     <div class="content-navigation">
+
+      <!-- Show content tabs: posts, likes, comments -->
       <% @navigation_tabs.each do |tab_data| %>
-      <%= link_to tab_data["route"], class: ["tab-container", tab_data["active"] ? "active-tab" : "" ] do %>
-      <div class="tab">
-        <p><%= tab_data["text"] %></p>
-        <% if tab_data["active"] %>
-        <div class="indicator"></div>
-        <% end %> 
-      </div>
-      <% end %>  
+        <%= link_to tab_data["route"], class: ["tab-container", tab_data["active"] ? "active-tab" : "" ] do %>
+          <div class="tab">
+            <p><%= tab_data["text"] %></p>
+            <% if tab_data["active"] %>
+            <div class="indicator"></div>
+            <% end %>
+          </div>
+        <% end %>
       <% end %>
+
     </div>
+
+    <!-- Show content of column -->
     <div class="content-column">
-
       <% if @tab == "posts" %>
-
         <% if @user.posts.any? %>
           <%= render partial: "posts/post-simple", collection: @user.posts, as: :post ,locals: {view: nil, is_current_post: false} %>
         <% else %>
           <p class="no-content-label">No posts</p>
         <% end %>
-        
       <% end %>
 
       <% if @tab == "likes" %>
-
         <% if @user.liked_posts.any? %>
           <%= render partial: "posts/post-simple", collection: @user.liked_posts, as: :post, locals: {view: nil, is_current_post: false} %>
         <% else %>
           <p class="no-content-label">No liked posts</p>
         <% end %>
-
       <% end %>
 
+      <% if @tab == "comments" %>
+        <% if @user.comments.any? %>
+          <%= render partial: "posts/post-simple", collection: @user.comments, as: :post, locals: {view: nil, is_current_post: false} %>
+        <% else %>
+          <p class="no-content-label">No comments</p>
+        <% end %>
+      <% end %>
     </div>
   </div>
+
+  <!-- Show user edit modal -->
   <%= turbo_frame_tag "embedded"  %>
 </div>
