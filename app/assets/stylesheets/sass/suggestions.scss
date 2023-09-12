@@ -1,0 +1,41 @@
+.follow-suggestions {
+  background: lighten($colorBlack, 4%);
+  border: 1px solid $colorBorder;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+
+  .title {
+    padding: 1rem 1rem 0rem 1rem;
+  }
+
+}
+
+.follow-user-suggestion {
+  align-items:center;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  padding-inline: 1rem;
+  padding-block: 0.5rem;
+  cursor: pointer;
+
+  &:hover {
+    background: lighten($colorBlack, 6%);
+  }
+
+  .user-data {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+
+    .user-name {
+      font-weight: bold;
+    }
+
+    .user-username {
+      color: $colorGray;
+    }
+  }
+
+}

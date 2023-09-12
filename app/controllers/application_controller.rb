@@ -35,6 +35,7 @@ class ApplicationController < ActionController::Base
 
       if current_user
         @notifications_number = Notification.where("receiver_id = ?", current_user.id).count
+        @follow_suggestions = User.all.where('id != ? ', current_user.id)
       end
     end
 

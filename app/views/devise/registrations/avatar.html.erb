@@ -2,8 +2,6 @@
 
   <div class="form" data-controller="signup-avatar">
 
-    <%= link_to "X", root_path, class: "form-close-button" %>
-
     <h2>Set your avatar</h2>
 
     <%= form_with(model: @user, method: :put, url: signup_set_avatar_path) do |form| %>
