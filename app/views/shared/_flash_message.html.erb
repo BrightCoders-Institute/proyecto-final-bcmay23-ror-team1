@@ -1,0 +1,15 @@
+<div class="flash-message-container">
+
+  <% if flash[:posted] %>
+  
+    <div data-controller="flash">
+      <%= link_to post_path(post), data: { turbo: false } do%>
+        <div class="flash-message">
+          <%= flash[:posted] %> <strong>view</strong>
+        </div>
+      <% end %>
+    </div>
+
+  <% end %>
+
+</div>

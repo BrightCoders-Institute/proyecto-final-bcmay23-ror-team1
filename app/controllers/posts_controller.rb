@@ -24,7 +24,7 @@ class PostsController < ApplicationController
     if params[:parent_id].present?
       @parent = Post.find(params[:parent_id])
       @post.parent_id = @parent.id
-      render :new_comment
+      render "comments/new_modal"
     end
   end
 
@@ -33,7 +33,50 @@ class PostsController < ApplicationController
     @post.user_id = current_user.id
 
     if @post.save
-      redirect_to posts_path
+
+      if @post.parent.present?  
+
+        flash[:posted] = "Your comment was posted!"
+
+        respond_to do |format|
+          format.turbo_stream do
+            render turbo_stream: [
+              turbo_stream.update(
+                "comment_#{@post.parent.id}",
+                partial: "comments/comment-button",
+                locals: { post: @post.parent }
+              ),
+              turbo_stream.update(
+                "flash_message",
+                partial: "shared/flash_message",
+                locals: { post: @post }
+              )
+            ]
+          end
+        end
+
+      else
+      
+        flash[:posted] = "Posted successfully!"
+        respond_to do |format|
+          format.turbo_stream do
+            render turbo_stream: [
+              turbo_stream.update(
+                "flash_message",
+                partial: "shared/flash_message",
+                locals: { post: @post }
+              ),
+              turbo_stream.update(
+                "form_new_post",
+                partial: "posts/new/form",
+                locals: { post: Post.new }
+              )
+            ]
+          end
+        end
+
+      end
+
     else
       @errors = @post.errors.full_messages
       render 'posts/index', status: :unprocessable_entity

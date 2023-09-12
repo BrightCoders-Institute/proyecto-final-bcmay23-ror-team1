@@ -1,6 +1,6 @@
-<%= turbo_frame_tag "comment" do %>
+<%= turbo_frame_tag "comment_modal" do %>
 
-  <div class="modal-new-post">
+  <div class="modal-new-post" data-controller="modal" data-modal-target="modal">
     <div class="modal-new-post-content">
       <%= link_to "X", class: "close-button" %>
 

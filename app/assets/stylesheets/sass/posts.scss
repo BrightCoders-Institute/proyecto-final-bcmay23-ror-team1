@@ -100,25 +100,17 @@
       word-spacing: 8px;
     }
 
-    .post-like {
-      &:hover {
+    .post-liked {
+      color: $colorLike;
+      i {
         color: $colorLike;
-        i {
-          color: $colorLike;
-        }
       }
     }
 
-    .post-liked {
-      color: $colorLike;
-    }
-
-    .comment-button {
-      &:hover {
+    .shared-button {
+      color: $colorBlue;
+      i {
         color: $colorBlue;
-        i {
-          color: $colorBlue;
-        }
       }
     }
 
@@ -140,7 +132,8 @@
 }
 
 .post-container {
-  margin: 20px;
+  border-top: 1px solid $colorBorder;
+  padding: 1rem;
 }
 
 .header {
@@ -220,31 +213,6 @@
   justify-content: center;
   position: relative;
   width: fit-content;
-
-  .thread-line {
-    border-left: 2px solid $colorGray;
-    height: 100%;
-    margin: 0 50%;
-    position: absolute;
-    top: -5.4rem;
-    width: 100%;
-  }
-  
-}
-
-.thread-line-container {
-  position:absolute;
-  width: 50px;
-
-  .thread-line {
-    border-right: 2px solid $colorGray;
-    height: 5.2rem;
-    left: -25px;
-    margin-left: 1px;
-    position:absolute;
-    top: -5.3rem;
-    width: 100%;
-  }
 }
 
 .post-user-avatar {
