@@ -80,6 +80,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_06_183941) do
     t.bigint "user_id"
     t.bigint "deleted_user_id"
     t.bigint "parent_id"
+    t.boolean "deleted", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["deleted_user_id"], name: "index_posts_on_deleted_user_id"

@@ -10,6 +10,8 @@ class CreatePosts < ActiveRecord::Migration[7.0]
       t.references :deleted_user, null: true, foreign_key: true
 
       t.references :parent, foreign_key: { to_table: :posts }
+
+      t.boolean :deleted, null: false, default: false
   
       t.timestamps
     end
