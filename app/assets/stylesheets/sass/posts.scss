@@ -2,10 +2,14 @@
 .post {
   border-radius: 2px;
   margin-bottom: 20px;
-  overflow: hidden;
   padding: 1rem;
   position: relative;
   background-color: lighten($colorBlack, 5%);
+
+  &:hover {
+    filter: brightness(120%);
+    cursor: pointer;
+  }
   
   .post-avatar {
     border-radius: 50%;

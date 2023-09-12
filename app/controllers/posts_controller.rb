@@ -14,6 +14,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @comment = Post.new(parent: @post)
     @comments = Post.comments(@post)
     @ancestors = Post.ancestors(@post, [])
   end

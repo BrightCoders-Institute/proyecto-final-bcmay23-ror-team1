@@ -1,39 +1,39 @@
 <%= turbo_frame_tag post do %>
 
-    <div class="post <%= !is_parent_of_comment && "border-post" %> parent-post-container">
+  <div class="post <%= !is_parent_of_comment && "border-post" %> parent-post-container">
 
-      <% if post.user %>
+    <% if post.user %>
 
-	<%= render partial: "posts/simple-post-left", locals: { post: post , from_parent: true } %>
+			<%= render partial: "posts/simple-post-left", locals: { post: post , from_parent: true } %>
 
-	<div class="parent-post-right">
+			<div class="parent-post-right">
 
-	  <% locals_metadata = { 
-	    post: post, 
-	    is_current_post: false, 
-	    is_parent_of_comment: is_parent_of_comment,
-	    view: :show 
-	  } %>
-	  <%= render partial: "posts/components/metadata" , locals: locals_metadata %>    
+			  <% locals_metadata = { 
+			    post: post, 
+			    is_current_post: false, 
+			    is_parent_of_comment: is_parent_of_comment,
+			    view: :show 
+			  } %>
+			  <%= render partial: "posts/components/metadata" , locals: locals_metadata %>    
+			  <%= render partial: "posts/components/content" , locals: { post: post }%>
 
-	  <%= render partial: "posts/components/content" , locals: { post: post }%>
+			  <% if is_parent_of_comment %>
+			    <div>
+			      Replying to
+			      <%= link_to("") do %>
+							@<%= post.user.username %>
+			      <% end %>
+			    </div>
+			  <% else %>
+			    <%= render partial: "posts/components/actions" , locals: { post: post }%>
+			  <% end %>
+			  
+			</div>
 
-	  <% if is_parent_of_comment %>
-	    <div>
-	      Replying to
-	      <%= link_to("") do %>
-		@<%= post.user.username %>
-	      <% end %>
-	    </div>
-	  <% else %>
-	    <%= render partial: "posts/components/actions" , locals: { post: post }%>
-	  <% end %>
+		<% elsif post.deleted_user %>
+			This post is not available anymore
+		<% end %>
+
 	</div>
 
-      <% elsif post.deleted_user %>
-	This post is not available anymore
-      <% end %>
-
-    </div>
-
-<% end  %>
+<% end %>
