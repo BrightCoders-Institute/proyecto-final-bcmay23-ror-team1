@@ -1,0 +1,25 @@
+.top-thread-line-container {
+  height: 4rem;
+  position: absolute;
+  top: -3rem;
+  width: 50px;
+
+  .top-thread-line {
+    border-left: 2px solid $colorGray;
+    height: 100%;
+    margin: 0 50%;
+    position: absolute;
+  }
+}
+
+.space-thread-line {
+  height: 100%;
+}
+
+.thread-line {
+  border-left: 2px solid $colorGray;
+  height: 100%;
+  margin: 0 50%;
+  top: -5.4rem;
+  width: 100%;
+}
