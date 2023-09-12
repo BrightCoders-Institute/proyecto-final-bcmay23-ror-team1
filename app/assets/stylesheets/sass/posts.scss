@@ -1,11 +1,27 @@
 /* Styles for posts like Twitter posts */
+.post-link {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 0;
+}
+
+.bg-post {
+  background-color: lighten($colorBlack, 2%);
+}
+
 .post {
   border-radius: 2px;
   margin-bottom: 20px;
-  overflow: hidden;
   padding: 1rem;
   position: relative;
-  background-color: lighten($colorBlack, 5%);
+
+  &:hover {
+    cursor: pointer;
+    filter: brightness(120%);
+  }
   
   .post-avatar {
     border-radius: 50%;
@@ -41,18 +57,18 @@
     display: flex;
     flex-direction: column;
     font-size: 18px;
+    gap: 8px;
     margin: 10px 0;
     margin-bottom: 10px;
-    gap: 8px;
 
     p {
       align-self: self-start;
     }
 
     .post-images-container {
+      display: grid;gap: 8px;
+      grid-template-columns: repeat(2, 1fr);
       width: 100%;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);gap: 8px;
       .post-image {
           border-radius: 4px;
           width: 100%;
@@ -75,11 +91,12 @@
     justify-content: space-around;
     margin-bottom: 10px;
     margin-top: 10px;
+    z-index: 1;
 
     .action-button {
       color: $colorWhite;
-      text-decoration: none;
       font-weight: bold;
+      text-decoration: none;
       word-spacing: 8px;
     }
 
@@ -201,15 +218,33 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  position: relative;
   width: fit-content;
 
   .thread-line {
     border-left: 2px solid $colorGray;
     height: 100%;
     margin: 0 50%;
+    position: absolute;
+    top: -5.4rem;
     width: 100%;
   }
+  
+}
 
+.thread-line-container {
+  position:absolute;
+  width: 50px;
+
+  .thread-line {
+    border-right: 2px solid $colorGray;
+    height: 5.2rem;
+    left: -25px;
+    margin-left: 1px;
+    position:absolute;
+    top: -5.3rem;
+    width: 100%;
+  }
 }
 
 .post-user-avatar {

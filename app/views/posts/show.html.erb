@@ -1,34 +1,34 @@
+<div class='header'>
+  <%= link_to icon('fa-solid', 'arrow-left'), posts_path, class: 'header-back' %>
+  <h1>Post</h1>
+</div>
 
-  <div class='header'>
-    <%= link_to icon('fa-solid', 'arrow-left'), posts_path, class: 'header-back' %>
-    <h1>Post</h1>
-  </div>
-  <div class='post-container'>
+<div class='post-container'>
 
-      <% @ancestors.each do |post| %>
+
+  <% @ancestors.each do |post| %>
 	  <% if post.deleted %>
 	      <%= render partial: 'posts/deleted' %>
 	  <% else %>
-	      <% locals_parent = { view: :index, is_parent_of_comment: false, post: post } %>
+	      <% locals_parent = { view: :show, is_parent_of_comment: false, post: post } %>
 	      <%= render partial: 'posts/parent', locals: locals_parent %>
 	  <% end %>
-      <% end %>
+  <% end %>
 
-      <span data-controller="auto-scroll" data-action="load@window->auto-scroll#scrollToThis">
+
+  <span data-controller="auto-scroll" data-action="load@window->auto-scroll#scrollToThis">
 	  <% if @post.deleted %>
 	      <%= render partial: 'posts/deleted', locals: { is_current_post: true } %>
 	  <% else %>
-	      <%= render partial: 'posts/post', locals: { post: @post, view: :show, is_current_post: true } %>
+      <% post_locals = {post: @post, view: :show, is_current_post: true, is_parent_of_comment: false } %>
+      <%= render partial: 'posts/post', locals: post_locals %>
+      <%= render partial: 'posts/new/form', locals: { post: @comment, is_parent_of_comment: true }%>
 	  <% end %>
-      </span>
+  </span>
 
-      <% @comments.each do |comment| %>
-	  <% if comment.deleted %>
-	      <%= render partial: 'posts/deleted' %>
-	  <% else %>
-	      <%= render partial: 'posts/post-simple', locals: { view: :show, post: comment } %>
-	  <% end %>
-      <% end %>
-      
 
-  </div>
+  <%= render partial: 'posts/post-simple',
+  collection: @comments.where(deleted: false), as: :post,
+  locals: { view: :show, is_parent_of_comment: false } %>
+  
+</div>

@@ -14,6 +14,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @comment = Post.new(parent: @post)
     @comments = Post.comments(@post)
     @ancestors = Post.ancestors(@post, [])
   end
@@ -44,7 +45,7 @@ class PostsController < ApplicationController
     @post.update(deleted: true)
     flash[:notice] = "Your post was deleted"
     render turbo_stream:
-             turbo_stream.replace(@post, partial: "posts/deleted", locals: { post: @post })
+      turbo_stream.replace("frame_post_#{@post.id}", partial: "posts/deleted", locals: { post: @post })
   end
   
   private 

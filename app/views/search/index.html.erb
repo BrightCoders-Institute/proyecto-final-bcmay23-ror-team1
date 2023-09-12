@@ -27,9 +27,16 @@
       <% end %>
 
       <% if @posts.any? %>
+
         <div class="search-results-users">
           <h2>Posts for "<%= @query %>"</h2>
-          <%= render partial: 'posts/post-simple', collection: @posts, as: :post, locals: {view: :index} %>
+          
+          <%= render partial: 'posts/post-simple',
+            collection: @posts, as: :post,
+            locals: {
+              view: :index
+              is_parent_of_comment: false } %>
+
         </div>
 
       <% end %>
