@@ -206,14 +206,32 @@
   flex-direction: column;
   justify-content: center;
   width: fit-content;
+  position: relative;
 
   .thread-line {
+    position: absolute;
     border-left: 2px solid $colorGray;
     height: 100%;
     margin: 0 50%;
     width: 100%;
+    top: -5.4rem;
   }
+  
+}
 
+.thread-line-container {
+  position:absolute;
+  width: 50px;
+
+  .thread-line {
+    margin-left: 1px;
+    position:absolute;
+    border-right: 2px solid $colorGray;
+    height: 5.2rem;
+    top: -5.3rem;
+    left: -25px;
+    width: 100%;
+  }
 }
 
 .post-user-avatar {

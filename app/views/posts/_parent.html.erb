@@ -2,9 +2,9 @@
 
   <div class="post <%= !is_parent_of_comment && "border-post" %> parent-post-container">
 
-    <% if post.user %>
+  	<% if post.user %>
 
-			<%= render partial: "posts/simple-post-left", locals: { post: post , from_parent: true } %>
+    	<%= render partial: "posts/simple-post-left", locals: { post: post , from_parent: true } %>
 
 			<div class="parent-post-right">
 
