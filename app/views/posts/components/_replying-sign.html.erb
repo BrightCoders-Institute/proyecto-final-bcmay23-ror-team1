@@ -1,11 +1,10 @@
 <% if parent.present? && view == :index  %>
-    <div class="post-replying-sign">Replying to
+  <div class="post-replying-sign">Replying to
+		<% parent_user = parent.user.present? ? parent.user : parent.deleted_user %>
 
-	<% parent_user = parent.user.present? ? parent.user : parent.deleted_user %>
-
-	<%= link_to user_path(id: parent_user.id), class: "post-user-link" do %>
-	    @<%= parent_user.username %>
-	<% end %>
+		<%= link_to user_path(user_id: parent_user.id), class: "post-user-link" do %>
+				@<%= parent_user.username %>
+		<% end %>
 	
-    </div>
+  </div>
 <% end %>
