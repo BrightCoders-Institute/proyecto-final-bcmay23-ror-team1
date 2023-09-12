@@ -1,6 +1,6 @@
 <%= form.text_area(
   :content,
-  placeholder: "Post a thougth!",
+  placeholder: is_parent_of_comment ? "Post a comment!" : "Post a thougth!",
   class: "new-post-textarea",
   data: { 
     "form-new-post-target": "textarea",

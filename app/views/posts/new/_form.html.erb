@@ -16,7 +16,10 @@
 
     <div class="new-post-right">
 
-      <%= render partial: "posts/new/form_content" , locals: { form: form } %>
+      <%= render partial: "posts/new/form_content",
+        locals: {
+          form: form,
+          is_parent_of_comment: defined?(is_parent_of_comment) && is_parent_of_comment } %>
 
       <%= render partial: "posts/new/form_bottom_actions" , locals: { form: form } %>
 

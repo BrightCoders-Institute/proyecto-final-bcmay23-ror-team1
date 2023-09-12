@@ -13,6 +13,8 @@
       <% end %>
 
       <%= render partial: "posts/components/avatar", locals: { avatar: post.user.avatar }%>
+
+      <!-- Name, Username, Date -->
       <%= render partial: "posts/components/metadata",
         locals: { 
           post: post, 

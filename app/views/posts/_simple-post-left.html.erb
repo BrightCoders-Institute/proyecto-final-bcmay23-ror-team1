@@ -1,9 +1,14 @@
 <div class="parent-post-left">
 
-  <% if from_parent && post.parent.present? && !post.parent.deleted %>
+  <% if defined?(is_parent) &&
+        is_parent &&
+        post.parent.present? &&
+        !is_parent_of_comment && 
+        !post.parent.deleted%>
     <span class="thread-line"></span>
   <% end %>
 
-  <%= render partial: "posts/components/avatar" , locals: { avatar: post.user.avatar } %>
+  <%= render partial: "posts/components/avatar",
+  locals: { avatar: post.user.avatar } %>
 
 </div>
