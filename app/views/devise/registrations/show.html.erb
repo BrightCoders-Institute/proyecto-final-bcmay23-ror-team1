@@ -16,7 +16,6 @@
       <div class="post-container">
         <%# posts and shares columns %>
         <% if @tab == "posts" %>
-
           <% if @posts_and_shared.any? %>
             <% @posts_and_shared.each do |element| %>
               <% if element.class == Post %>
