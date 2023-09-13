@@ -67,6 +67,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
       @posts_and_shared = (posts + shared_posts).sort_by { |post| post.created_at }
     end
 
+    @posts_and_shared = (posts + shared_posts).sort_by { |post| post.created_at }
+    @posts_and_shared = @posts_and_shared.reverse
   end
 
   def show_followers
