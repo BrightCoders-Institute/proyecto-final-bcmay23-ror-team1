@@ -2,7 +2,15 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @posts = Post.where(deleted: false).includes(:shared_posts_relation).with_attached_images.order(created_at: :desc).load_async
+
+    followings_ids = Follow.where(follower_id: current_user.id).pluck(:following_id)
+    followings_ids.append(current_user.id)
+    
+    @posts = Post.where(deleted: false, user_id: followings_ids)
+                  .includes(:shared_posts_relation)
+                  .with_attached_images.order(created_at: :desc)
+                  .load_async
+
     @sharedPosts = SharedPost.all.order(created_at: :desc).load_async
 
     @posts = (@posts + @sharedPosts).sort_by { |post| post.created_at }
