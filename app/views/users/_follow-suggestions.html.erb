@@ -1,27 +1,35 @@
 <div class="follow-suggestions">
-  
-  <h2 class="title">Who to follow</h2>
 
-  <% @follow_suggestions.each do |user| %>
+  <% if @follow_suggestions.count.zero? %>
+    <h2 class="title">You did it!</h2>
+    <p class="title opaque-text">There's no one else to follow!</p>
 
-    <%= link_to user do %>
-      <div class="follow-user-suggestion">
+  <% else %>
 
-        <% if user.avatar.present? %>
-          <%= image_tag user.avatar, class: "post-user-avatar" %>
-        <% else %>
-          <%= image_tag "", class: "post-user-avatar" %>
-        <% end %>
+    <h2 class="title">Who to follow</h2>
 
-        <div class="user-data">
-          <p class="user-name"><%= user.name %></p>
-          <p class="user-username">@<%= user.username %></p>
+    <% @follow_suggestions.each do |user| %>
+
+      <%= link_to user do %>
+        <div class="follow-user-suggestion">
+
+          <% if user.avatar.present? %>
+            <%= image_tag user.avatar, class: "post-user-avatar" %>
+          <% else %>
+            <%= image_tag "", class: "post-user-avatar" %>
+          <% end %>
+
+          <div class="user-data">
+            <p class="user-name"><%= user.name %></p>
+            <p class="user-username">@<%= user.username %></p>
+          </div>
+
+          <!-- Pending button -->
+          <button style="background: black;">Follow</button>
+
         </div>
+      <% end %>
 
-        <!-- Pending button -->
-        <span><button style="background: black;">Follow</button></span>
-
-      </div>
     <% end %>
 
   <% end %>
