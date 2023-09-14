@@ -40,3 +40,30 @@
   }
 
 }
+
+.modal-follows-suggestions-list {
+  margin-top: 3rem;
+
+}
+
+.modal-followings-suggestions-content {
+  background-color: $colorBlack;
+  border-radius: 8px;
+  height: fit-content;
+  margin-top: 10%;
+  padding: 1rem;
+  width: 50%;  
+  max-height: 50%;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-title-container {
+  position: absolute;
+}
+
+.modal-scroll {
+  height: cover;
+  overflow-y: scroll;
+}

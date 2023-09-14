@@ -1,0 +1,19 @@
+<%= link_to user do %>
+  <div class="follow-user-suggestion">
+
+    <% if user.avatar.present? %>
+      <%= image_tag user.avatar, class: "post-user-avatar" %>
+    <% else %>
+      <%= image_tag "", class: "post-user-avatar" %>
+    <% end %>
+
+    <div class="user-data">
+      <p class="user-name"><%= user.name %></p>
+      <p class="user-username">@<%= user.username %></p>
+    </div>
+
+    <!-- Pending button -->
+    <button style="background: black;">Follow</button>
+
+  </div>
+<% end %>

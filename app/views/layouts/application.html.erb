@@ -34,7 +34,7 @@
 
           <div class="secondary-column">
             
-            <%= render partial: "users/follow-suggestions" %>
+            <%= render partial: "follows/users-suggestions-list" %>
 
           </div>
 
@@ -47,5 +47,10 @@
     </div>
     <%= turbo_frame_tag "flash_message" %>
     <%= turbo_frame_tag "comment_modal" %>
+
+    <% if action_name == 'index' && current_user.followings.count.zero? %>
+      <%= render partial: 'follows/modal-users-suggestions' %>
+    <% end %>
+
   </body>
 </html>
