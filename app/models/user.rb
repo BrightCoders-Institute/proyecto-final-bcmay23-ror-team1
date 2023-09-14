@@ -72,7 +72,7 @@ class User < ApplicationRecord
   end
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable, :confirmable
 
   def swap_posts_to_deleted_user
     posts.each do |post|
