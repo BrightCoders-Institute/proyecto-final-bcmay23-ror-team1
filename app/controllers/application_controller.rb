@@ -7,6 +7,10 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   # before_action :set_user
 
+  def route_not_found
+    render 'layouts/not_found', status: :not_found, layout: true
+  end
+
   private
     def layout_by_resource
       if devise_controller?
@@ -33,7 +37,7 @@ class ApplicationController < ActionController::Base
         # add one item to create a new side_bar_button
       ]
 
-      if current_user
+      if current_user.present?
         @notifications_number = Notification.where(receiver_id: current_user.id).count
 
         followings_ids = Follow.where(follower_id: 1).pluck(:following_id)

@@ -21,10 +21,12 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
-    @comment = Post.new(parent: @post)
-    @comments = Post.comments(@post)
-    @ancestors = Post.ancestors(@post, [])
+    @post = Post.find_by(id: params[:id])
+    if @post.present?
+      @comment = Post.new(parent: @post)
+      @comments = Post.comments(@post)
+      @ancestors = Post.ancestors(@post, [])
+    end
   end
 
   def new

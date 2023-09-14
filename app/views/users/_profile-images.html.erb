@@ -1,0 +1,17 @@
+<div class="images-container mb-4">
+  <!-- Show user banner -->
+  <% if @user.present? && @user.banner.attached? %>
+    <%= image_tag(@user.banner, class: 'banner') %>
+  <% else %>
+    <%= image_tag("", class: 'banner') %>
+  <% end %>
+
+  <!-- Show user avatar -->
+  <div class="avatar-container">
+    <% if @user.present? && @user.avatar.attached? %>
+      <%= image_tag(@user.avatar, class: 'avatar') %>
+    <% else %>
+      <%= image_tag("", class: 'avatar') %>
+    <% end %>
+  </div>
+</div>

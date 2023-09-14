@@ -40,34 +40,34 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @tab = params[:tab]
     @tab = "posts" if @tab.blank?
     
-    @user = User.find(params[:user_id])
+    @user = User.find_by(id: params[:user_id])
     
-    @navigation_tabs = [
-      {
-        "route" => user_path(@user, tab: "posts"),
-        "text" => "Posts",
-        "active" => @tab == "posts" || @tab.blank?,
-      },
-      {
-        "route" => user_path(@user, tab: "likes"),
-        "text" => "Likes",
-        "active" => @tab == "likes",
-      },
-      {
-        "route" => user_path(@user, tab: "comments"),
-        "text" => "Comments",
-        "active" => @tab == "comments",
-      },
-    ]
-    
-    
-    user_created_month_number = @user.created_at.strftime("%m").to_i 
-    user_created_month_name = Date::MONTHNAMES[user_created_month_number]
-    
-    user_created_year = @user.created_at.strftime("%Y")
-    
-    @user_created_date = "Joined in #{user_created_month_name} #{user_created_year}"
-    
+    if @user.present?
+
+      @navigation_tabs = [
+        {
+          "route" => user_path(@user, tab: "posts"),
+          "text" => "Posts",
+          "active" => @tab == "posts" || @tab.blank?,
+        },
+        {
+          "route" => user_path(@user, tab: "likes"),
+          "text" => "Likes",
+          "active" => @tab == "likes",
+        },
+        {
+          "route" => user_path(@user, tab: "comments"),
+          "text" => "Comments",
+          "active" => @tab == "comments",
+        },
+      ]
+      
+      user_created_month_number = @user.created_at.strftime("%m").to_i 
+      user_created_month_name = Date::MONTHNAMES[user_created_month_number]
+      user_created_year = @user.created_at.strftime("%Y")  
+      @user_created_date = "Joined in #{user_created_month_name} #{user_created_year}"
+    end
+
   end
 
   def destroy
