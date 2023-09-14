@@ -1,0 +1,18 @@
+<% posts.each do |element| %>
+
+    <%if element.class == Post %>
+	<%= render partial: 'posts/post-simple',
+		   locals: {
+		       view: :index,
+		       post: element,
+		       is_parent_of_comment: false } %>
+
+    <%else%>
+	<%= render partial: 'shared_posts/shared_post', locals: {view: :index, repost: element} %>
+    <%end%>
+
+<%end%>
+
+<div class="button button-primary w100">
+	<%= link_to "Load more", posts_path(page: @page_number + 1), remote: true %>
+</div>

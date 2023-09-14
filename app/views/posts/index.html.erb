@@ -3,7 +3,5 @@
     <%= render partial: "posts/new/form", locals: { post: @post } %>
   </div>
 
-  <%= render partial: 'posts/posts_list' %>
-  
-  <%= link_to "Cerrar sesión", destroy_user_session_path, data: { turbo_method: :delete } %>
+  <%= render partial: 'posts/posts_list', locals: { posts: @posts } %>
 </div>

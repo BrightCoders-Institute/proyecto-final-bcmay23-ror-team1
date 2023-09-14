@@ -56,6 +56,9 @@ gem "sassc-rails"
 # Icons
 gem "font-awesome-sass", "~> 6.4.2"
 
+# Pagination
+gem 'will_paginate', '~> 4.0'
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 

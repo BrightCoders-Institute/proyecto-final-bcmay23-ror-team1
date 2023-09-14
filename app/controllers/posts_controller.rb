@@ -4,21 +4,35 @@ class PostsController < ApplicationController
 
   def index
 
+    # Ids of the followed users to filter
     followings_ids = Follow.where(follower_id: current_user.id).pluck(:following_id)
     followings_ids.append(current_user.id)
     
     @posts = Post.where(deleted: false, user_id: followings_ids)
                   .includes(:shared_posts_relation)
-                  .with_attached_images.order(created_at: :desc)
+                  .with_attached_images
+                  .order(created_at: :desc)
                   .load_async
 
     @sharedPosts = SharedPost.all.order(created_at: :desc).load_async
-
     @posts = (@posts + @sharedPosts).sort_by { |post| post.created_at }
     @posts = @posts.reverse
-    
-    # Indivitual post for creation form
-    @post = Post.new
+
+    @page_number = params[:page].present? ? params[:page].to_i : 1
+    @posts = @posts.paginate(page: @page_number, per_page: 20)
+
+    @post = Post.new # fills the the "new post" form
+
+    if @posts.count.zero?
+      render turbo_stream:
+        turbo_stream.append('posts_list', partial: 'posts/no-posts')
+      
+    elsif params[:page].present?
+      render turbo_stream:
+        turbo_stream.append(:posts_list,
+          partial: 'posts/posts-list', locals: { posts: @posts } )
+    end
+           
   end
 
   def show
