@@ -10,14 +10,16 @@
   "./sass/search",
   "./sass/new_post",
   "./sass/settings",
-  "./sass/edit_view",
+  "./sass/user_view/edit_view",
   "./sass/notifications",
-  "./sass/profile_view";
+  "./sass/components/follow_button",
+  "./sass/user_view/user_info",
+  "./sass/user_view/user_view";
 
 * {
-  margin: 0;
-  font-family: arial, sans-serif;
   color: $colorWhite;
+  font-family: arial, sans-serif;
+  margin: 0;
 }
 
 .border{

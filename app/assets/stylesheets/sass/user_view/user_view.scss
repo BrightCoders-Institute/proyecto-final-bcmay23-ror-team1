@@ -1,6 +1,5 @@
 .embedded{
   background-color: rgba(89, 89, 92, 0.5);
-  // display: none;
   height: 100%;
   left: 0;
   overflow: auto;
@@ -55,21 +54,6 @@
     gap: .9rem;
     padding-left: .8rem;
     position: relative;
-
-    .edit-profile-button {
-      border: 1.3px solid $colorBorder;
-      border-radius: 100px;
-      font-weight: bold;
-      padding: .5rem 1rem;
-      position: absolute;
-      right: 1rem;
-      text-decoration: none;
-      top: -3rem;
-      &:hover {
-        background-color: #3336395a;
-        transition: .2s;
-      }
-    }
 
     .names-container {
       .name-label {

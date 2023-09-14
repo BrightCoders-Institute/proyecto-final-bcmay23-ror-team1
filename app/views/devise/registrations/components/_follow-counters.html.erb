@@ -1,0 +1,20 @@
+<%= turbo_frame_tag "follow_counters_#{user.id}" do %>
+  <div class="follow-info mb-1">
+    <p>
+      <span class="follow-info-number">
+        <%= user.followings_number %>
+      </span>
+      <span class="follow-info-label">
+        Following
+      </span>
+    </p>
+    <p>
+      <span class="follow-info-number">
+        <%= user.followers_number %>
+      </span>
+      <span class="follow-info-label">
+        Followers
+      </span>
+    </p>
+  </div>
+<% end %>

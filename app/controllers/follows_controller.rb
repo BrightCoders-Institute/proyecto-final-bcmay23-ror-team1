@@ -4,29 +4,66 @@
 class FollowsController < ApplicationController
 
   def create
-    following_id = params[:following]
-    following_user = User.find_by(id: following_id)
-
-    if following_user && !current_user.follows?(following_user)
-      current_user.following_records.create(following: following_user).inspect
-    end
-  
-    render turbo_stream: turbo_stream.replace(
-             following_user, partial: 'follows/follow', locals: { following_user: following_user }
-           )
-  end
-
-  def destroy
+    # getting the following user
     following_id = params[:id]
     following_user = User.find_by(id: following_id)
 
-    if following_user && current_user.follows?(following_user)
-      current_user.following_records.find_by(following: following_user).destroy
-    end
+    # create a follow relationship
+    current_user.createFollow(following_user);
+
+    # render and replace all follow buttons and counters
+    render turbo_stream: [
+      # follow button on user view
+      turbo_stream.replace(
+        "follow_button_#{following_id}", 
+        partial: 'components/follow-button', 
+        locals: { user: following_user }
+      ),
+      # follow counters on user view
+      turbo_stream.replace(
+        "follow_counters_#{following_id}", 
+        partial: 'devise/registrations/components/follow-counters', 
+        locals: { user: following_user }
+      ),
+      # follow option on post component
+      turbo_stream.replace(
+        "follow_post_option_#{following_id}", 
+        partial: 'follows/follow', 
+        locals: { following_user: following_user }
+      ),
+    ]
+  end
+
+  def destroy
+    # getting the following user
+    following_id = params[:id]
+    following_user = User.find_by(id: following_id)
+
+    # destroy a follow relationship
+    current_user.destroyFollow(following_user);
     
-    render turbo_stream: turbo_stream.replace(
-             following_user, partial: 'follows/follow', locals: { following_user: following_user }
-           )
+    # render and replace all follow buttons and counters
+    render turbo_stream: [
+      # follow button on user view
+      turbo_stream.replace(
+        "follow_button_#{following_id}", 
+        partial: 'components/follow-button', 
+        locals: { user: following_user }
+      ),
+      # follow counters on user view
+      turbo_stream.replace(
+        "follow_counters_#{following_id}", 
+        partial: 'devise/registrations/components/follow-counters', 
+        locals: { user: following_user }
+      ),
+      # follow option on post component
+      turbo_stream.replace(
+        "follow_post_option_#{following_id}", 
+        partial: 'follows/follow', 
+        locals: { following_user: following_user }
+      ),
+    ]
+
   end
   
 end

@@ -1,0 +1,19 @@
+<%= turbo_frame_tag "follow_button_#{user.id}" do %>
+    <% if current_user.follows?(user) %>
+      <%= 
+        link_to "Unfollow",
+        follow_path(id: user.id),
+        remote: true,
+        data: { turbo_method: :delete },
+        class: "follow-button unfollow-aparence follow-button-size-md"
+      %>
+    <% else %>
+      <%= 
+        link_to "Follow",
+        follows_path(id: user.id),
+        remote: true,
+        data: { turbo_method: :post },
+        class: "follow-button follow-aparence follow-button-size-md"
+      %>
+    <% end %>
+<% end %>

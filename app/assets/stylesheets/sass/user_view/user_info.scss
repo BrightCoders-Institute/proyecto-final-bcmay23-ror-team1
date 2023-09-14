@@ -1,0 +1,14 @@
+.edit-profile-button {
+  border: 1.3px solid $colorBorder;
+  border-radius: 100px;
+  font-weight: bold;
+  padding: .5rem 1rem;
+  position: absolute;
+  right: 1rem;
+  text-decoration: none;
+  top: -3rem;
+  &:hover {
+    background-color: #3336395a;
+    transition: .2s;
+  }
+}

@@ -33,8 +33,19 @@ class User < ApplicationRecord
   has_many :following_records, foreign_key: :follower_id, class_name: 'Follow'
   has_many :followings, through: :following_records, source: :following
 
+  # check if user is following another user
   def follows?(user)
     return following_records.exists?(following: user)
+  end
+
+  #create follow relationship
+  def createFollow(user)
+    Follow.create(follower: self, following: user);
+  end
+  
+  #destroy follow relationship
+  def destroyFollow(user)
+    following_records.find_by(following: user).destroy
   end
   
   def followings_number

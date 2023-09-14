@@ -1,4 +1,4 @@
-<%= turbo_frame_tag following_user do %>
+<%= turbo_frame_tag "follow_post_option_#{following_user.id}" do %>
 
   <% if current_user.follows?(following_user) %>
 
@@ -10,7 +10,7 @@
 
   <% else %>
 
-    <% url = follows_path(following: following_user.id) %>
+    <% url = follows_path(id: following_user.id) %>
     <%= link_to(url, remote: true, data: { turbo_method: :post }) do %>
       <%= icon("fa-solid", "user", class: "follow-icon")%>
       Follow @<%= following_user.username %>

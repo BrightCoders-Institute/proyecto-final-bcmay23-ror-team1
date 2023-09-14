@@ -1,0 +1,45 @@
+.follow-button {
+  border-radius: 100px;
+  font-weight: bold;
+  padding: .5rem 1rem;
+  position: absolute;
+  right: 1rem;
+  text-decoration: none;
+  top: -3rem;
+  transition: .2s;
+}
+
+.follow-aparence{
+  background-color: $colorWhite;
+  color: $colorBlack;
+  &:hover{
+    background-color: rgba(255, 255, 255, 0.842);
+  }
+}
+
+.unfollow-aparence{
+  background-color: rgba(255, 0, 0, 0.095);
+  border: 1.3px solid $colorBorder;
+
+  &:hover {
+    background-color: rgba(255, 0, 0, 0.095);
+    border: 1.3px solid red;
+    color: red;
+    transition: .2s;
+  }
+}
+
+.follow-button-size-sm{
+  font-size: 0.8rem !important;
+  padding: .2rem .5rem !important;
+}
+
+.follow-button-size-md{
+  font-size: 1rem;
+  padding: .5rem 1rem;
+}
+
+.follow-button-size-lg{
+  font-size: 1.2rem;
+  padding: .8rem 1.5rem;
+}

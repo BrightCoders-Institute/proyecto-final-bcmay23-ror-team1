@@ -1,10 +1,14 @@
 <div class="info-container">
-  <%= 
-    link_to "Edit Profile", 
-    edit_user_registration_path, 
-    class: "edit-profile-button #{"hidden" unless current_user == user}", 
-    data: { turbo_frame: "embedded" } 
-  %>
+  <% if current_user == user %>
+    <%= 
+      link_to "Edit Profile", 
+      edit_user_registration_path, 
+      class: "edit-profile-button", 
+      data: { turbo_frame: "embedded" } 
+    %>
+  <% else %>
+    <%= render partial: 'components/follow-button', locals: {user: user} %>
+  <% end %>
 
     <div class="names-container">
       <h1 class="name-label">
@@ -26,24 +30,5 @@
       <%= user.created_date %>
     </p>
 
-    <div class="follow-info mb-1">
-      <p>
-        <span class="follow-info-number">
-          <%= user.followings_number %>
-        </span>
-        <span class="follow-info-label">
-          Following
-        </span>
-      </p>
-      <p>
-        <span class="follow-info-number">
-          <%= user.followers_number %>
-        </span>
-        <span class="follow-info-label">
-          Followers
-        </span>
-      </p>
-    </div>
+    <%= render partial: 'devise/registrations/components/follow-counters', locals: {user: user} %>
 </div>
-
-
