@@ -1,0 +1,11 @@
+<div class="mobile-side-bar">
+  <div class="side-bar-buttons">
+    <%= render "components/side-bar-buttons" %>
+   
+    <%= link_to destroy_user_session_path, data: { turbo_method: :delete },class: "icon-link" do %>
+      <div>
+        <i class="fas fa-arrow-right-from-bracket"></i>
+      </div>
+    <% end %>
+  </div>
+</div>

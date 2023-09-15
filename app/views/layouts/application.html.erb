@@ -12,61 +12,45 @@
 
   <body>
     <div class="container-full">
-      <div class="side-bar">
-        <div class="content">
-          <div class="side-bar-menu">
-            <div class="logo mb-1">
-              <h1>Towgt</h1>
-            </div>
 
-            <%= render "posts/components/side-bar-buttons" %>
-            
-          </div>
-          <div class="side-bar-buttons">
-            <%= link_to destroy_user_session_path, data: { turbo_method: :delete },class: "icon-link" do %>
-              <div>
-                <i class="fas fa-arrow-right-from-bracket"></i>
-              </div>
-            <% end %>
-          </div>
-        </div>
-      </div>
+    <%= render partial: "components/side-bar" %>
 
       <div class="container border-left">
+
         <div class="header-container ">
           <div class="header border-right border-bottom ">
             <%= render "components/header-title" %>
           </div>
-
           <% unless request.path == search_index_path %>
             <%= render "search/components/search-form" %>
           <% end %>
         </div>
+
         <div class="content-column">
+          
           <div class="main-column border-right">
             <%= yield %>
           </div>
 
           <div class="secondary-column">
-          
+            
+            <%= render partial: "follows/users-suggestions-list" %>
+
           </div>
+
         </div>
 
-        <div class="mobile-side-bar">
-          <div class="side-bar-buttons">
-            <%= render "posts/components/side-bar-buttons" %>
-           
-            <%= link_to destroy_user_session_path, data: { turbo_method: :delete },class: "icon-link" do %>
-              <div>
-                <i class="fas fa-arrow-right-from-bracket"></i>
-              </div>
-            <% end %>
-          </div>
-        </div>
+        <%= render partial: 'components/side-bar-mobile' %>
+
       </div>
 
     </div>
     <%= turbo_frame_tag "flash_message" %>
     <%= turbo_frame_tag "comment_modal" %>
+
+    <% if action_name == 'index' && current_user.followings.count.zero? %>
+      <%= render partial: 'follows/modal-users-suggestions' %>
+    <% end %>
+
   </body>
 </html>
