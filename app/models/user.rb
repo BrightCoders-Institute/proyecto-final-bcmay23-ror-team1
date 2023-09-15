@@ -39,12 +39,12 @@ class User < ApplicationRecord
   end
 
   #create follow relationship
-  def createFollow(user)
+  def create_follow(user)
     Follow.create(follower: self, following: user);
   end
   
   #destroy follow relationship
-  def destroyFollow(user)
+  def destroy_follow(user)
     following_records.find_by(following: user).destroy
   end
   

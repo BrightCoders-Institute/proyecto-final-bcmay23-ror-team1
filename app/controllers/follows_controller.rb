@@ -9,7 +9,7 @@ class FollowsController < ApplicationController
     following_user = User.find_by(id: following_id)
 
     # create a follow relationship
-    current_user.createFollow(following_user);
+    current_user.create_follow(following_user);
 
     # render and replace all follow buttons and counters
     render turbo_stream: [
@@ -17,7 +17,10 @@ class FollowsController < ApplicationController
       turbo_stream.replace(
         "follow_button_#{following_id}", 
         partial: 'components/follow-button', 
-        locals: { user: following_user }
+        locals: { 
+          user: following_user,
+          size: "md"
+        }
       ),
       # follow counters on user view
       turbo_stream.replace(
@@ -40,7 +43,7 @@ class FollowsController < ApplicationController
     following_user = User.find_by(id: following_id)
 
     # destroy a follow relationship
-    current_user.destroyFollow(following_user);
+    current_user.destroy_follow(following_user);
     
     # render and replace all follow buttons and counters
     render turbo_stream: [
@@ -48,7 +51,10 @@ class FollowsController < ApplicationController
       turbo_stream.replace(
         "follow_button_#{following_id}", 
         partial: 'components/follow-button', 
-        locals: { user: following_user }
+        locals: { 
+          user: following_user,
+          size: "md"
+        }
       ),
       # follow counters on user view
       turbo_stream.replace(

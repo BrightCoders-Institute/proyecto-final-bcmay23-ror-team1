@@ -1,19 +1,28 @@
-<%= turbo_frame_tag "follow_button_#{user.id}" do %>
+<!-- validate if user is present -->
+<% if local_assigns[:user].present? %>
+
+  <!-- validate if size is present -->
+  <% local_assigns[:size].present? unless size = "md" %>
+
+  <%= turbo_frame_tag "follow_button_#{user.id}" do %>
     <% if current_user.follows?(user) %>
       <%= 
         link_to "Unfollow",
         follow_path(id: user.id),
+        class: "follow-button unfollow-aparence follow-button-size-#{size}",
         remote: true,
-        data: { turbo_method: :delete },
-        class: "follow-button unfollow-aparence follow-button-size-md"
+        data: { turbo_method: :delete }
       %>
     <% else %>
       <%= 
         link_to "Follow",
         follows_path(id: user.id),
+        class: "follow-button follow-aparence follow-button-size-#{size}",
         remote: true,
-        data: { turbo_method: :post },
-        class: "follow-button follow-aparence follow-button-size-md"
+        data: { turbo_method: :post }
       %>
     <% end %>
+  <% end %>
+<% else %>
+  <p>no user provided</p>
 <% end %>
