@@ -1,18 +1,23 @@
-<div class="forgot_password">
-  <h2 class="forgot_password_title">Forgot your password?</h2>
+<div class="signup-view-container">
+  <div class="form">
 
-  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+    <%= link_to "X", root_path, class: "form-close-button" %>
+
+    <h2 class="form-title">Forgot your password?</h2>
+
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
 
     <div class="field">
       <%= f.label :email, class: 'forgot_password_label' %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "user@example.com", class: 'forgot_password_input' %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "user@example.com", class: "input-form input-neutral" %>
     </div>
 
     <div class="actions">
-      <%= f.submit "Send me reset password instructions", class: "forgot_password_button" %>
+      <%= f.submit "Send me reset password instructions", class: "submit-button forgot_password_button"%>
     </div>
   <% end %>
 
   <%= render "devise/shared/links" %>
+  </div>
 </div>
