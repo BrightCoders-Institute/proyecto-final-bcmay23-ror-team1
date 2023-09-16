@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :redirect_if_not_signed_in!
 
   def index
-    @posts = Post.where(deleted: false, user_id: @followings_ids)
+    @posts = Post.where(deleted: false, user_id: @user_suggestions.follows_ids)
                   .includes(:shared_posts_relation)
                   .with_attached_images
                   .order(created_at: :desc)

@@ -1,8 +1,11 @@
-<div class="modal-new-post">
+<div class="modal-new-post" data-controller="modal" data-modal-target="modal">
   <div class="modal-followings-suggestions-content">
     
-    <div class="modal-title-container">
+    <div class="modal-header">
       <h2 class="title">Discover to follow</h2>
+      <div class="modal-button-container">
+        <button class="submit-button" data-action="click->modal#closeModal">Skip</button>
+      </div>
     </div>
 
     <div class="modal-follows-suggestions-list modal-scroll">
