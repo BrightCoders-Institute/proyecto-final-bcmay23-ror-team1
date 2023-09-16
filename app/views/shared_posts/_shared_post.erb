@@ -1,7 +1,7 @@
 <div class="post border-post">
 
   <div class="repost-header">
-    <%= "#{repost.user.name} reposted"%>
+    <%= "@#{repost.user.username} reposted"%>
   </div>
 
   <%= render partial: 'posts/post-simple',
@@ -9,4 +9,5 @@
       post: repost.post, 
       view: :index,
       is_parent_of_comment: false } %>
+      
 </div>

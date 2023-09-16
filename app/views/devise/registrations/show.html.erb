@@ -1,72 +1,76 @@
 <div class="profile-view">
 
-  <% if @user.present? %>
+  <% if @user_profile.user.present? %>
 
     <%= render partial: 'users/profile-images' %>
-    
+
     <!-- Show user info: name, username, bio, join date, follows and follower -->
-    <%= render partial: 'devise/registrations/user-info', locals: {user: @user} %>
+    <%= render partial: 'devise/registrations/user-info' %>
+    
+    <!-- show user navigation tabs -->
+    <%= render partial: 'users/profile-tabs' %>
 
-    <div class="content-container">
+    <!-- Show content of column -->
+    <div class="post-container">
 
-      <%# show user navigation tabs %>
-      <%= render partial: 'users/profile-tabs', locals: { navigation_tabs: @navigation_tabs } %>
+      <!-- posts and shares columns  -->
+      <% if @user_profile.tab == "posts" %>
+        <% if @user_profile.posts.any? %>
 
-      <!-- Show content of column -->
-      <div class="post-container">
-        <%# posts and shares columns %>
-        <% if @tab == "posts" %>
-          <% if @posts_and_shared.any? %>
-            <% @posts_and_shared.each do |element| %>
-              <% if element.class == Post %>
-                <%= render partial: 'posts/post-simple', 
-                  locals: {
-                    view: nil, 
-                    post: element,
-                    is_parent_of_comment: false} %>
-              <% else %>
-                <%= render partial: 'shared_posts/shared_post', locals: {view: nil, repost: element} %>
-              <% end %>
+          <% @user_profile.posts.each do |post| %>
+            <% if post.class == Post %>
+              <%= render partial: 'posts/post-simple', 
+                locals: {
+                  view: nil, 
+                  post: post,
+                  is_parent_of_comment: false} %>
+
+            <% else %>
+              <%= render partial: 'shared_posts/shared_post', 
+                locals: {
+                  view: nil,
+                  repost: post } %>
+
             <% end %>
-          <% else %>
-            <p class="no-content-label">No posts</p>
           <% end %>
+
+        <% else %>
+          <p class="no-content-label">No posts</p>
         <% end %>
+      <% end %>
 
-        <%# likes columns %>
-        <% if @tab == "likes" %>
-          <% if @user.liked_posts.any? %>
 
-            <%= render partial: "posts/post-simple",
-              collection: @user.liked_posts.where(deleted: false), as: :post,
-              locals: { 
-                view: nil,
-                is_parent_of_comment: false 
-              } 
-            %>
+      <!-- likes columns -->
+      <% if @user_profile.tab == "likes" %>
+          <% if @user_profile.liked_posts.any? %>
+
+          <%= render partial: "posts/post-simple",
+            collection: @user_profile.liked_posts, as: :post,
+            locals: { 
+              view: nil,
+              is_parent_of_comment: false } %>
 
           <% else %>
             <p class="no-content-label">No liked posts</p>
           <% end %>
         <% end %>
 
-        <%# comments columns %>
-        <% if @tab == "comments" %>
 
-          <% if @user.comments.any? %>
-            <%= render partial: "posts/post-simple", 
-              collection: @user.comments.where(deleted: false), as: :post, 
-              locals: {
-                view: :index, 
-                is_parent_of_comment: false
-              } 
-            %>
-          <% else %>
-            <p class="no-content-label">No comments</p>
-          <% end %>
+      <!-- comments columns  -->
+      <% if @user_profile.tab == "comments" %>
+        <% if @user_profile.comments.any? %>
 
+        <%= render partial: "posts/post-simple", 
+          collection: @user_profile.comments, as: :post, 
+          locals: {
+            view: nil, 
+            is_parent_of_comment: false } %>
+
+        <% else %>
+          <p class="no-content-label">No comments</p>
         <% end %>
-      </div>
+      <% end %>
+
     </div>
 
   <% else %> <!-- no user -->

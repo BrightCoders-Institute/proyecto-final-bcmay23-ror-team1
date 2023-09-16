@@ -37,35 +37,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   
-  def show
-    @tab = params[:tab]
-    @tab = "posts" if @tab.blank?
-   
-    @user = User.find_by(id: params[:user_id])
-    
-    if @user.present?
-
-      @navigation_tabs = [
-        {
-          "route" => user_path(@user, tab: "posts"),
-          "text" => "Posts",
-          "active" => @tab == "posts" || @tab.blank?,
-        },
-        {
-          "route" => user_path(@user, tab: "likes"),
-          "text" => "Likes",
-          "active" => @tab == "likes",
-        },
-        {
-          "route" => user_path(@user, tab: "comments"),
-          "text" => "Comments",
-          "active" => @tab == "comments",
-        },
-      ]
-      posts = @user.posts.with_attached_images.order(created_at: :desc).load_async
-      shared_posts = @user.shared_posts_relation.order(created_at: :desc).load_async
-      @posts_and_shared = (posts + shared_posts).sort_by { |post| post.created_at }
-    end
+  def show 
+    @user_profile = UserProfile.new(params[:user_id], params[:tab])
   end
 
   def show_followers
