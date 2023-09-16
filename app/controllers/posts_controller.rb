@@ -3,29 +3,20 @@ class PostsController < ApplicationController
   before_action :redirect_if_not_signed_in!
 
   def index
-    @posts = Post.where(deleted: false, user_id: @user_suggestions.follows_ids)
-                  .includes(:shared_posts_relation)
-                  .with_attached_images
-                  .order(created_at: :desc)
-                  .load_async
 
-    @sharedPosts = SharedPost.all.order(created_at: :desc).load_async
-    @posts = (@posts + @sharedPosts).sort_by { |post| post.created_at }
-    @posts = @posts.reverse
-
-    @posts_page_number = params[:page].present? ? params[:page].to_i : 1
-    @posts = @posts.paginate(page: @posts_page_number, per_page: 10)
+    users_ids = @user_suggestions.follows_ids
+    @publications = Publications.new(users_ids, params[:page], 10)
 
     @post = Post.new # fills the the "new post" form
 
-    if @posts.count.zero?
+    if @publications.posts.count.zero?
       render turbo_stream:
         turbo_stream.append('posts_list', partial: 'posts/no-posts')
       
     elsif params[:page].present?
       render turbo_stream:
         turbo_stream.append(:posts_list,
-          partial: 'posts/posts-list', locals: { posts: @posts } )
+          partial: 'posts/posts-list', locals: { posts: @publications.posts } )
     end
            
   end

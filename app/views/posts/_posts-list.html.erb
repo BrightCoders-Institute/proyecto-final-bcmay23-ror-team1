@@ -13,11 +13,11 @@
 
 <%end%>
 
-<% if @posts_page_number < posts.total_pages %>
+<% if @publications.page_number < posts.total_pages %>
 	<div
 		class="button button-primary w100"
 		data-controller="posts-loading"
 		data-action="click->posts-loading#destroyButton">
-		<%= link_to "Load more", posts_path(page: @posts_page_number + 1), remote: true %>
+		<%= link_to "Load more", posts_path(page: @publications.next_page), remote: true %>
 	</div>
 <% end %>
