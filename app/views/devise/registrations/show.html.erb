@@ -34,15 +34,24 @@
     </div>
 
     <!-- Show content of column -->
-    <div class="content-column">
+    <div class="post-container">
       <% if @tab == "posts" %>
-        <% if @user.posts.any? %>
 
-          <%= render partial: "posts/post-simple",
-            collection: @user.posts.where(deleted: false), as: :post,
-            locals: { 
-              view: nil, is_parent_of_comment: false } %>
+        <% if @posts_and_shared.any? %>
+          <% @posts_and_shared.each do |element| %>
+            <%if element.class == Post %>
 
+              <%= render partial: 'posts/post-simple', 
+                locals: {
+                  view: nil, 
+                  post: element,
+                  is_parent_of_comment: false} %>
+
+            <% else %>
+              <%= render partial: 'shared_posts/shared_post', locals: {view: nil, repost: element} %>
+            <% end %>
+          <% end %>
+          
         <% else %>
           <p class="no-content-label">No posts</p>
         <% end %>
