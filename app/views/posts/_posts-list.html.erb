@@ -13,9 +13,11 @@
 
 <%end%>
 
-<div
-	class="button button-primary w100"
-	data-controller="posts-loading"
-	data-action="click->posts-loading#destroyButton">
-	<%= link_to "Load more", posts_path(page: @page_number + 1), remote: true %>
-</div>
+<% if @posts_page_number < posts.total_pages %>
+	<div
+		class="button button-primary w100"
+		data-controller="posts-loading"
+		data-action="click->posts-loading#destroyButton">
+		<%= link_to "Load more", posts_path(page: @posts_page_number + 1), remote: true %>
+	</div>
+<% end %>

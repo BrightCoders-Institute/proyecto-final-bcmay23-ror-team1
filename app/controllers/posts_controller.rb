@@ -3,12 +3,7 @@ class PostsController < ApplicationController
   before_action :redirect_if_not_signed_in!
 
   def index
-
-    # Ids of the followed users to filter
-    followings_ids = Follow.where(follower_id: current_user.id).pluck(:following_id)
-    followings_ids.append(current_user.id)
-    
-    @posts = Post.where(deleted: false, user_id: followings_ids)
+    @posts = Post.where(deleted: false, user_id: @followings_ids)
                   .includes(:shared_posts_relation)
                   .with_attached_images
                   .order(created_at: :desc)
@@ -18,8 +13,8 @@ class PostsController < ApplicationController
     @posts = (@posts + @sharedPosts).sort_by { |post| post.created_at }
     @posts = @posts.reverse
 
-    @page_number = params[:page].present? ? params[:page].to_i : 1
-    @posts = @posts.paginate(page: @page_number, per_page: 20)
+    @posts_page_number = params[:page].present? ? params[:page].to_i : 1
+    @posts = @posts.paginate(page: @posts_page_number, per_page: 10)
 
     @post = Post.new # fills the the "new post" form
 

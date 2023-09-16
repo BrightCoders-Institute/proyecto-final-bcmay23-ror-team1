@@ -1,6 +1,6 @@
 <div class="follow-suggestions">
 
-  <% if @follow_suggestions.count.zero? %>
+  <% if @user_suggestions.to_follow.count.zero? %>
     <h2 class="title">You did it!</h2>
     <p class="title opaque-text">There's no one else to follow!</p>
 
@@ -8,7 +8,7 @@
 
     <h2 class="title">Who to follow</h2>
 
-    <% @follow_suggestions.each do |user| %>
+    <% @user_suggestions.to_follow.each do |user| %>
       <%= render partial: 'follows/user-suggestion', locals: { user: user } %>
     <% end %>
 

@@ -39,10 +39,7 @@ class ApplicationController < ActionController::Base
 
       if current_user.present?
         @notifications_number = Notification.where(receiver: current_user, read: false).count
-
-        followings_ids = Follow.where(follower_id: 1).pluck(:following_id)
-        followings_ids.append(current_user.id)
-        @follow_suggestions = User.where.not(id: followings_ids).order('RANDOM()').limit(3)
+        @user_suggestions = UsersSuggestions.new(current_user, 1, 5)
       end
     end
 

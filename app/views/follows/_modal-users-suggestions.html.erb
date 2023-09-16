@@ -5,16 +5,13 @@
       <h2 class="title">Discover to follow</h2>
     </div>
 
-    <% followings_ids = Follow.where(follower_id: 1).pluck(:following_id) %>
-    <% followings_ids.append(current_user.id) %>
-    <!-- .order('RANDOM()') -->
-    <% first_follows = User.where.not(id: followings_ids) %>
-
     <div class="modal-follows-suggestions-list modal-scroll">
-      
-      <% first_follows.each do |user| %>
-        <%= render partial: 'follows/user-suggestion', locals: { user: user } %>
+
+      <%= turbo_frame_tag 'modal_users_suggestions_list' do %>
+        <%= render partial: 'follows/modal-users-suggestions-list',
+          locals: { firsts_to_follow: @user_suggestions.firsts_to_follow } %>
       <% end %>
+
     </div>
 
   </div>

@@ -1,4 +1,4 @@
-<%= link_to user do %>
+<%= link_to user, data: { turbo: false } do %>
   <div class="follow-user-suggestion">
 
     <% if user.avatar.present? %>

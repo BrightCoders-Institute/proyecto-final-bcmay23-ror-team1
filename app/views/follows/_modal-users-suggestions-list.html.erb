@@ -1,0 +1,13 @@
+<% firsts_to_follow.each do |user| %>
+  <%= render partial: 'follows/user-suggestion', locals: { user: user } %>
+<% end %>
+
+<% if @user_suggestions.page_number < firsts_to_follow.total_pages %>
+  <div 
+    class="button button-primary w100"
+    data-controller="posts-loading"
+    data-action="click->posts-loading#destroyButton">
+
+    <%= link_to "Load more", unfolloweds_path(page: @user_suggestions.next_page) %>
+  </div>
+<% end %>
