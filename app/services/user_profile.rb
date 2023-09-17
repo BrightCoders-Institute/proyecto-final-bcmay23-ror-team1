@@ -2,9 +2,10 @@ class UserProfile
   attr_reader :user, :tab
   include Rails.application.routes.url_helpers
 
-  def initialize(user_id, tab)
+  def initialize(user_id, tab, publications)
     @user = User.find_by(id: user_id)
     @tab = tab.blank? ? 'posts' : tab
+    @publications = publications
   end
 
   def avatar
@@ -53,15 +54,17 @@ class UserProfile
   def posts
     shared_posts = @user.shared_posts_relation.order(created_at: :desc).load_async
     posts_and_shared = (self.real_posts + shared_posts).sort_by { |post| post.created_at }
-    posts_and_shared.reverse
+    @publications.paginate(posts_and_shared.reverse)
   end
 
   def liked_posts
-    @user.liked_posts.where(deleted: false)
+    liked_posts = @user.liked_posts.where(deleted: false)
+    @publications.paginate(liked_posts)
   end
 
   def comments
-    @user.comments.where(deleted: false)
+    comments = @user.comments.where(deleted: false)
+    @publications.paginate(comments)
   end
 
 end

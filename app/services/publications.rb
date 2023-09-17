@@ -25,10 +25,8 @@ class Publications
     @page_number + 1
   end
 
-  private
-
   def paginate(posts)
-    posts.paginate(page: @page_number, per_page: 10)
+    posts.paginate(page: @page_number, per_page: @per_page)
   end
 
 end

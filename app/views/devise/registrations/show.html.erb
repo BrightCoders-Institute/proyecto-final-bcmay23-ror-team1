@@ -16,22 +16,9 @@
       <!-- posts and shares columns  -->
       <% if @user_profile.tab == "posts" %>
         <% if @user_profile.posts.any? %>
-
-          <% @user_profile.posts.each do |post| %>
-            <% if post.class == Post %>
-              <%= render partial: 'posts/post-simple', 
-                locals: {
-                  view: nil, 
-                  post: post,
-                  is_parent_of_comment: false} %>
-
-            <% else %>
-              <%= render partial: 'shared_posts/shared_post', 
-                locals: {
-                  view: nil,
-                  repost: post } %>
-
-            <% end %>
+        
+          <%= turbo_frame_tag 'profile_posts_list' do %>
+            <%= render partial: 'users/profile-posts-list' %>
           <% end %>
 
         <% else %>
@@ -42,13 +29,11 @@
 
       <!-- likes columns -->
       <% if @user_profile.tab == "likes" %>
-          <% if @user_profile.liked_posts.any? %>
+        <% if @user_profile.liked_posts.any? %>
 
-          <%= render partial: "posts/post-simple",
-            collection: @user_profile.liked_posts, as: :post,
-            locals: { 
-              view: nil,
-              is_parent_of_comment: false } %>
+          <%= turbo_frame_tag 'profile_liked_posts_list' do %>
+            <%= render partial: 'users/profile-liked-posts-list' %>
+          <% end %>
 
           <% else %>
             <p class="no-content-label">No liked posts</p>
@@ -60,11 +45,9 @@
       <% if @user_profile.tab == "comments" %>
         <% if @user_profile.comments.any? %>
 
-        <%= render partial: "posts/post-simple", 
-          collection: @user_profile.comments, as: :post, 
-          locals: {
-            view: nil, 
-            is_parent_of_comment: false } %>
+          <%= turbo_frame_tag 'profile_comments_list' do %>
+            <%= render partial: 'users/profile-comments-list' %>
+          <% end %>
 
         <% else %>
           <p class="no-content-label">No comments</p>

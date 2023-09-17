@@ -36,9 +36,25 @@ class Users::RegistrationsController < Devise::RegistrationsController
     redirect_to root_path
   end
 
-  
-  def show 
-    @user_profile = UserProfile.new(params[:user_id], params[:tab])
+  def show
+    @publications = Publications.new(params[:user_id], params[:page], 5)
+    @user_profile = UserProfile.new(params[:user_id], params[:tab], @publications)
+
+    if params[:page]
+
+      case params[:tab]
+        when 'posts'
+          render turbo_stream:
+            turbo_stream.append('profile_posts_list', partial: 'users/profile-posts-list')
+        when 'likes'
+          render turbo_stream:
+            turbo_stream.append('profile_liked_posts_list', partial: 'users/profile-liked-posts-list')
+        when 'comments'
+          render turbo_stream:
+            turbo_stream.append('profile_comments_list', partial: 'users/profile-comments-list')
+        end
+
+    end
   end
 
   def show_followers
