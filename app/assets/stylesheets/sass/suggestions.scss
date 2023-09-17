@@ -50,33 +50,31 @@
 }
 
 .modal-followings-suggestions {
+  background: red;
   position: absolute;
   z-index: 10;
-  background: red;
 
   .modal-content {
     background-color: $colorBlack;
     border-radius: 8px;
-    height: fit-content;
-    margin-top: 10%;
-    padding: 1rem;
-    width: 50%;  
-    max-height: 50%;
-    overflow-y: scroll;
     display: flex;
     flex-direction: column;
-
+    height: fit-content;
+    margin-top: 10%;  max-height: 50%;
+    overflow-y: scroll;
+    padding: 1rem;
+    width: 50%;  
     .modal-header {
+      align-items:center;
       display: flex;
       justify-content: space-between;
-      align-items:center;
       
       .modal-button-container {
         width: 20%;
 
         .submit-button {
-          margin-top: 0;
           height: 2rem;
+          margin-top: 0;
         }
       }
     }
