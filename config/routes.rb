@@ -14,14 +14,21 @@ Rails.application.routes.draw do
   end
 
   resources :likes, only: [:create, :destroy]
-  resources :follows
+  resources :follows, only: [:create, :destroy]
   resources :shared_post, only: [:create, :destroy]
   resources :posts
 
   resources :search, only: [:index]
 
-  resources :notifications
+  resources :notifications, only: [:index, :create, :destroy, :put]
 
   get '/settings', to: 'users/settings#index', as: 'settings'
-  
+
+  # Uncomment the condition in development to see normal errors
+  # if !Rails.env.development?
+    get '*unmatched', to: 'application#route_not_found', constraints: lambda { |req|
+      req.path.exclude? 'rails/active_storage'
+    }
+  # end
+
 end

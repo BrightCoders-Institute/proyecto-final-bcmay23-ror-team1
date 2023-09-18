@@ -39,26 +39,29 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def show
     @tab = params[:tab]
     @tab = "posts" if @tab.blank?
+   
+    @user = User.find_by(id: params[:user_id])
     
-    @user = User.find(params[:user_id])
-    
-    @navigation_tabs = [
-      {
-        "route" => user_path(@user, tab: "posts"),
-        "text" => "Posts",
-        "active" => @tab == "posts" || @tab.blank?,
-      },
-      {
-        "route" => user_path(@user, tab: "likes"),
-        "text" => "Likes",
-        "active" => @tab == "likes",
-      },
-      {
-        "route" => user_path(@user, tab: "comments"),
-        "text" => "Comments",
-        "active" => @tab == "comments",
-      },
-    ]
+    if @user.present?
+
+      @navigation_tabs = [
+        {
+          "route" => user_path(@user, tab: "posts"),
+          "text" => "Posts",
+          "active" => @tab == "posts" || @tab.blank?,
+        },
+        {
+          "route" => user_path(@user, tab: "likes"),
+          "text" => "Likes",
+          "active" => @tab == "likes",
+        },
+        {
+          "route" => user_path(@user, tab: "comments"),
+          "text" => "Comments",
+          "active" => @tab == "comments",
+        },
+      ]
+    end
     
     posts = Post.all.includes(:shared_posts_relation).with_attached_images.order(created_at: :desc).load_async
     shared_posts = SharedPost.all.order(created_at: :desc).load_async

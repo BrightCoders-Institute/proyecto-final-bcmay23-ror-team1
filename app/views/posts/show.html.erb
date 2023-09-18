@@ -5,31 +5,40 @@
 
 <div class='post-container'>
 
+    <% if @post.present? %>
 
-  <% @ancestors.each do |post| %>
-	  <% if post.deleted %>
-	      <%= render partial: 'posts/deleted' %>
-	  <% else %>
-	      <% locals_parent = { view: :show, is_parent_of_comment: false, post: post } %>
-	      <%= render partial: 'posts/parent', locals: locals_parent %>
-	  <% end %>
-  <% end %>
-
-
-  <span data-controller="auto-scroll" data-action="load@window->auto-scroll#scrollToThis">
-	  <% if @post.deleted %>
-	      <%= render partial: 'posts/deleted', locals: { is_current_post: true } %>
-	  <% else %>
-      <% post_locals = {post: @post, view: :show, is_current_post: true, is_parent_of_comment: false } %>
-      <%= render partial: 'posts/post', locals: post_locals %>
-      <%= render partial: 'posts/new/form',
-      locals: { post: @comment, is_parent_of_comment: true, is_current_post: true }%>
-	  <% end %>
-  </span>
+    <% @ancestors.each do |post| %>
+  	  <% if post.deleted %>
+  	      <%= render partial: 'posts/deleted' %>
+  	  <% else %>
+  	      <% locals_parent = { view: :show, is_parent_of_comment: false, post: post } %>
+  	      <%= render partial: 'posts/parent', locals: locals_parent %>
+  	  <% end %>
+    <% end %>
 
 
-  <%= render partial: 'posts/post-simple',
-  collection: @comments.where(deleted: false), as: :post,
-  locals: { view: :show, is_parent_of_comment: false } %>
+    <span data-controller="auto-scroll" data-action="load@window->auto-scroll#scrollToThis">
+  	  <% if @post.deleted %>
+  	      <%= render partial: 'posts/deleted', locals: { is_current_post: true } %>
+  	  <% else %>
+        <% post_locals = {post: @post, view: :show, is_current_post: true, is_parent_of_comment: false } %>
+        <%= render partial: 'posts/post', locals: post_locals %>
+        <%= render partial: 'posts/new/form',
+          locals: { post: @comment, is_parent_of_comment: true, is_current_post: true }%>
+  	  <% end %>
+    </span>
+
+
+    <%= render partial: 'posts/post-simple',
+    collection: @comments.where(deleted: false), as: :post,
+    locals: { view: :show, is_parent_of_comment: false } %>
   
+  <% else %>
+
+    <div class="post border-post current-post">
+      Post doesn't exists
+    </div>
+
+  <% end %>
+    
 </div>

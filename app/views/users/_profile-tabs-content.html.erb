@@ -1,0 +1,43 @@
+<!-- Show content of column -->
+<div class="content-column">
+  <% if @tab == "posts" %>
+    <% if @user.posts.any? %>
+
+      <%= render partial: "posts/post-simple",
+        collection: @user.posts.where(deleted: false), as: :post,
+        locals: { 
+          view: nil, is_parent_of_comment: false } %>
+
+    <% else %>
+      <p class="no-content-label">No posts</p>
+    <% end %>
+  <% end %>
+
+  <% if @tab == "likes" %>
+    <% if @user.liked_posts.any? %>
+
+      <%= render partial: "posts/post-simple",
+        collection: @user.liked_posts.where(deleted: false), as: :post,
+        locals: { 
+          view: nil,
+          is_parent_of_comment: false } %>
+
+    <% else %>
+      <p class="no-content-label">No liked posts</p>
+    <% end %>
+  <% end %>
+
+  <% if @tab == "comments" %>
+    <% if @user.comments.any? %>
+
+      <%= render partial: "posts/post-simple", 
+        collection: @user.comments.where(deleted: false), as: :post, 
+        locals: {
+          view: nil, 
+          is_parent_of_comment: false } %>
+
+    <% else %>
+      <p class="no-content-label">No comments</p>
+    <% end %>
+  <% end %>
+</div>
