@@ -4,6 +4,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   layout 'layouts/application', only: [:show]
   before_action :configure_sign_up_params, only: [:create]
+  before_action :redirect_if_not_signed_in!, only: [:show, :edit, :update, :destroy]
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up

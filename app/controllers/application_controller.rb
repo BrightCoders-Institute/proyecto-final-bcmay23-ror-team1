@@ -4,7 +4,7 @@
 class ApplicationController < ActionController::Base
   layout :layout_by_resource
   before_action :layout_variables
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
   # before_action :set_user
 
   def route_not_found
@@ -50,4 +50,11 @@ class ApplicationController < ActionController::Base
     def set_user
       @user = User.find(params[:user_id]) if params[:user_id]
     end
+
+    def redirect_if_not_signed_in!
+      unless user_signed_in?
+        redirect_to root_path # Redirige a la vista inicial que desees
+      end
+    end
+    
 end

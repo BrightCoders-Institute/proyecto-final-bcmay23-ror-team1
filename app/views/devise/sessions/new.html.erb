@@ -1,64 +1,63 @@
-<div data-controller="modal" class="full-container">
-  <div class="colums-container">
-    <div class="image-container"></div>
-    <div class="main-container">
-      <div class="main-text-container mb-4">
-        <h1 class="main-text">What's happening now</h1>
-        <!-- <h1 class="main-text">pasando ahora</h1> -->
-      </div>
-      <div class="secondary-text-container mb-1">
-        <h2 class="secondary-text">Join Towgt today</h2>
-      </div>
-      <div class="signup-container mb-2">
-        <div class="button button-primary">
-          <%= link_to "Create Account", new_registration_path(resource_name) %>
-        </div>
-      </div>
-      <div class="signin-container">
-        <p class="mb-1">Already have an account?</p>
-        <div class="button button-outline text-blue">
-          <a data-action="click->modal#openModal" class="text-blue">Sign in</a>
-        </div>
-      </div>
+<div class="login-view">
+  <div class="login-modal-form">
+    <div class="header">
+      <%= link_to root_path, class: "close-button" do %>
+        <i class="fas fa-times"></i>
+        <% end %>
+          <h2>Towtg</h2>
     </div>
-  </div>
-  <div data-modal-target="modal" class="modal">
-    <div class="sigin-form">
-      <span data-action="click->modal#closeModal" class="close-button">x</span>
-      <h2 class="form-title">Sign in to Towgt</h2>
-      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <div class="field mb-1">
-          <%= f.label :email %>
-          <%= 
-            f.email_field :email, 
-            autofocus: true, 
-            autocomplete: "email",
-            class: "input-form input-neutral"
-          %>
-        </div>
-      
-        <div class="field">
-          <%= f.label :password %>
-          <%= 
-            f.password_field :password, 
-            autocomplete: "current-password",
-            class: "input-form input-neutral"
-          %>
-        </div>
-        
-        <div class="actions mb-2">
-          <%= f.submit "Next", class: "submit-button" %>
-        </div>
 
-        <div class="button-block button-outline text-white mb-3">
-          <%= link_to "Forgot your password?", new_password_path(resource_name) %>
-        </div>
-
-        <div class="form-question">
-          <p>Dont't have an account? <%= link_to "Sign Up", new_registration_path(resource_name) %></p>
+    <div class="body-wraper">
+      <div class="body">
+        <h2 class="title">Sign in to Towgt</h2>
+  
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="field">
+            <%= f.label :email %>
+            <% if flash[:alert] %>
+              <%= f.email_field :email, autofocus: true , autocomplete: "email",class: "input-form input-error" %>
+            <% else %>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email" , class: "input-form input-neutral" %>
+            <% end%>
+            </div>    
+  
+          <div class="field">
+            <%= f.label :password %>
+            <% if flash[:alert] %>
+              <%= f.password_field :password, autocomplete: "current-password" , class: "input-form input-error" %>
+            <% else %>
+              <%= f.password_field :password, autocomplete: "current-password" , class: "input-form input-neutral" %>
+            <% end%>
+          </div>
+  
           
-        </div>
-      <% end %>
+  
+          <% if flash[:alert] %>
+            <div class="error-message">
+              <%= flash[:alert] %>
+            </div>
+          <% end %>
+  
+          <div class="buttons-container">
+            <div class="actions">
+              <%= f.submit "Next" , class: "submit" %>
+            </div>
+    
+            <div class="button-block button-outline text-white mb-3">
+              <%= link_to "Forgot your password?" , new_password_path(resource_name) %>
+            </div>
+          </div>
+  
+          <div class="links">
+            <p>
+              Dont't have an account? 
+                <%= link_to "Sign Up" , new_registration_path(resource_name) %>
+            </p>
+  
+          </div>
+        <% end %>
+      </div>
     </div>
+    
   </div>
 </div>
