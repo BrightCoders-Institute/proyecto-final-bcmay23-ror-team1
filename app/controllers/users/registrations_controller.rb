@@ -39,7 +39,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def show
     @tab = params[:tab]
     @tab = "posts" if @tab.blank?
-    
+   
     @user = User.find_by(id: params[:user_id])
     
     if @user.present?
@@ -61,13 +61,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
           "active" => @tab == "comments",
         },
       ]
-      
-      user_created_month_number = @user.created_at.strftime("%m").to_i 
-      user_created_month_name = Date::MONTHNAMES[user_created_month_number]
-      user_created_year = @user.created_at.strftime("%Y")  
-      @user_created_date = "Joined in #{user_created_month_name} #{user_created_year}"
     end
+    
+    posts = Post.all.includes(:shared_posts_relation).with_attached_images.order(created_at: :desc).load_async
+    shared_posts = SharedPost.all.order(created_at: :desc).load_async
 
+    @posts_and_shared = (posts + shared_posts).sort_by { |post| post.created_at }
+    @posts_and_shared = @posts_and_shared.reverse
   end
 
   def destroy

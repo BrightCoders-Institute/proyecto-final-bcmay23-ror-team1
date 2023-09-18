@@ -8,22 +8,25 @@
     <%= render partial: 'devise/registrations/user-info', locals: {user: @user} %>
 
     <div class="content-container">
-
       <%= render partial: 'users/profile-tabs', locals: { navigation_tabs: @navigation_tabs } %>
+    <!-- Show content of column -->
+    <div class="post-container">
+      <% if @tab == "posts" %>
+        <% if @posts_and_shared.any? %>
+          <% @posts_and_shared.each do |element| %>
+            <%if element.class == Post %>
+              <%= render partial: 'posts/post-simple', 
+                locals: {
+                  view: nil, 
+                  post: element,
+                  is_parent_of_comment: false} %>
 
-      <!-- Show content of column -->
-      <div class="content-column">
-        <% if @tab == "posts" %>
-          <% if @user.posts.any? %>
-
-            <%= render partial: "posts/post-simple",
-              collection: @user.posts.where(deleted: false), as: :post,
-              locals: { 
-                view: nil, is_parent_of_comment: false } %>
-
-          <% else %>
-            <p class="no-content-label">No posts</p>
+            <% else %>
+              <%= render partial: 'shared_posts/shared_post', locals: {view: nil, repost: element} %>
+            <% end %>
           <% end %>
+        <% else %>
+          <p class="no-content-label">No posts</p>
         <% end %>
 
         <% if @tab == "likes" %>
