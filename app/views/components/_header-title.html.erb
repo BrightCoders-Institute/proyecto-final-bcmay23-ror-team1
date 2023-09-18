@@ -6,7 +6,10 @@
   <% if @user %>
     <% path = user_path(@user) %>
     <% if current_page?(path) || current_page?("#{path}/likes") || current_page?("#{path}/posts") || current_page?("#{path}/comments") %>
-      <%= render partial: "components/user-header", locals: { user: @user } %>
+      <%= render partial: "components/user-header", locals: { user: @user, follow_context: false } %>
+    <% end %>
+    <% if current_page?(user_followers_path) || current_page?(user_followings_path) %>
+      <%= render partial: "components/user-header", locals: { user: @user, follow_context: true } %> 
     <% end %>
   <% end %>
 </h1>
