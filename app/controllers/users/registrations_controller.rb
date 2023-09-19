@@ -61,11 +61,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
           "active" => @tab == "comments",
         },
       ]
+      posts = @user.posts.with_attached_images.order(created_at: :desc).load_async
+      shared_posts = @user.shared_posts_relation.order(created_at: :desc).load_async
+      @posts_and_shared = (posts + shared_posts).sort_by { |post| post.created_at }
     end
 
-    posts = @user.posts.with_attached_images.order(created_at: :desc).load_async
-    shared_posts = @user.shared_posts_relation.order(created_at: :desc).load_async
-    @posts_and_shared = (posts + shared_posts).sort_by { |post| post.created_at }
   end
 
   def destroy
