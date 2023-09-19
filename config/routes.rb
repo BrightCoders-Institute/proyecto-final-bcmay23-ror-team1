@@ -3,7 +3,11 @@
 Rails.application.routes.draw do
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-  devise_for :users, controllers: { registrations: "users/registrations" }
+  devise_for :users, controllers: { 
+    registrations: "users/registrations", 
+    confirmations: "users/confirmations",
+    sessions: "users/sessions"
+  }
 
   authenticated :user do
     root 'posts#index', as: :authenticated_root
