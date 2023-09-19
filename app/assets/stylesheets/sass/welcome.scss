@@ -1,0 +1,155 @@
+.welcome-view {
+  .mb-1 {
+    margin-bottom: 1rem;
+  }
+
+  .mb-2 {
+    margin-bottom: 2rem;
+  }
+
+  .mb-3 {
+    margin-bottom: 3rem;
+  }
+
+  .mb-4 {
+    margin-bottom: 4rem;
+  }
+
+  .full-container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    width: 100vw;
+
+    &::-webkit-scrollbar {
+      width: 0px;
+    }
+  }
+
+  .colums-container {
+    display: grid;
+    grid-template-columns: 3fr 4fr;
+    height: 100%;
+    width: 100%;
+  }
+
+  .image-container {
+    background-image: url("twitter_home_bg.png");
+    background-size: cover;
+  }
+
+  .main-container {
+    background-color: $colorBlack;
+    color: $colorWhite;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 3rem;
+  }
+
+  .button {
+    align-items: center;
+    color: $colorWhite;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-decoration: none;
+    width: 15rem;
+  }
+
+  .button-primary {
+    a {
+      align-items: center;
+      background-color: $colorBlue;
+      border-radius: 20px;
+      color: $colorWhite;
+      display: flex;
+      height: 40px;
+      justify-content: center;
+      text-decoration: none;
+      width: 100%;
+    }
+  }
+
+  .button-primary:hover {
+    a {
+      background-color: rgba(34, 136, 255, 0.9);
+    }
+  }
+
+  .button-outline {
+    a {
+      align-items: center;
+      background-color: transparent;
+      border-radius: 20px;
+      display: flex;
+      height: 40px;
+      justify-content: center;
+      outline: solid 1px $colorWhite;
+      text-decoration: none;
+      width: 100%;
+    }
+  }
+
+  .text-blue {
+    color: $colorBlue;
+
+    a {
+      color: $colorBlue;
+    }
+  }
+
+  .text-white {
+    color: $colorWhite;
+
+    a {
+      color: $colorWhite;
+    }
+  }
+
+  .button-outline:hover {
+    a {
+      background-color: rgba(34, 136, 255, 0.1);
+    }
+  }
+
+  .main-text {
+    font-size: 4rem;
+    font-weight: bold;
+  }
+
+  .secondary-text {
+    font-size: 1.5rem;
+    font-weight: 100;
+  }
+
+
+  @media only screen and (max-width: 702px) {
+    .image-container {
+      display: none;
+    }
+
+    .colums-container {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .main-container {
+      height: 100%;
+    }
+    
+    .main-text {
+      font-size: 5rem;
+    }
+  
+  }
+
+  @media only screen and (max-width: 480px) {
+    .main-text{
+      font-size: 1.9rem;
+    }
+  }
+}

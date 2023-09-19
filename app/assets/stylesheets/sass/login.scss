@@ -1,246 +1,153 @@
-.full-container {
-  align-items: center;
+.login-view {
+  background-color: #242D34;
   display: flex;
-  flex-direction: column;
-  height: 100vh;
-  justify-content: center;
-  width: 100vw;
-}
-
-.full-container::-webkit-scrollbar{
-  width: 0px;
-}
-
-.sigin-form {
-  align-items: center;
-  background-color: $colorBlack;
-  border-radius: 15px;
-  color: $colorWhite;
-  display: flex;
-  flex-direction: column;
-  font-size: 18px;
-  justify-content: center;
-  margin: auto;
-  padding: 1rem 3rem 3rem 3rem;
-  width: 40%;
-
-  .form-title {
-    margin-bottom: 1rem;
-  }
-
-  .field {
-    width: 260px;
-  }
-
-  .input-form {
-    background: $colorBlack;
-    border: 1px solid $colorGray;
-    border-radius: 4px;
-    color: $colorWhite;
-    font-size: 18px;
-    height: 40px;
-  }
-
-  .close-button {
-    align-self: flex-start;
-    color: $colorWhite;
-    cursor: pointer;
-    margin-bottom: 2rem;
-  }
-}
-
-.form-question {
-  color: $colorGray;
-  font-size: .9rem;
-  margin-top: 1rem;
-  a{
-    color: $colorBlue;
-    text-decoration: none;
-  }
-}
-
-.colums-container {
   display: grid;
-  grid-template-columns: 3fr 4fr;
-  height: 100%;
-  width: 100%;
-}
+  height: 100vh;
+  overflow: hidden;
+  place-items: center;
+  width: 100vw;
 
-.image-container {
-  background-image: url("twitter_home_bg.png");
-  background-size: cover;
-}
+  .login-modal-form {
+    background-color: $colorBlack;
+    border-radius: 16px;
+    height: 650px;
+    max-height: 90vh;
+    max-width: 80vw;
+    min-height: 400px;
+    min-width: 600px;
+    overflow: auto;
+    position: relative;
 
-.main-container {
-  background-color: $colorBlack;
-  color: $colorWhite;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-left: 3rem;
-}
+    .header {
+      align-items: center;
+      background-color: $colorBlack;
+      display: flex;
+      height: 3.4rem;
+      justify-content: center;
+      position: sticky;
+      top: 0;
+      width: 100%;
 
-.mb-1 {
-  margin-bottom: 1rem;
-}
-
-.mb-2 {
-  margin-bottom: 2rem;
-}
-
-.mb-3 {
-  margin-bottom: 3rem;
-}
-
-.mb-4 {
-  margin-bottom: 4rem;
-}
-
-.button {
-  align-items: center;
-  color: $colorWhite;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-decoration: none;
-  width: 15rem;
-}
-
-.button-block {
-  align-items: center;
-  color: $colorWhite;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
-}
-
-.signin-container {
-  p {
-    font-size: 1rem;
-    font-weight: 100;
-  }
-}
-
-.button-primary {
-  a {
-    align-items: center;
-    background-color: $colorBlue;
-    border-radius: 20px;
-    color: $colorWhite;
-    display: flex;
-    height: 40px;
-    justify-content: center;
-    text-decoration: none;
-    width: 100%;
-  }
-}
-
-.button-primary:hover {
-  a {
-    background-color: rgba(34, 136, 255, 0.9);
-  }
-}
-
-.button-outline {
-  a {
-    align-items: center;
-    background-color: transparent;
-    border-radius: 20px;
-    display: flex;
-    height: 40px;
-    justify-content: center;
-    outline: solid 1px $colorWhite;
-    text-decoration: none;
-    width: 100%;
-  }
-}
-
-.text-blue {
-  color: $colorBlue;
-  a{
-    color: $colorBlue;
-  }
-}
-
-.text-white {
-  color: $colorWhite;
-  a{
-    color: $colorWhite;
-  }
-}
-
-.button-outline:hover {
-  a {
-    background-color: rgba(34, 136, 255, 0.1);
-  }
-}
-
-.main-text {
-  font-size: 4rem;
-  font-weight: bold;
-}
-
-.secondary-text {
-  font-size: 1.5rem;
-  font-weight: 100;
-}
-
-.modal {
-  background-color: rgba(89, 89, 92, 0.5);
-  display: none;
-  height: 100%;
-  left: 0;
-  overflow: auto;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 1;
-}
-
-@media only screen and (max-width: 702px) {
-
-  .image-container {
-    display: none;
-  }
-
-  .sigin-form{
-    border-radius: 0;
-    height: 100vh;
-    margin: 0;
-    padding: 0;
-    width: 100vw;
-    .close-button{
-      margin: 3rem;
+      .close-button {
+        left: 1rem;
+        position: absolute;
+      }
     }
-  }
+    
+    .body-wraper{
+      display: flex;
+      justify-content: center;
+      width: 100%;
 
+      .body {
+        display: flex;
+        flex-direction: column;
+        gap: 1.3rem;
+        margin: 1rem;
+        width: 300px;
+        
+        .title {
+          font-size: 2rem;
+        }
+  
+        form {
+          display: flex;
+          flex-direction: column;
+          gap: .3rem;
+  
+          label {
+            font-size: 1.2rem;
+          }
+        }
+  
+        .error-message {
+          color: $colorRed;
+          font-size: 1.2rem;
+        }
+  
+        .submit {
+          background-color: $colorWhite;
+          border: none;
+          border-radius: 2rem;
+          color: $colorBlack;
+          cursor: pointer;
+          font-size: 18px;
+          font-weight: bold;
+          height: 42px;
+          margin-top: 1rem;
+          width: 100%;
+        }
+  
+        .button-block {
+          align-items: center;
+          color: $colorWhite;
+          cursor: pointer;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          width: 100%;
+        }
+  
+        .button-outline {
+          a {
+            align-items: center;
+            background-color: transparent;
+            border-radius: 20px;
+            color: $colorWhite;
+            display: flex;
+            height: 40px;
+            justify-content: center;
+            outline: solid 1px $colorWhite;
+            text-decoration: none;
+            width: 100%;
+          }
+        }
+  
+        .button-outline:hover {
+          a {
+            background-color: rgba(34, 136, 255, 0.1);
+          }
+        }
+  
+        .buttons-container{
+          display: flex;
+          flex-direction: column;
+          gap: 1.3rem;
+        }
+  
+        .links{
+          font-size: .9rem;
+          margin-top: 3rem;
+          p{
+            color: #585C60;
+            a{
+              color: $colorBlue;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+    }
 
-
-  .colums-container {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .main-container {
-    height: 100%;
-  }
-
-  .main-text {
-    font-size: 5rem;
-  }
-
-  .form-center {
-    padding: 0 3rem 0 3rem;
-    padding: 0;
   }
 }
 
-@media only screen and (max-width: 480px) {
-  
-  .main-text{
-    font-size: 1.9rem;
+@media only screen and (max-width: 688px){
+  .login-view{
+
+    .login-modal-form {
+      border-radius: 0;
+      height: 100vh;
+      max-height: none;
+      max-width: none;
+      min-height: auto;
+      min-width: auto;
+      width: 100vw;
+
+      .body{
+        margin: 1.5rem 0;
+        width: 300px;
+      }
+    }
   }
 }

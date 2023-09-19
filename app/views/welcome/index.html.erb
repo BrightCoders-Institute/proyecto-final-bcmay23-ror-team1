@@ -1,0 +1,28 @@
+<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track':'reload' %>
+  <div class="welcome-view">
+    <div class="full-container">
+      <div class="colums-container">
+        <div class="image-container"></div>
+        <div class="main-container">
+          <div class="main-text-container mb-4">
+            <h1 class="main-text">What's happening now</h1>
+            <!-- <h1 class="main-text">pasando ahora</h1> -->
+          </div>
+          <div class="secondary-text-container mb-1">
+            <h2 class="secondary-text">Join Towgt today</h2>
+          </div>
+          <div class="signup-container mb-2">
+            <div class="button button-primary">
+              <%= link_to "Create Account" , new_user_registration_path %>
+            </div>
+          </div>
+          <div class="signin-container">
+            <p class="mb-1">Already have an account?</p>
+            <div class="button button-outline text-blue">
+              <%= link_to "Sign in" , new_user_session_path %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
