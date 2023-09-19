@@ -96,6 +96,7 @@ class PostsController < ApplicationController
 
   def destroy
     @post = Post.find(params[:id])
+    @post.shared_posts_relation.destroy_all
     @post.update(deleted: true)
     flash[:notice] = "Your post was deleted"
     render turbo_stream:

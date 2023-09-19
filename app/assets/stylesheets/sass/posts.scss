@@ -257,3 +257,18 @@
 .post-user-username, .post-time, .post-replying-sign, .opaque-text {
   color: $colorGray;
 }
+
+.repost-header {
+  background: lighten($colorBlack, 5%);
+  border-inline: 1px solid $colorBorder;
+  border-radius: 4px;
+  border-top: 1px solid $colorBorder;
+  color: lighten($colorGray, 10%);
+  cursor: pointer;
+  font-style: italic;
+  padding: 4px 1rem;
+
+  &:hover {
+    background: lighten($colorBlack, 4%);
+  }
+}

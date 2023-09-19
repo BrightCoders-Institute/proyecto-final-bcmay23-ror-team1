@@ -76,6 +76,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       DeletedUser.create(id: current_user.id, username: current_user.username)
       
       current_user.follower_records.destroy_all
+      current_user.shared_posts_relation.destroy_all
       current_user.swap_posts_to_deleted_user
       current_user.destroy
     end
