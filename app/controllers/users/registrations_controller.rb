@@ -2,7 +2,7 @@
 
 # Registrations controller
 class Users::RegistrationsController < Devise::RegistrationsController
-  layout 'layouts/application', only: [:show]
+  layout 'layouts/application', only: [:show, :show_followers, :show_followings]
   before_action :configure_sign_up_params, only: [:create]
   before_action :redirect_if_not_signed_in!, only: [:show, :edit, :update, :destroy]
   # before_action :configure_account_update_params, only: [:update]
@@ -67,6 +67,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
       @posts_and_shared = (posts + shared_posts).sort_by { |post| post.created_at }
     end
 
+  end
+
+  def show_followers
+    @user = User.find(params[:user_id])
+    @followers = @user.followers
+  end
+
+  def show_followings
+    @user = User.find(params[:user_id])
+    @followings = @user.followings
   end
 
   def destroy

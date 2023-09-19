@@ -19,6 +19,8 @@ Rails.application.routes.draw do
     get '/users/sign_up/avatar', to: 'users/registrations#avatar', as: 'signup_avatar'
     put '/users/sign_up/avatar', to: 'users/registrations#signup_set_avatar', as: 'signup_set_avatar'
     get '/users/:user_id(/:tab)', to: 'users/registrations#show',  constraints: { tab: /posts|likes|comments/ }, as: 'user'
+    get '/users/:user_id/followers', to: 'users/registrations#show_followers', as: 'user_followers'
+    get '/users/:user_id/followings', to: 'users/registrations#show_followings', as: 'user_followings'
   end
 
   resources :likes, only: [:create, :destroy]

@@ -1,0 +1,51 @@
+<div class="content-navigation">
+  <%= link_to user_followings_path, class: ["tab-container", follows_context ? "" : "active-tab"] do %>
+    <div class="tab">
+      <p>Following</p>
+      <% unless follows_context %>
+        <div class="indicator"></div>
+      <% end %>
+    </div>
+  <% end %>
+  <%= link_to user_followers_path, class: ["tab-container", follows_context ? "active-tab" : ""] do %>
+    <div class="tab">
+      <p>Followers</p>
+      <% if follows_context %>
+        <div class="indicator"></div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+<% if items_lits.blank? %>
+  <div class="empty-list">
+    <h2>
+      <%= follows_context ? "No followers yet" : "No followings yet" %>
+    </h2>
+  </div>
+<% else %>
+  <div class="follow-list">
+    <% items_lits.each do |item| %>
+      <div class="follow-item">
+        <div class="top">
+            <%= link_to user_path(item) do %>
+              <div class="user-info">
+                <div class="user-avatar">
+                  <% if item.avatar.attached? %>
+                    <%= image_tag(item.avatar, class: 'avatar') %>
+                  <% end %>
+                </div>
+                <div class="user-names">
+                  <p class="name-label"><%= item.name %></p>
+                  <p class="username-label" >@<%= item.username %></p>
+                </div>
+              </div>
+            <% end %>
+            <div class="follow-button">Follow</div>
+        </div>
+        <div class="bottom">
+          <p><%= item.biography %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

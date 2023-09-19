@@ -1,5 +1,10 @@
+<% if follow_context %>
+  <% path = user_path(user) %>
+<% else %>
+  <% path = root_path %>
+<% end %>
 <div class="user-header">
-  <%= link_to root_path, class: "icon-link" do %>
+  <%= link_to path, class: "icon-link" do %>
     <i class="fa-solid fa-arrow-left"></i>
   <% end %>
   <div>
@@ -7,7 +12,11 @@
       <%= user.name %>
     </div>
     <div class="user-header-post-number">
-      <%= user.posts_number %> post
+      <% if follow_context %>
+        @<%= user.username %>
+      <% else %>
+        <%= user.posts_number %> post
+      <% end %>
     </div>
   </div>
 </div>
