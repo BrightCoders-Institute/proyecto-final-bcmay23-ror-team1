@@ -31,8 +31,12 @@
   display: flex;
   gap: 2rem;
   justify-content: center;
+
   .user-header-name {
+    align-items: center;
+    display: flex;
     font-size: 1rem;
+    gap: .2em;
     margin-bottom: .3rem;
   }
   .user-header-post-number {

@@ -31,7 +31,11 @@
     width: 60%;
 
     .user-name {
+      align-items: center;
+      display: flex;
       font-weight: bold;
+      gap: 0.2rem;
+      margin-bottom: .3rem;
     }
 
     .user-username {

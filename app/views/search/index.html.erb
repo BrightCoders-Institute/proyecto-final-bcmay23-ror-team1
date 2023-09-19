@@ -17,6 +17,7 @@
                   <div>
                     <%= link_to user.name, user, class: "post-user-name" %>
                     <p class="post-user-username">@<%= user.username %></p>
+                    <%= render partial: "components/verified", locals: { verified: user.verified} %>
                   </div>
                 </div>
                 <%= render partial: "follows/follow", locals: { following_user: user } %>

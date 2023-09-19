@@ -58,8 +58,11 @@
 
     .names-container {
       .name-label {
+        align-items: center;
+        display: flex;
         font-size: 1.3rem;
         font-weight: 900;
+        gap: .2rem;
       }
 
       .username-label {
