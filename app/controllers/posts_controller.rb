@@ -9,11 +9,11 @@ class PostsController < ApplicationController
 
     @post = Post.new # fills the the "new post" form
 
-    if @publications.posts.count.zero?
-      render turbo_stream:
-        turbo_stream.append('posts_list', partial: 'posts/no-posts')
-      
-    elsif params[:page].present?
+    if params[:page].present?
+      if @publications.posts.count.zero?
+        render turbo_stream:
+        turbo_stream.append('posts_list', partial: 'posts/no-posts')  
+      end
       render turbo_stream:
         turbo_stream.append(:posts_list,
           partial: 'posts/posts-list', locals: { posts: @publications.posts } )

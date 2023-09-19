@@ -11,8 +11,15 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-
     <%= yield %>
+    <% if notice %>
+      <div class="flash-message-container">
+        <div data-controller="flash">
+          <div class="flash-message">
+            <p><%= notice %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </body>
 </html>

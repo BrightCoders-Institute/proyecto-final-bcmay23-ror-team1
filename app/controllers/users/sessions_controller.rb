@@ -2,6 +2,7 @@
 
 class Users::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
+  # after_action :after_sign_in_path_for, only: [:create]
 
   # GET /resource/sign_in
   # def new
@@ -10,7 +11,9 @@ class Users::SessionsController < Devise::SessionsController
 
   # POST /resource/sign_in
   # def create
+  #   puts "CREATECREATECREATECREATECREATECREATE"
   #   super
+  #   signup_avatar_path
   # end
 
   # DELETE /resource/sign_out
@@ -18,7 +21,15 @@ class Users::SessionsController < Devise::SessionsController
   #   super
   # end
 
-  # protected
+  protected
+
+  def after_sign_in_path_for(resource)
+    if current_user.avatar.attached?
+      root_path
+    else
+      signup_avatar_path
+    end
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_in_params
