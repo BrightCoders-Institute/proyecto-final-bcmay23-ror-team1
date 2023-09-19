@@ -61,7 +61,7 @@
             <%= render partial: "posts/post-simple", 
               collection: @user.comments.where(deleted: false), as: :post, 
               locals: {
-                view: nil, 
+                view: :index, 
                 is_parent_of_comment: false
               } 
             %>
