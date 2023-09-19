@@ -15,11 +15,11 @@ class User < ApplicationRecord
   has_many :posts_and_comments, class_name: 'Post' # posts and comments
 
   def posts
-    posts_and_comments.where(parent_id: nil) # only posts
+    posts_and_comments.where(parent_id: nil) # posts and shares
   end
 
   def posts_number
-    posts.count # only posts
+    posts.count + shared_posts_relation.count # only posts
   end
 
   def comments

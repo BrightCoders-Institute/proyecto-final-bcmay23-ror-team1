@@ -62,12 +62,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
         },
       ]
     end
-    
-    posts = Post.all.includes(:shared_posts_relation).with_attached_images.order(created_at: :desc).load_async
-    shared_posts = SharedPost.all.order(created_at: :desc).load_async
 
+    posts = @user.posts.with_attached_images.order(created_at: :desc).load_async
+    shared_posts = @user.shared_posts_relation.order(created_at: :desc).load_async
     @posts_and_shared = (posts + shared_posts).sort_by { |post| post.created_at }
-    @posts_and_shared = @posts_and_shared.reverse
   end
 
   def destroy
