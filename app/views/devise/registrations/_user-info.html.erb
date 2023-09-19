@@ -13,6 +13,7 @@
     <div class="names-container">
       <h1 class="name-label">
         <%= user.name %>
+        <%= render partial: "components/verified", locals: { verified: user.verified } %>
       </h1>
       <h2 class="username-label">
         @<%= user.username %>

@@ -1,5 +1,8 @@
 <div class="<%= is_current_post ? "post-meta" : "post-simple-meta" %>">
-  <p class="post-user-name"><%= post.user.name %></p> 
+  <p class="post-user-name">
+    <%= post.user.name %>
+    <%= render partial: "components/verified", locals: { verified: post.user.verified } %>
+  </p> 
   <p class="post-user-username">@<%= post.user.username %></p>
 
   <% if !is_current_post %>

@@ -10,6 +10,7 @@
   <div>
     <div class="user-header-name">
       <%= user.name %>
+      <%= render partial: "components/verified", locals: { verified: user.verified }%>
     </div>
     <div class="user-header-post-number">
       <% if follow_context %>

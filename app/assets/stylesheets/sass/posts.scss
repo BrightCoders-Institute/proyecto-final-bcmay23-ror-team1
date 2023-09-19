@@ -234,7 +234,10 @@
   gap: 8px;
 
   .post-user-name {
+    align-items: center;
+    display: flex;
     font-weight: bold;
+    gap: .2rem;
   }
 
 }

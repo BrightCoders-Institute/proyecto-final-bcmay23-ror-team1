@@ -8,7 +8,10 @@
     <% end %>
 
     <div class="user-data">
-      <p class="user-name"><%= user.name %></p>
+      <p class="user-name">
+        <%= user.name %>
+        <%= render partial: "components/verified", locals: { verified: user.verified } %>
+      </p>
       <p class="user-username">@<%= user.username %></p>
     </div>
 
