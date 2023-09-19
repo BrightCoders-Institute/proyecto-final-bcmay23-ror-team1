@@ -9,7 +9,6 @@
   .title {
     padding: 1rem 1rem 0rem 1rem;
   }
-
 }
 
 .follow-user-suggestion {
@@ -43,29 +42,55 @@
       color: $colorGray;
     }
   }
-
 }
 
 .modal-follows-suggestions-list {
-  margin-top: 3rem;
-
+  margin-top: 1rem;
 }
 
-.modal-followings-suggestions-content {
-  background-color: $colorBlack;
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  height: fit-content;
-  margin-top: 10%;  
-  max-height: 50%;
-  overflow-y: scroll;
-  padding: 1rem;
-  width: 50%;
-}
-
-.modal-title-container {
+.modal-followings-suggestions {
   position: absolute;
+  z-index: 10;
+
+  .modal-content {
+    background-color: $colorBlack;
+    display: flex;
+    flex-direction: column;
+    height: 100vh !important;
+    overflow-y: scroll;
+    padding: 1rem;
+    width: 100%;
+
+    .modal-header {
+      align-items:center;
+      display: flex;
+      justify-content: space-between;
+      
+      .modal-button-container {
+        width: 20%;
+
+        .submit-button {
+          height: 2rem;
+          margin-top: 0;
+        }
+      }
+    }
+  }
+
+  .button-primary {
+      width: 100%;
+  }
+
+  @media only screen and (min-width: 702px) {
+    .modal-content {
+      border-radius: 8px;
+      height: fit-content;
+      margin-top: 10%;
+      max-height: 50%;
+      width: 50%;
+    }
+  }
+
 }
 
 .modal-scroll {

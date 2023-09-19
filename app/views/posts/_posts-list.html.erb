@@ -1,0 +1,23 @@
+<% posts.each do |element| %>
+
+    <%if element.class == Post %>
+	<%= render partial: 'posts/post-simple',
+		   locals: {
+		       view: :index,
+		       post: element,
+		       is_parent_of_comment: false } %>
+
+    <%else%>
+	<%= render partial: 'shared_posts/shared_post', locals: {view: :index, repost: element} %>
+    <%end%>
+
+<%end%>
+
+<% if @publications.page_number < posts.total_pages %>
+	<div
+		class="button button-primary w100"
+		data-controller="posts-loading"
+		data-action="click->posts-loading#destroyButton">
+		<%= link_to "Load more", posts_path(page: @publications.next_page), remote: true %>
+	</div>
+<% end %>

@@ -25,6 +25,7 @@ Rails.application.routes.draw do
 
   resources :likes, only: [:create, :destroy]
   resources :follows, only: [:create, :destroy]
+  get '/unfolloweds', to: 'follows#unfolloweds', as: 'unfolloweds'
   resources :shared_post, only: [:create, :destroy]
   resources :posts
 

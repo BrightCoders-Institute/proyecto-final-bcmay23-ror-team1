@@ -3,6 +3,16 @@
 # Follows controller
 class FollowsController < ApplicationController
 
+  def unfolloweds
+    @user_suggestions.page_number = params[:page].present? ? params[:page].to_i : 1
+
+    render turbo_stream: 
+      turbo_stream.append(:modal_users_suggestions_list,
+        partial: 'follows/modal-users-suggestions-list',
+        locals: { firsts_to_follow: @user_suggestions.firsts_to_follow }
+      )
+  end
+
   def create
     # getting the following user
     following_id = params[:id]

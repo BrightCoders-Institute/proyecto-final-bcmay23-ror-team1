@@ -1,36 +1,42 @@
 <div class="info-container">
-  <% if current_user == user %>
-    <%= 
-      link_to "Edit Profile", 
+
+  <% if current_user == @user_profile.user %>
+
+    <%= link_to "Edit Profile", 
       edit_user_registration_path, 
-      class: "edit-profile-button", 
-      data: { turbo_frame: "embedded" } 
-    %>
+      data: { turbo_frame: "embedded" },
+      class: "edit-profile-button 
+        #{"hidden" unless current_user == @user_profile.user}" %>
+
   <% else %>
-    <%= render partial: 'components/follow-button', locals: {user: user} %>
+
+    <%= render partial: 'components/follow-button', 
+      locals: { user: @user_profile.user } %>
+
   <% end %>
 
     <div class="names-container">
       <h1 class="name-label">
-        <%= user.name %>
-        <%= render partial: "components/verified", locals: { verified: user.verified } %>
+        <%= @user_profile.user.name %>
+        <%= render partial: "components/verified", 
+          locals: { verified: @user_profile.user.verified } %>
       </h1>
       <h2 class="username-label">
-        @<%= user.username %>
+        @<%= @user_profile.user.username %>
       </h2>
     </div>
 
     <div>
       <p class="user-bio-label">
-        <%= user.biography %>
+        <%= @user_profile.user.biography %>
       </p>
     </div>
 
     <p class="created-date-label">
       <i class="fas fa-calendar-alt"></i>
-      <%= user.created_date %>
+      <%= @user_profile.user.created_date %>
     </p>
 
-    <%= render partial: 'devise/registrations/components/follow-counters', locals: {user: user} %>
-    
+  <%= render partial: 'devise/registrations/components/follow-counters',
+    locals: { user: @user_profile.user } %>
 </div>

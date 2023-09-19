@@ -90,16 +90,21 @@
 
 .modal-new-post-content {
   background-color: $colorBlack;
-  border-radius: 8px;
-  height: fit-content;
-  margin-top: 10%;
+  height: 100vh;
   padding: 1rem;
-  width: 50%;
+  width: 100%;
 }
 
 @media only screen and (min-width: 702px) {
   .images-preview-container {
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  .modal-new-post-content {
+    border-radius: 8px;
+    height: fit-content;
+    margin-top: 10%;
+    width: 50%;
   }
 }
 

@@ -1,22 +1,12 @@
-<% if @posts.any? %>
+<% if posts.any? %>
 
   <div class='post-container'>
-    <% @posts.each do |element| %>
-    
-      <%if element.class == Post %>
-        <%= render partial: 'posts/post-simple',
-          locals: {
-            view: :index,
-            post: element,
-            is_parent_of_comment: false } %>
-
-      <%else%>
-        <%= render partial: 'shared_posts/shared_post', locals: {view: :index, repost: element} %>
-      <%end%>
-
-    <%end%>
+    <%= turbo_frame_tag 'posts_list' do %>
+      <%= render partial: 'posts/posts-list', locals: { posts: posts } %>
+    <% end %>      
   </div>
 
 <% else %>
-  <p>There's no posts</p>
+  <%= render 'posts/no-posts' %>
 <% end %>
+

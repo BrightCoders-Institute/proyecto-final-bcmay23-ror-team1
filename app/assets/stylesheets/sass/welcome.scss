@@ -49,37 +49,6 @@
     padding-left: 3rem;
   }
 
-  .button {
-    align-items: center;
-    color: $colorWhite;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-decoration: none;
-    width: 15rem;
-  }
-
-  .button-primary {
-    a {
-      align-items: center;
-      background-color: $colorBlue;
-      border-radius: 20px;
-      color: $colorWhite;
-      display: flex;
-      height: 40px;
-      justify-content: center;
-      text-decoration: none;
-      width: 100%;
-    }
-  }
-
-  .button-primary:hover {
-    a {
-      background-color: rgba(34, 136, 255, 0.9);
-    }
-  }
-
   .button-outline {
     a {
       align-items: center;
@@ -151,5 +120,36 @@
     .main-text{
       font-size: 1.9rem;
     }
+  }
+}
+
+.button {
+  align-items: center;
+  color: $colorWhite;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-decoration: none;
+  width: 15rem;
+}
+
+.button-primary {
+  a {
+    align-items: center;
+    background-color: $colorBlue;
+    border-radius: 20px;
+    color: $colorWhite;
+    display: flex;
+    height: 40px;
+    justify-content: center;
+    text-decoration: none;
+    width: 100%;
+  }
+}
+
+.button-primary:hover {
+  a {
+    background-color: rgba(34, 136, 255, 0.9);
   }
 }

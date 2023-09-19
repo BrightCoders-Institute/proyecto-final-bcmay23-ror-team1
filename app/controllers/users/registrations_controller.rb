@@ -36,35 +36,28 @@ class Users::RegistrationsController < Devise::RegistrationsController
     redirect_to root_path
   end
 
-  
   def show
-    @tab = params[:tab]
-    @tab = "posts" if @tab.blank?
-   
-    @user = User.find_by(id: params[:user_id])
-    
-    if @user.present?
+    @publications = Publications.new(params[:user_id], params[:page], 5)
+    @user_profile = UserProfile.new(params[:user_id], params[:tab], @publications)
 
-      @navigation_tabs = [
-        {
-          "route" => user_path(@user, tab: "posts"),
-          "text" => "Posts",
-          "active" => @tab == "posts" || @tab.blank?,
-        },
-        {
-          "route" => user_path(@user, tab: "likes"),
-          "text" => "Likes",
-          "active" => @tab == "likes",
-        },
-        {
-          "route" => user_path(@user, tab: "comments"),
-          "text" => "Comments",
-          "active" => @tab == "comments",
-        },
-      ]
-      posts = @user.posts.with_attached_images.order(created_at: :desc).load_async
-      shared_posts = @user.shared_posts_relation.order(created_at: :desc).load_async
-      @posts_and_shared = (posts + shared_posts).sort_by { |post| post.created_at }
+    # If page number exists render only that page in the selected tab
+    if params[:page]
+      case params[:tab]
+        when 'posts'
+          render turbo_stream:
+            turbo_stream.append('profile_posts_list',
+              partial: 'users/profile-posts-list')
+
+        when 'likes'
+          render turbo_stream:
+            turbo_stream.append('profile_liked_posts_list',
+              partial: 'users/profile-liked-posts-list')
+
+        when 'comments'
+          render turbo_stream:
+            turbo_stream.append('profile_comments_list',
+              partial: 'users/profile-comments-list')
+      end
     end
   end
 

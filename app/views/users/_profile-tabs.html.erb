@@ -1,7 +1,7 @@
 <div class="content-navigation">
 
   <!-- Show content tabs: posts, likes, comments -->
-  <% @navigation_tabs.each do |tab_data| %>
+  <% @user_profile.tabs.each do |tab_data| %>
     <%= link_to tab_data["route"], class: ["tab-container", tab_data["active"] ? "active-tab" : "" ] do %>
       <div class="tab">
         <p><%= tab_data["text"] %></p>

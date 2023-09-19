@@ -49,7 +49,7 @@
     <%= turbo_frame_tag "flash_message" %>
     <%= turbo_frame_tag "comment_modal" %>
 
-    <% if action_name == 'index' && current_user.followings.count.zero? %>
+    <% if request.path.in?([root_path, posts_path]) && @user_suggestions.modal_available? %>
       <%= render partial: 'follows/modal-users-suggestions' %>
     <% end %>
 

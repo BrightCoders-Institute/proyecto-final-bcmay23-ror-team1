@@ -17,8 +17,8 @@
   .input-search {
     align-items: center;
     background-color: #202327;
-    border-radius: 20px;
     border: 0px;
+    border-radius: 20px;
     display: flex;
     height: 80%;
     padding: 10px;
@@ -46,8 +46,8 @@
     padding: 1em;
 
     .search-results-users {
-      border-radius: 5px;
       border: 1px solid $colorBorder;
+      border-radius: 5px;
       display: flex;
       flex-direction: column;
       gap: 1em;

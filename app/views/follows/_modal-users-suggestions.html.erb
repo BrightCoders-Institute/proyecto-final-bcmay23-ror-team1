@@ -1,20 +1,24 @@
-<div class="modal-new-post">
-  <div class="modal-followings-suggestions-content">
+<div 
+  class="modal-new-post modal-followings-suggestions" 
+  data-controller="modal" 
+  data-modal-target="modal">
+
+  <div class="modal-content">
     
-    <div class="modal-title-container">
+    <div class="modal-header">
       <h2 class="title">Discover to follow</h2>
+      <div class="modal-button-container">
+        <button class="submit-button" data-action="click->modal#closeModal">Skip</button>
+      </div>
     </div>
 
-    <% followings_ids = Follow.where(follower_id: 1).pluck(:following_id) %>
-    <% followings_ids.append(current_user.id) %>
-    <!-- .order('RANDOM()') -->
-    <% first_follows = User.where.not(id: followings_ids) %>
-
     <div class="modal-follows-suggestions-list modal-scroll">
-      
-      <% first_follows.each do |user| %>
-        <%= render partial: 'follows/user-suggestion', locals: { user: user } %>
+
+      <%= turbo_frame_tag 'modal_users_suggestions_list' do %>
+        <%= render partial: 'follows/modal-users-suggestions-list',
+          locals: { firsts_to_follow: @user_suggestions.firsts_to_follow } %>
       <% end %>
+
     </div>
 
   </div>
