@@ -14,10 +14,8 @@
 
       <!-- Show content of column -->
       <div class="post-container">
-
         <%# posts and shares columns %>
         <% if @tab == "posts" %>
-
           <% if @posts_and_shared.any? %>
             <% @posts_and_shared.each do |element| %>
               <% if element.class == Post %>
@@ -26,7 +24,6 @@
                     view: nil, 
                     post: element,
                     is_parent_of_comment: false} %>
-
               <% else %>
                 <%= render partial: 'shared_posts/shared_post', locals: {view: nil, repost: element} %>
               <% end %>
@@ -34,7 +31,6 @@
           <% else %>
             <p class="no-content-label">No posts</p>
           <% end %>
-
         <% end %>
 
         <%# likes columns %>
@@ -76,9 +72,9 @@
   <% else %> <!-- no user -->
 
     <%= render partial: 'users/profile-images' %>
-    <d class="info-container">
+    <div class="info-container">
       <h2>User doesn't exists</h2>
-    </d>
+    </div>
 
   <% end %>
 
