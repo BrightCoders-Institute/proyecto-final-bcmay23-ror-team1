@@ -1,6 +1,8 @@
 # Ignore database file config
 /config/database.yml
 
+.env
+
 # Ignore bundler config.
 /.bundle
 

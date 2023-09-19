@@ -2,6 +2,14 @@
 
 require 'active_support/core_ext/integer/time'
 
+# Cargamos la gema
+require 'dotenv'
+
+# Y cargamos el archivo que tiene las variables
+# También es válido Dotenv.load('.env', 'otro_archivo.txt', ...)
+Dotenv.load('.env')
+
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -48,12 +56,13 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
 
   config.action_mailer.delivery_method = :smtp
+
   config.action_mailer.smtp_settings = {
-    :user_name => 'fd80dd5d34f8ae',
-    :password => 'e0e1cd6a02f7e8',
-    :address => 'sandbox.smtp.mailtrap.io',
-    :host => 'sandbox.smtp.mailtrap.io',
-    :port => '465',
+    :user_name => ENV['SMTP_USER'],
+    :password => ENV['SMTP_PASS'],
+    :address => ENV['SMTP_ADDRESS'],
+    :host => ENV['SMTP_HOST'],
+    :port => ENV['SMTP_PORT'],
     :authentication => :cram_md5
   }
 
