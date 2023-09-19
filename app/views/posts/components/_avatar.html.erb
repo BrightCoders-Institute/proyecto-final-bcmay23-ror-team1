@@ -1,5 +1,7 @@
 <div class="post-avatar-container">
-  <% if avatar.attached? %>
+  <% if avatar.present? && avatar.attached? %>
     <%= image_tag avatar, class: "post-user-avatar" %>
+  <% else %>
+    <%= image_tag "", class: "post-user-avatar empty-avatar" %>
   <% end %>
 </div>

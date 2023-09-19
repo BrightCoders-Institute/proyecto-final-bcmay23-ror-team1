@@ -60,7 +60,7 @@ class User < ApplicationRecord
   has_many :shared_posts, through: :shared_posts_relation, source: :post
 
   # Likes relationship
-  has_many :likes
+  has_many :likes, dependent: :destroy
   has_many :liked_posts, through: :likes, source: :post
 
   # returns the date in the format "Joined in January 2021"
@@ -75,7 +75,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :confirmable
 
   def swap_posts_to_deleted_user
-    posts.each do |post|
+    posts_and_comments.each do |post|
       post.swap_to_deleted_user(id)
     end
   end

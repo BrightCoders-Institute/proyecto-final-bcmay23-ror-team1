@@ -1,7 +1,7 @@
 <%= render partial: "posts/post-simple", 
   collection: @user_profile.comments, as: :post, 
   locals: {
-    view: nil, 
+    view: :index, 
     is_parent_of_comment: false } %>
 
 <% if @publications.page_number < @user_profile.comments.total_pages %>
