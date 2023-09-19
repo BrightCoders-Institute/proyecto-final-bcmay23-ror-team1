@@ -66,9 +66,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
       shared_posts = @user.shared_posts_relation.order(created_at: :desc).load_async
       @posts_and_shared = (posts + shared_posts).sort_by { |post| post.created_at }
     end
-
-    @posts_and_shared = (posts + shared_posts).sort_by { |post| post.created_at }
-    @posts_and_shared = @posts_and_shared.reverse
   end
 
   def show_followers
