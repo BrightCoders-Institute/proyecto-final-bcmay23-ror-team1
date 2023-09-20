@@ -25,27 +25,7 @@
 <% else %>
   <div class="follow-list">
     <% items_lits.each do |item| %>
-      <div class="follow-item">
-        <div class="top">
-            <%= link_to user_path(item) do %>
-              <div class="user-info">
-                <div class="user-avatar">
-                  <% if item.avatar.attached? %>
-                    <%= image_tag(item.avatar, class: 'avatar') %>
-                  <% end %>
-                </div>
-                <div class="user-names">
-                  <p class="name-label"><%= item.name %></p>
-                  <p class="username-label" >@<%= item.username %></p>
-                </div>
-              </div>
-            <% end %>
-            <div class="follow-button">Follow</div>
-        </div>
-        <div class="bottom">
-          <p><%= item.biography %></p>
-        </div>
-      </div>
+      <%= render partial: 'follows/user-suggestion', locals: { user: item, size: "md",componet_id: "modal"} %>
     <% end %>
   </div>
 <% end %>

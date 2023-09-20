@@ -21,6 +21,7 @@
   </div>
   <% end %>
   <div style="position: relative;">
-    <%# render partial: 'components/follow-button', locals: {user: user, size: "sm"} %>
-    <%= render partial: 'components/follow-button', locals: {user: user, size: local_assigns[:size].present? ? size : "sm", componet_id: local_assigns[:componet_id].present? ? componet_id : "user_suggest"} %>
+    <% if user != current_user %>
+      <%= render partial: 'components/follow-button', locals: {user: user, size: local_assigns[:size].present? ? size : "sm", componet_id: local_assigns[:componet_id].present? ? componet_id : "user_suggest"} %>
+    <% end%>
   </div>
