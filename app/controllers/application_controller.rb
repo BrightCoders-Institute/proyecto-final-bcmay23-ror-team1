@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   layout :layout_by_resource
   before_action :layout_variables
   # before_action :authenticate_user!
-  # before_action :set_user
+  before_action :set_user
 
   def route_not_found
     render 'layouts/not_found', status: :not_found, layout: true

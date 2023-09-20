@@ -8,8 +8,24 @@
     <% if current_page?(path) || current_page?("#{path}/likes") || current_page?("#{path}/posts") || current_page?("#{path}/comments") %>
       <%= render partial: "components/user-header", locals: { user: @user, follow_context: false } %>
     <% end %>
+
+
     <% if current_page?(user_followers_path) || current_page?(user_followings_path) %>
       <%= render partial: "components/user-header", locals: { user: @user, follow_context: true } %> 
     <% end %>
+    
+  <% else %>
+    <% if controller_name == 'posts' && action_name == 'show'  %>
+      <%= render "components/post-header" %>
+    <% end %>
+
+    <% if current_page?(search_index_path) %>
+      <%= 'Search' %>
+    <% end %>
+
+    <% if current_page?(notifications_path) %>
+      <%= 'Notifications' %>
+    <% end %>
+
   <% end %>
 </h1>
