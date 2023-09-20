@@ -3,37 +3,37 @@
 
   <div class="search-results">
     <% if @query.present? %>
-    
-      <% if @users.any? %>
-        <div class="search-results-users">
-          <h2>Users for "<%= @query %>"</h2>
-          <ul>
-            <% @users.each do |user| %>
-              <li>
+      <% if @users.any? or @posts.any? %>
+        <% if @users.any? %>
+          <div class="search-results-users">
+            <h2>Users for "<%= @query %>"</h2>
+            <ul>
+              <% @users.each do |user| %>
                 <%= render partial: "search/components/user-list-search", locals: { user: user } %>
-                <%= render partial: "follows/follow", locals: { following_user: user } %>
-              </li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
 
-      <% if @posts.any? %>
+        <% if @posts.any? %>
 
-        <div class="search-results-users">
-          <h2>Posts for "<%= @query %>"</h2>
-          
-          <%=
-            render partial: 'posts/post-simple',
-            collection: @posts, as: :post,
-            locals: {
-              view: :index,
-              is_parent_of_comment: false
-            } 
-          %>
+          <div class="search-results-users">
+            <h2>Posts for "<%= @query %>"</h2>
+            
+            <%=
+              render partial: 'posts/post-simple',
+              collection: @posts, as: :post,
+              locals: {
+                view: :index,
+                is_parent_of_comment: false
+              } 
+            %>
 
-        </div>
+          </div>
 
+        <% end %>
+      <% else %>
+        <p>No results for "<%= @query %>"</p>
       <% end %>
 
     <% else %>
