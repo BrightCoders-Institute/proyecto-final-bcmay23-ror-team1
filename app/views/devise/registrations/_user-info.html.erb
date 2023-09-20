@@ -9,10 +9,7 @@
         #{"hidden" unless current_user == @user_profile.user}" %>
 
   <% else %>
-
-    <%= render partial: 'components/follow-button', 
-      locals: { user: @user_profile.user } %>
-
+    <%= render partial: 'components/follow-button', locals: {user: user, componet_id: "user_info"} %>
   <% end %>
 
     <div class="names-container">
