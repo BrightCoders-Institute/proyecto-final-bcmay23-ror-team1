@@ -34,7 +34,8 @@
     	</div>
 
     	<hr />
-    	<%= render partial: "posts/components/actions" , locals: { post: post }%>
+    	<%= render partial: "posts/components/actions",
+        locals: { post: post, action_prefix: dom_id(post)}%>
 
     <% elsif post.deleted_user %>
       This post is not available anymore

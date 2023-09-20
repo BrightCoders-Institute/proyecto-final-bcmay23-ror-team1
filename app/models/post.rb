@@ -26,10 +26,6 @@ class Post < ApplicationRecord
     shared_posts_relation.exists?(user: user)
   end
 
-  def unshared_by?(user)
-    shared_posts_relation.find_by(user_id: user.id).destroy
-  end
-
   # Associate a post as to a parent post
   # this allows to treat it as a comment when needed
   belongs_to :parent, class_name: 'Post', optional: true

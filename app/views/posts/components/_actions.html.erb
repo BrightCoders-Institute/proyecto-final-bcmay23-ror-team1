@@ -1,5 +1,11 @@
 <div class="post-actions">
+
   <%= render partial: 'likes/like', locals: { post: post } %>
-  <%= render partial: 'shared_posts/shared_post_button', locals: {post: post }%>
+
+  <%= render partial: 'shared_posts/shared_post_button',
+    locals: {
+      post: post,
+      action_prefix: action_prefix }%>
+
   <%= render partial: 'comments/comment-button', locals: { post: post } %>
 </div>

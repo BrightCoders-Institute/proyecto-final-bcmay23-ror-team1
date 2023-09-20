@@ -1,8 +1,9 @@
-<%= turbo_frame_tag "shared_#{post.id}" do %>
+<%= turbo_frame_tag "#{action_prefix}_share_button" do %>
 
   <% if post.shared_by?(current_user) %>
 
-    <%= link_to shared_post_path(id: post.id), remote: true,
+    <%= link_to shared_post_path(id: post.id),
+      remote: true,
       data: { turbo_method: :delete },
       class: 'action-button shared-button' do %>
 
@@ -12,7 +13,8 @@
 
   <% else %>
   
-    <%= link_to shared_post_index_path(id: post.id), remote: true,
+    <%= link_to shared_post_index_path(id: post.id),
+      remote: true,
       data: { turbo_method: :post },
       class: 'action-button' do %>
 

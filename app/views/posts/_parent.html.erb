@@ -26,7 +26,8 @@
 
         <%= render partial: "posts/components/content", locals: { post: post }%>
 
-        <%= render partial: "posts/components/actions", locals: { post: post }%>
+        <%= render partial: "posts/components/actions",
+          locals: { post: post, action_prefix: dom_id(post) }%>
 
       </div>
 			  
