@@ -1,21 +1,18 @@
 <%= link_to user_path(username: user.username), data: { turbo: false } do %>
-  <div>
-    <div class="follow-user-suggestion">
-      <% if user.avatar.present? %>
-        <%= image_tag user.avatar, class: "post-user-avatar" %>
-      <% else %>
-        <%= image_tag "", class: "post-user-avatar" %>
-      <% end %>
+  <div class="follow-user-suggestion">
+    <% if user.avatar.present? %>
+      <%= image_tag user.avatar, class: "post-user-avatar" %>
+    <% else %>
+      <%= image_tag "", class: "post-user-avatar" %>
+    <% end %>
 
-      <div class="user-data">
-        <p class="user-name">
-          <%= user.name %>
-          <%= render partial: "components/verified", locals: { verified: user.verified } %>
-        </p>
-        <p class="user-username">@<%= user.username %></p>
-      </div>
+    <div class="user-data">
+      <p class="user-name">
+        <%= user.name %>
+        <%= render partial: "components/verified", locals: { verified: user.verified } %>
+      </p>
+      <p class="user-username">@<%= user.username %></p>
     </div>
-        
   </div>
 <% end %>
 

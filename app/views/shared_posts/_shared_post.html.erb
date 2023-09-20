@@ -1,0 +1,47 @@
+<%= turbo_frame_tag "shared_post_#{repost.id}_by_user_#{repost.user.id}" do %>
+
+  <div class="repost-header">
+    <%= icon('fa-solid', 'retweet') %>
+    <%= repost.user.name %> reposted
+  </div>
+
+  <div class="post border-post parent-post-container bg-post">
+
+    <%= link_to repost.post, data: { turbo: false }, class: "post-link" do %><% end %>
+
+    <% if repost.post.user %>
+      
+      <%= render partial: "posts/simple-post-left",
+        locals: { 
+          post: repost.post, 
+          is_parent_of_comment: false } %>
+
+      <div class="parent-post-right">     
+
+        <!-- Name, Username, Date -->
+        <%= render partial: "posts/components/metadata",
+          locals: { 
+            post: repost.post, 
+            is_current_post: false, 
+            is_parent_of_comment: false, 
+            view: :index } %>
+
+        <%= render partial: "posts/components/replying-sign",
+          locals: {
+            parent: repost.post.parent, 
+            view: :index } %>
+
+        <%= render partial: "posts/components/content" , locals: { post: repost.post }%>
+        <%= render partial: "posts/components/actions",
+          locals: {
+            post: repost.post,
+            action_prefix: "shared_post_#{repost.id}_by_user_#{repost.user.id}" }%>
+      </div>
+
+    <% elsif repost.post.deleted_user %>
+      This post is not available anymore
+    <% end %>
+
+  </div>
+
+<% end %>

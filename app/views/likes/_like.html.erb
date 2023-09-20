@@ -1,20 +1,25 @@
-<%= turbo_frame_tag "like_post_#{post.id}", data: {controller: "actions"} do %>
+<%= turbo_frame_tag "#{action_prefix}_like_button", data: {controller: "actions"} do %>
 
     <% if post.liked_by?(current_user) %>
-        <%= link_to like_path(id: post.id), class: 'action-button post-liked', remote: true, data: {
-            controller: "actions",
-            "actions-id-value": "like_post_#{post.id}", 
-            action: "actions#updatesLike", 
-            turbo_method: :delete } do %>
+        <%= link_to like_path(id: post.id),
+            class: 'action-button post-liked',
+            remote: true,
+            data: {
+                turbo_frame: "#{action_prefix}_like_button",
+                turbo_method: :delete } do %>
+
             <%= icon('fa-solid', 'heart', data: { target: false }) %>
             <%= post.likes.count %>
         <% end %>
+        
     <% else %>
-        <%= link_to likes_path(id: post.id), class: 'action-button post-like', remote: true, data: {
-            controller: "actions",
-            "actions-id-value": "like_post_#{post.id}",
-            action: "actions#updatesLike",
-            turbo_method: :post } do %>
+        <%= link_to likes_path(id: post.id),
+            class: 'action-button post-like', 
+            remote: true,
+            data: {
+                turbo_frame: "#{action_prefix}_like_button",
+                turbo_method: :post } do %>
+
             <%= icon('fa-regular', 'heart') %>
             <%= post.likes.count %>
         <% end %>

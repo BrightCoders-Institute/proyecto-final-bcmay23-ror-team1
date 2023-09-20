@@ -17,7 +17,8 @@
 
         <%= render partial: "posts/components/replying-sign", locals: { parent: post.parent, view: view } %>
   	    <%= render partial: "posts/components/content" , locals: { post: post }%>
-  	    <%= render partial: "posts/components/actions" , locals: { post: post }%>
+  	    <%= render partial: "posts/components/actions",
+          locals: { post: post, action_prefix: dom_id(post) }%>
   		</div>
 
 		<% elsif post.deleted_user %>

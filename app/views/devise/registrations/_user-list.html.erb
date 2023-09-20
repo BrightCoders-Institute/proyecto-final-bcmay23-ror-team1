@@ -26,6 +26,7 @@
   <div class="follow-list">
     
     <% items_lits.each do |item| %>
+    
       <%= render partial: 'follows/user-suggestion', locals: { user: item, size: "md",componet_id: "modal"} %>
 
     <% end %>
