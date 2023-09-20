@@ -17,6 +17,7 @@ class FollowsController < ApplicationController
     # getting the following user
     following_id = params[:id]
     following_user = User.find_by(id: following_id)
+    size = params[:size]
 
     # create a follow relationship
     current_user.create_follow(following_user);
@@ -25,14 +26,38 @@ class FollowsController < ApplicationController
     render turbo_stream: [
       # follow button on user view
       turbo_stream.replace(
-        "follow_button_#{following_id}", 
+        "follow_button_#{following_id}_user_suggest", 
         partial: 'components/follow-button', 
         locals: { 
           user: following_user,
-          size: "md"
+          size: "sm",
+          componet_id: "user_suggest"
+        }
+      ),
+      turbo_stream.replace(
+        "follow_button_#{following_id}_user_info", 
+        partial: 'components/follow-button', 
+        locals: { 
+          user: following_user,
+          size: "md",
+          componet_id: "user_info"
+        }
+      ),
+      turbo_stream.replace(
+        "follow_button_#{following_id}_modal", 
+        partial: 'components/follow-button', 
+        locals: { 
+          user: following_user,
+          size: "md",
+          componet_id: "user_info"
         }
       ),
       # follow counters on user view
+      turbo_stream.replace(
+        "follow_counters_#{current_user.id}", 
+        partial: 'devise/registrations/components/follow-counters', 
+        locals: { user: current_user }
+      ),
       turbo_stream.replace(
         "follow_counters_#{following_id}", 
         partial: 'devise/registrations/components/follow-counters', 
@@ -51,6 +76,7 @@ class FollowsController < ApplicationController
     # getting the following user
     following_id = params[:id]
     following_user = User.find_by(id: following_id)
+    size = params[:size]
 
     # destroy a follow relationship
     current_user.destroy_follow(following_user);
@@ -59,14 +85,38 @@ class FollowsController < ApplicationController
     render turbo_stream: [
       # follow button on user view
       turbo_stream.replace(
-        "follow_button_#{following_id}", 
+        "follow_button_#{following_id}_user_suggest", 
         partial: 'components/follow-button', 
         locals: { 
           user: following_user,
-          size: "md"
+          size: "sm",
+          componet_id: "user_suggest"
+        }
+      ),
+      turbo_stream.replace(
+        "follow_button_#{following_id}_user_info", 
+        partial: 'components/follow-button', 
+        locals: { 
+          user: following_user,
+          size: "md",
+          componet_id: "user_info"
+        }
+      ),
+      turbo_stream.replace(
+        "follow_button_#{following_id}_modal", 
+        partial: 'components/follow-button', 
+        locals: { 
+          user: following_user,
+          size: "md",
+          componet_id: "user_info"
         }
       ),
       # follow counters on user view
+      turbo_stream.replace(
+        "follow_counters_#{current_user.id}", 
+        partial: 'devise/registrations/components/follow-counters', 
+        locals: { user: current_user }
+      ),
       turbo_stream.replace(
         "follow_counters_#{following_id}", 
         partial: 'devise/registrations/components/follow-counters', 

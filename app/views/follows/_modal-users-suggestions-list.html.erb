@@ -1,5 +1,5 @@
 <% firsts_to_follow.each do |user| %>
-  <%= render partial: 'follows/user-suggestion', locals: { user: user } %>
+  <%= render partial: 'follows/user-suggestion', locals: { user: user, size: "md",componet_id: "modal"} %>
 <% end %>
 
 <% if @user_suggestions.page_number < firsts_to_follow.total_pages %>

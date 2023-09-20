@@ -1,22 +1,27 @@
 <%= link_to user, data: { turbo: false } do %>
-  <div class="follow-user-suggestion">
+  <div>
+    <div class="follow-user-suggestion">
+      <% if user.avatar.present? %>
+        <%= image_tag user.avatar, class: "post-user-avatar" %>
+      <% else %>
+        <%= image_tag "", class: "post-user-avatar" %>
+      <% end %>
 
-    <% if user.avatar.present? %>
-      <%= image_tag user.avatar, class: "post-user-avatar" %>
-    <% else %>
-      <%= image_tag "", class: "post-user-avatar" %>
-    <% end %>
-
-    <div class="user-data">
-      <p class="user-name">
-        <%= user.name %>
-        <%= render partial: "components/verified", locals: { verified: user.verified } %>
-      </p>
-      <p class="user-username">@<%= user.username %></p>
+      <div class="user-data">
+        <p class="user-name">
+          <%= user.name %>
+          <%= render partial: "components/verified", locals: { verified: user.verified } %>
+        </p>
+        <p class="user-username">@<%= user.username %></p>
+      </div>
     </div>
-
+    
     <!-- Pending button -->
-    <button style="background: black;">Follow</button>
-
+    
   </div>
-<% end %>
+  <% end %>
+  <div style="position: relative;">
+    <% if user != current_user %>
+      <%= render partial: 'components/follow-button', locals: {user: user, size: local_assigns[:size].present? ? size : "sm", componet_id: local_assigns[:componet_id].present? ? componet_id : "user_suggest"} %>
+    <% end%>
+  </div>
