@@ -1,5 +1,9 @@
-<div class="post-avatar-container">
-  <% if avatar.attached? %>
-    <%= image_tag avatar, class: "post-user-avatar" %>
-  <% end %>
-</div>
+<%= link_to user_path(username: user.username), data: { turbo: false } do %>
+  <div class="post-avatar-container">
+    <% if user.avatar.present? && user.avatar.attached? %>
+      <%= image_tag user.avatar, class: "post-user-avatar" %>
+    <% else %>
+      <%= image_tag "", class: "post-user-avatar empty-avatar" %>
+    <% end %>
+  </div>
+<% end %>

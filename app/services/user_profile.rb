@@ -2,8 +2,8 @@ class UserProfile
   attr_reader :user, :tab
   include Rails.application.routes.url_helpers
 
-  def initialize(user_id, tab, publications)
-    @user = User.find_by(id: user_id)
+  def initialize(username, tab, publications)
+    @user = User.find_by(username: username)
     @tab = tab.blank? ? 'posts' : tab
     @publications = publications
   end
@@ -19,17 +19,17 @@ class UserProfile
   def tabs
     [
       {
-        "route" => user_path(@user, tab: "posts"),
+        "route" => user_path(username: @user.username, tab: "posts"),
         "text" => "Posts",
         "active" => @tab == "posts" || @tab.blank?,
       },
       {
-        "route" => user_path(@user, tab: "likes"),
+        "route" => user_path(username: @user.username, tab: "likes"),
         "text" => "Likes",
         "active" => @tab == "likes",
       },
       {
-        "route" => user_path(@user, tab: "comments"),
+        "route" => user_path(username: @user.username, tab: "comments"),
         "text" => "Comments",
         "active" => @tab == "comments",
       },

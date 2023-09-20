@@ -1,6 +1,6 @@
 class SharedPost < ApplicationRecord
   belongs_to :user
-  belongs_to :post
+  belongs_to :post, dependent: :destroy
 
   has_many :notifications, as: :notifiable, dependent: :destroy
   

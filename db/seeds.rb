@@ -7,13 +7,15 @@ users = User.create([
         name: "Iván", 
         username: "ivan", 
         email: "ivansilva.me@gmail.com", 
-        password: "123456"
+        password: "123456",
+        confirmed_at: Time.now
     },
     {
         name: "Gabino", 
         username: "gabi", 
         email: "gabinomorales1212@hotmail.com", 
-        password: "123456"
+        password: "123456",
+        confirmed_at: Time.now
     },
     {
         name: "Juan", 

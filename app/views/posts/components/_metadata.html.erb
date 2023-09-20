@@ -1,9 +1,12 @@
 <div class="<%= is_current_post ? "post-meta" : "post-simple-meta" %>">
-  <p class="post-user-name">
+
+  <%= link_to user_path(username: post.user.username), 
+    data: { turbo: false },
+    class: "post-user-name" do %>
     <%= post.user.name %>
     <%= render partial: "components/verified", locals: { verified: post.user.verified } %>
-  </p> 
-  <p class="post-user-username">@<%= post.user.username %></p>
+    <p class="post-user-username">@<%= post.user.username %></p>
+  <% end %>
 
   <% if !is_current_post %>
   <p class="post-time">

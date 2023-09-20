@@ -17,7 +17,7 @@ class NotificationsController < ApplicationController
     when'SharedPost'
       redirect_to post_path(notification.notifiable.post)
     when 'Follow'
-      redirect_to user_path(notification.notifiable.follower)
+      redirect_to user_path(username: notification.notifiable.follower.username)
     end
 
   end

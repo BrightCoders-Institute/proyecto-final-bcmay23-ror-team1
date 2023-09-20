@@ -1,13 +1,10 @@
-<div class="post border-post">
-
-  <div class="repost-header">
-    <%= "@#{repost.user.username} reposted"%>
-  </div>
-
-  <%= render partial: 'posts/post-simple',
-    locals: { 
-      post: repost.post, 
-      view: :index,
-      is_parent_of_comment: false } %>
-      
+<div class="repost-header">
+  <%= icon('fa-solid', 'retweet') %>
+  <%= repost.user.name %> reposted
 </div>
+
+<%= render partial: 'posts/post-simple',
+  locals: { 
+    post: repost.post, 
+    view: :index,
+    is_parent_of_comment: false } %>

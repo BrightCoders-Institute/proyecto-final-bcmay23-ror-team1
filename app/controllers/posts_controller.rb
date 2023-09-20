@@ -12,8 +12,9 @@ class PostsController < ApplicationController
     if params[:page].present?
       if @publications.posts.count.zero?
         render turbo_stream:
-        turbo_stream.append('posts_list', partial: 'posts/no-posts')  
+          turbo_stream.append('posts_list', partial: 'posts/no-posts')
       end
+      
       render turbo_stream:
         turbo_stream.append(:posts_list,
           partial: 'posts/posts-list', locals: { posts: @publications.posts } )
@@ -96,6 +97,7 @@ class PostsController < ApplicationController
 
   def destroy
     @post = Post.find(params[:id])
+    @post.shared_posts_relation.destroy_all
     @post.update(deleted: true)
     flash[:notice] = "Your post was deleted"
     render turbo_stream:

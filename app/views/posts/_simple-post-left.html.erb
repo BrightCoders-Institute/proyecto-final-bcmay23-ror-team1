@@ -10,8 +10,7 @@
 
 <div class="parent-post-left">
 
-  <%= render partial: "posts/components/avatar",
-  locals: { avatar: post.user.avatar } %>
+  <%= render partial: "posts/components/avatar", locals: { user: post.user } %>
 
   <% if defined?(is_parent) && is_parent && !is_parent_of_comment %>
     <span class="thread-line"></span>

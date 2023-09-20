@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
           "icon_class" => 'fas fa-home',
         },
         {
-          "route" => current_user ? user_path(current_user) : nil,
+          "route" => current_user ? user_path(username: current_user.username) : nil,
           "icon_class" => 'fas fa-user',
         },
         {

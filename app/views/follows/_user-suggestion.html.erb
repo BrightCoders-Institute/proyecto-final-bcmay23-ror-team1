@@ -1,4 +1,4 @@
-<%= link_to user, data: { turbo: false } do %>
+<%= link_to user_path(username: user.username), data: { turbo: false } do %>
   <div>
     <div class="follow-user-suggestion">
       <% if user.avatar.present? %>
@@ -15,13 +15,12 @@
         <p class="user-username">@<%= user.username %></p>
       </div>
     </div>
-    
-    <!-- Pending button -->
-    
+        
   </div>
-  <% end %>
-  <div style="position: relative;">
-    <% if user != current_user %>
-      <%= render partial: 'components/follow-button', locals: {user: user, size: local_assigns[:size].present? ? size : "sm", componet_id: local_assigns[:componet_id].present? ? componet_id : "user_suggest"} %>
-    <% end%>
-  </div>
+<% end %>
+
+<div style="position: relative;">
+  <% if user != current_user %>
+    <%= render partial: 'components/follow-button', locals: {user: user, size: local_assigns[:size].present? ? size : "sm", componet_id: local_assigns[:componet_id].present? ? componet_id : "user_suggest"} %>
+  <% end%>
+</div>
