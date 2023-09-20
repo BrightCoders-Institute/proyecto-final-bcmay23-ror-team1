@@ -14,19 +14,16 @@ class SharedPostController < ApplicationController
 
     new_repost = @post.shared_posts_relation.create(user: current_user) 
 
+    updatable_frames = get_updatable_reposts_frames()
+    updatable_frames.append(
+      turbo_stream.prepend("posts_list",
+        partial: 'shared_posts/shared_post',
+        locals: { repost: new_repost })
+    )
+
     respond_to do |format|
       format.turbo_stream do
-        render turbo_stream: [
-
-          turbo_stream.replace("post_#{@post.id}_share_button",
-            partial: 'shared_posts/shared_post_button',
-            locals: { post: @post, action_prefix: "post_#{@post.id}" }),
-
-          turbo_stream.prepend("posts_list",
-            partial: 'shared_posts/shared_post',
-            locals: { repost: new_repost })
-
-        ]
+        render turbo_stream: updatable_frames
       end
     end
 
@@ -44,14 +41,12 @@ class SharedPostController < ApplicationController
       shared_post.destroy
     end
 
-    updatable_frames = [
-      turbo_stream.update("shared_post_#{shared_post.id}_by_user_#{shared_post.user.id}",
-        partial: 'shared_posts/removed', locals: { repost: @post }
-      ),
-      turbo_stream.replace("post_#{@post.id}_share_button",
-        partial: 'shared_posts/shared_post_button',
-        locals: { post: @post, action_prefix: "post_#{@post.id}" })
-    ]
+    updatable_frames = get_updatable_reposts_frames()
+    updatable_frames.append(
+      turbo_stream.remove(
+        "shared_post_#{shared_post.id}_by_user_#{shared_post.user.id}"
+      )
+    )
 
     respond_to do |format|
       format.turbo_stream do
@@ -59,6 +54,27 @@ class SharedPostController < ApplicationController
       end
     end
       
+  end
+
+  private
+
+  def get_updatable_reposts_frames
+    visible_reposts = @post.shared_posts_relation.where(user_id: @user_suggestions.follows_ids(true))
+    updatable_frames = visible_reposts.map { |repost|
+      action_prefix = "shared_post_#{repost.id}_by_user_#{repost.user.id}"
+      turbo_stream.replace("#{action_prefix}_share_button",
+            partial: 'shared_posts/shared_post_button',
+            locals: { post: @post, action_prefix: action_prefix })
+    }
+
+    updatable_frames.append(
+      turbo_stream.replace("post_#{@post.id}_share_button",
+        partial: 'shared_posts/shared_post_button',
+        locals: { post: @post, action_prefix: "post_#{@post.id}" }
+      )
+    )
+
+    updatable_frames
   end
 
 end

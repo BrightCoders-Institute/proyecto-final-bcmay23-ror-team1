@@ -13,10 +13,10 @@ class UsersSuggestions
   end
 
   # Ids of the followed users to filter
-  def follows_ids
-    Follow.where(follower: @current_user)
-          .pluck(:following_id)
-          .append(@current_user.id)
+  def follows_ids(exclude_me=false)
+    follows = Follow.where(follower: @current_user).pluck(:following_id)
+    follows.append(@current_user.id) unless exclude_me          
+    follows
   end
 
   # Suggested users on the right area of the application layout
