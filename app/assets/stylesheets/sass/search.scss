@@ -70,6 +70,13 @@
           display: flex;
           gap: 1em;
           justify-content: center;
+
+          .metadata-user-verified {
+            align-items: center;
+            display: flex;
+            gap: 0.2em;
+            margin-bottom: .2rem;
+          }
         }
       }
     }
