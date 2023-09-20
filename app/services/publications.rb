@@ -1,18 +1,25 @@
 class Publications
   attr_reader :page_number, :per_page
 
-  def initialize(users_ids, page_number, per_page)
-    @users_ids = users_ids
+  def initialize(user, page_number, per_page)
+    @user = user
     @page_number = page_number.present? ? page_number.to_i : 1
     @per_page = per_page
   end
 
   def real_posts
-    Post.where(deleted: false, user_id: @users_ids)
-        .includes(:shared_posts_relation)
-        .with_attached_images
-        .order(created_at: :desc)
-        .load_async
+    if @user.is_a?(Array)
+      return Post.where(deleted: false, user_id: @user)
+          .includes(:shared_posts_relation)
+          .with_attached_images
+          .order(created_at: :desc)
+          .load_async
+    end
+    Post.where(deleted: false, user: User.find_by(username: @user))
+          .includes(:shared_posts_relation)
+          .with_attached_images
+          .order(created_at: :desc)
+          .load_async
   end
 
   def posts

@@ -26,16 +26,7 @@
 
         <%= render partial: "posts/components/content", locals: { post: post }%>
 
-        <% if is_parent_of_comment %>
-          <div>
-            Replying to
-            <%= link_to("") do %>
-              @<%= post.user.username %>
-            <% end %>
-          </div>
-        <% else %>
-          <%= render partial: "posts/components/actions", locals: { post: post }%>
-        <% end %>
+        <%= render partial: "posts/components/actions", locals: { post: post }%>
 
       </div>
 			  

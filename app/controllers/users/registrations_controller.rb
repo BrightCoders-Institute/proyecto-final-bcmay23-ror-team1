@@ -37,8 +37,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def show
-    @publications = Publications.new(params[:user_id], params[:page], 5)
-    @user_profile = UserProfile.new(params[:user_id], params[:tab], @publications)
+    @publications = Publications.new(params[:username], params[:page], 5)
+    @user_profile = UserProfile.new(params[:username], params[:tab], @publications)
 
     # If page number exists render only that page in the selected tab
     if params[:page]
@@ -62,12 +62,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def show_followers
-    @user = User.find(params[:user_id])
+    @user = User.find_by(username: params[:username])
     @followers = @user.followers
   end
 
   def show_followings
-    @user = User.find(params[:user_id])
+    @user = User.find_by(username: params[:username])
     @followings = @user.followings
   end
 
@@ -76,6 +76,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       DeletedUser.create(id: current_user.id, username: current_user.username)
       
       current_user.follower_records.destroy_all
+      current_user.following_records.destroy_all
       current_user.likes.destroy_all
       current_user.shared_posts_relation.destroy_all
       current_user.swap_posts_to_deleted_user

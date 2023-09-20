@@ -1,6 +1,6 @@
 <%= turbo_frame_tag "follow_counters_#{user.id}" do %>
   <div class="follow-info mb-1">
-    <%= link_to user_followings_path(user), data: {turbo: false} do %>
+    <%= link_to user_followings_path(username: user.username), data: {turbo: false} do %>
       <p>
         <span class="follow-info-number">
           <%= user.followings_number %>
@@ -10,7 +10,7 @@
         </span>
       </p>
     <% end %>
-    <%= link_to user_followers_path(user), data: {turbo: false} do %>
+    <%= link_to user_followers_path(username: user.username), data: {turbo: false} do %>
       <p>
         <span class="follow-info-number">
           <%= user.followers_number %>

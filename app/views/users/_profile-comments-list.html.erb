@@ -10,7 +10,7 @@
     data-controller="posts-loading"
     data-action="click->posts-loading#destroyButton">
 
-    <%= link_to "Load more", user_path(@user_profile.user, tab: :comments, page: @publications.next_page) %>
+    <%= link_to "Load more", user_path(username: @user_profile.user.username, tab: :comments, page: @publications.next_page) %>
 
   </div>
 
